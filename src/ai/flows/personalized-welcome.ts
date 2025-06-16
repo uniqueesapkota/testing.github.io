@@ -1,3 +1,4 @@
+
 'use server';
 
 /**
@@ -38,7 +39,7 @@ const prompt = ai.definePrompt({
   The portfolio owner's skills are: {{#each portfolioOwnerSkills}}{{{this}}}{{#unless @last}}, {{/unless}}{{/each}}
 
   Generate a warm and engaging welcome message that makes the visitor feel welcome and highlights the portfolio owner's skills.
-  The welcome message should be no more than 50 words.
+  The welcome message should be no more than 50 words. Ensure the portfolio owner's name, if it is "Unique Sapkota", is spelled correctly as "Unique Sapkota".
   `,
 });
 
