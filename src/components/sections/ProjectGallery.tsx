@@ -3,7 +3,7 @@ import Image from 'next/image';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
-import { ExternalLink } from 'lucide-react';
+import { ExternalLink, Layers } from 'lucide-react';
 
 interface Project {
   id: string;
@@ -58,48 +58,55 @@ const projects: Project[] = [
 
 export function ProjectGallery() {
   return (
-    <section id="projects" className="py-16 md:py-24 bg-background">
+    <section id="projects" className="py-16 md:py-24 bg-secondary/20">
       <div className="container mx-auto px-4 md:px-8">
-        <h2 className="font-headline text-3xl sm:text-4xl md:text-5xl font-bold text-center mb-12 md:mb-16 text-primary">
-          Featured Projects
-        </h2>
+        <div className="text-center mb-12 md:mb-16">
+          <Layers className="mx-auto h-12 w-12 text-primary animate-bounce-light mb-2" />
+          <h2 className="font-headline text-3xl sm:text-4xl md:text-5xl font-bold text-primary">
+            Featured Projects
+          </h2>
+          <p className="text-muted-foreground mt-2 text-lg">A glimpse into my development journey and capabilities.</p>
+        </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
           {projects.map((project) => (
-            <Card key={project.id} className="group flex flex-col overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 ease-in-out hover:scale-[1.03] transform">
+            <Card key={project.id} className="group flex flex-col overflow-hidden shadow-lg hover:shadow-xl hover:shadow-primary-glow hover:border-primary/70 transform hover:-translate-y-2 transition-all duration-300 ease-in-out rounded-xl">
               <CardHeader className="p-0">
-                <div className="aspect-video relative overflow-hidden"> {/* Added overflow-hidden here for image scale */}
+                <div className="aspect-video relative overflow-hidden rounded-t-xl">
                   <Image
                     src={project.imageUrl}
                     alt={project.title}
                     layout="fill"
                     objectFit="cover"
                     data-ai-hint={project.imageHint}
-                    className="transition-all duration-500 ease-in-out group-hover:scale-110 group-hover:brightness-105"
+                    className="transition-all duration-500 ease-in-out group-hover:scale-105 group-hover:brightness-110"
                   />
+                   <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent group-hover:from-black/50 transition-all duration-300"></div>
                 </div>
               </CardHeader>
               <CardContent className="p-6 flex-grow">
-                <CardTitle className="font-headline text-2xl mb-2 text-foreground">{project.title}</CardTitle>
-                <CardDescription className="text-muted-foreground mb-4 leading-relaxed">{project.description}</CardDescription>
+                <CardTitle className="font-headline text-2xl mb-2 text-foreground group-hover:text-primary transition-colors duration-300">{project.title}</CardTitle>
+                <CardDescription className="text-muted-foreground mb-4 leading-relaxed text-balance">{project.description}</CardDescription>
                 <div className="flex flex-wrap gap-2 mb-4">
                   {project.tags.map(tag => (
-                    <span key={tag} className="text-xs bg-accent/20 text-accent-foreground px-2 py-1 rounded-full transition-all duration-200 hover:bg-primary hover:text-primary-foreground">{tag}</span>
+                    <span key={tag} className="text-xs font-medium bg-accent/20 text-accent-foreground px-3 py-1.5 rounded-full transition-all duration-300 ease-in-out group-hover:bg-primary/80 group-hover:text-primary-foreground group-hover:scale-105 group-hover:shadow-md">
+                      {tag}
+                    </span>
                   ))}
                 </div>
               </CardContent>
-              <CardFooter className="p-6 bg-secondary/30 border-t">
+              <CardFooter className="p-6 bg-card border-t rounded-b-xl">
                 <div className="flex space-x-4">
                   {project.liveLink && (
-                    <Button asChild variant="default" className="font-semibold hover:scale-105 transform transition-transform">
+                    <Button asChild variant="default" className="font-semibold hover:scale-105 transform transition-transform duration-200 hover:shadow-md hover:bg-primary/90 group/button">
                       <Link href={project.liveLink} target="_blank" rel="noopener noreferrer">
-                        Live Demo <ExternalLink className="ml-2 h-4 w-4" />
+                        Live Demo <ExternalLink className="ml-2 h-4 w-4 group-hover/button:animate-wiggle" />
                       </Link>
                     </Button>
                   )}
                   {project.repoLink && (
-                    <Button asChild variant="outline" className="font-semibold border-primary text-primary hover:bg-primary/10 hover:scale-105 transform transition-transform">
+                    <Button asChild variant="outline" className="font-semibold border-primary text-primary hover:bg-primary/10 hover:text-primary-foreground hover:bg-primary hover:scale-105 transform transition-transform duration-200 hover:shadow-md group/button">
                       <Link href={project.repoLink} target="_blank" rel="noopener noreferrer">
-                        View Code <ExternalLink className="ml-2 h-4 w-4" />
+                        View Code <ExternalLink className="ml-2 h-4 w-4 group-hover/button:animate-wiggle" />
                       </Link>
                     </Button>
                   )}

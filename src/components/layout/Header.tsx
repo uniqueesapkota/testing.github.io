@@ -2,7 +2,7 @@
 "use client";
 
 import Link from "next/link";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger, SheetClose } from "@/components/ui/sheet";
 import { useState } from "react";
@@ -22,10 +22,11 @@ export function Header() {
   };
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+    <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/80 backdrop-blur-lg supports-[backdrop-filter]:bg-background/60">
       <div className="container flex h-16 max-w-screen-2xl items-center justify-between px-4 md:px-8">
         <Link href="/" className="mr-6 flex items-center space-x-2 group">
-          <span className="font-headline text-2xl font-bold text-primary group-hover:text-accent transition-colors duration-300 group-hover:scale-105 transform">PortfolioPro</span>
+          <Sparkles className="h-7 w-7 text-primary group-hover:text-accent transition-all duration-300 ease-in-out transform group-hover:rotate-[25deg] group-hover:scale-110" />
+          <span className="font-headline text-2xl font-bold text-primary group-hover:text-accent transition-colors duration-300 group-hover:scale-105 transform group-hover:text-shadow-accent">PortfolioPro</span>
         </Link>
 
         <nav className="hidden md:flex md:items-center md:space-x-6 text-sm font-medium">
@@ -33,7 +34,7 @@ export function Header() {
             <Link
               key={item.label}
               href={item.href}
-              className="transition-all duration-200 ease-in-out hover:text-accent hover:scale-110 transform"
+              className="relative transition-all duration-300 ease-in-out hover:text-accent hover:scale-110 transform after:content-[''] after:absolute after:left-0 after:bottom-[-4px] after:w-0 after:h-[2px] after:bg-accent after:transition-all after:duration-300 hover:after:w-full"
             >
               {item.label}
             </Link>
@@ -43,19 +44,20 @@ export function Header() {
         <div className="md:hidden">
           <Sheet open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
             <SheetTrigger asChild>
-              <Button variant="ghost" size="icon">
+              <Button variant="ghost" size="icon" className="hover:bg-accent/20 active:scale-95 transition-transform">
                 <Menu className="h-6 w-6" />
                 <span className="sr-only">Open navigation menu</span>
               </Button>
             </SheetTrigger>
-            <SheetContent side="right" className="w-full max-w-xs bg-background p-6">
+            <SheetContent side="right" className="w-full max-w-xs bg-background p-6 shadow-xl">
               <div className="flex flex-col space-y-5">
                 <div className="flex justify-between items-center mb-4">
                    <Link href="/" className="flex items-center space-x-2 group" onClick={handleLinkClick}>
+                     <Sparkles className="h-6 w-6 text-primary group-hover:text-accent" />
                      <span className="font-headline text-xl font-bold text-primary group-hover:text-accent transition-colors duration-300">PortfolioPro</span>
                    </Link>
                    <SheetClose asChild>
-                      <Button variant="ghost" size="icon" onClick={() => setIsMobileMenuOpen(false)}>
+                      <Button variant="ghost" size="icon" onClick={() => setIsMobileMenuOpen(false)} className="hover:bg-accent/20 active:scale-95 transition-transform">
                         <X className="h-6 w-6" />
                         <span className="sr-only">Close navigation menu</span>
                       </Button>
@@ -65,7 +67,7 @@ export function Header() {
                   <SheetClose asChild key={item.label}>
                     <Link
                       href={item.href}
-                      className="text-lg transition-colors hover:text-accent py-2"
+                      className="text-lg transition-all duration-200 hover:text-accent py-2 hover:pl-2 ease-in-out"
                       onClick={handleLinkClick}
                     >
                       {item.label}

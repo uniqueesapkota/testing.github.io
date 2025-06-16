@@ -1,5 +1,5 @@
 
-import { Briefcase, CodeXmlIcon, PaletteIcon, LightbulbIcon, UsersIcon, MessageSquareIcon, DatabaseIcon, AwardIcon, TrendingUpIcon } from 'lucide-react';
+import { Briefcase, CodeXmlIcon, PaletteIcon, LightbulbIcon, UsersIcon, Share2Icon, BarChartIcon, FileTextIcon, NetworkIcon, TrendingUpIcon, CheckCircle } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 
 interface Skill {
@@ -17,72 +17,90 @@ interface Experience {
 }
 
 const skills: Skill[] = [
-  { name: "Web Development", icon: CodeXmlIcon, description: "Building responsive and performant web applications using modern frameworks like React, Next.js, and Vue." },
-  { name: "UI/UX Design", icon: PaletteIcon, description: "Crafting intuitive and visually appealing user interfaces with a focus on user-centered design principles." },
-  { name: "Problem Solving", icon: LightbulbIcon, description: "Analyzing complex challenges and developing innovative, effective solutions." },
-  { name: "Agile Methodologies", icon: TrendingUpIcon, description: "Experienced in Scrum and Kanban, fostering iterative development and continuous improvement." },
-  { name: "Database Management", icon: DatabaseIcon, description: "Proficient in SQL and NoSQL databases, ensuring data integrity and efficient querying." },
-  { name: "Team Collaboration", icon: UsersIcon, description: "Working effectively within diverse teams to achieve common goals and deliver high-quality products." },
+  { name: "Web Development", icon: CodeXmlIcon, description: "Building responsive web applications using HTML, CSS, JavaScript, PHP, and modern front-end frameworks." },
+  { name: "Social Media Management", icon: Share2Icon, description: "Developing and executing strategies to drive engagement and brand presence across diverse platforms." },
+  { name: "Digital Marketing", icon: TrendingUpIcon, description: "Implementing campaigns, including SEO/PPC, keyword research, and ROI optimization." },
+  { name: "Content Creation", icon: FileTextIcon, description: "Crafting branded communications and engaging content for social media and web." },
+  { name: "Networking & IT", icon: NetworkIcon, description: "Designing, evaluating, and supporting WAN/LAN connectivity and network security." },
+  { name: "Team Collaboration & Agile", icon: UsersIcon, description: "Working effectively in collaborative teams using Agile methodologies for timely project delivery." },
 ];
 
 const experiences: Experience[] = [
   {
-    title: "Senior Full-Stack Developer",
-    company: "Innovatech Solutions Ltd.",
-    duration: "2021 - Present",
-    description: "Led the development of cutting-edge web applications, mentored junior developers, and contributed to architectural decisions.",
+    title: "Social Media Assistant & Developer",
+    company: "STEP TWO SOLUTIONS",
+    duration: "Jan 2019 - Current",
+    description: "Managed online social presence, created branded communications, and contributed to web development tasks.",
     highlights: [
-      "Successfully launched three major client projects, resulting in a 25% increase in user engagement.",
-      "Implemented a new microservices architecture, improving system scalability and reducing downtime by 15%.",
-      "Championed the adoption of TypeScript across projects, enhancing code quality and developer productivity."
+      "Maintained company's online social presence and created branded communications.",
+      "Organized webinars/live chats to engage with customers.",
+      "Met 80% of deadlines in a time-sensitive role.",
+      "Managed Facebook, Instagram, and Twitter content for brand consistency.",
+      "Monitored KPIs and analyzed performance for social media strategy.",
+      "A-B tested ad campaigns, improving ROI.",
+      "Conducted keyword research and competitor SEO/PPC analysis.",
     ]
   },
   {
-    title: "UX/UI Designer & Frontend Developer",
-    company: "Creative Digital Agency",
-    duration: "2019 - 2021",
-    description: "Designed and developed user interfaces for various clients, focusing on creating seamless and engaging digital experiences.",
+    title: "Full Stack Developer (Intern)",
+    company: "PRATHAM IT SYSTEM",
+    duration: "Jan 2024 - Jun 2024",
+    description: "Gained hands-on experience in full-stack development, working on software implementation and web services.",
     highlights: [
-        "Redesigned a key client's e-commerce platform, leading to a 40% improvement in conversion rates.",
-        "Developed a comprehensive design system, ensuring consistency and efficiency across multiple projects."
+        "Worked with senior developers/designers on software using HTML, CSS, JavaScript, PHP.",
+        "Streamlined development workflows with Git and Agile methodologies.",
+        "Assisted in creating cross-platform UI web components and built 3 responsive applications.",
+        "Planned and engineered RESTful web services for dynamic datasets."
     ]
   },
   {
-    title: "Junior Web Developer",
-    company: "Tech Start Co.",
-    duration: "2017 - 2019",
-    description: "Contributed to the development and maintenance of company websites and internal tools, gaining foundational experience in web technologies.",
+    title: "Networking Assistant",
+    company: "NOBLE TECHNOLOGY",
+    duration: "Jan 2022 - Jan 2024",
+    description: "Provided support in network design, vendor management, and IT operations, ensuring optimal performance and security.",
      highlights: [
-        "Assisted in migrating legacy systems to modern JavaScript frameworks.",
-        "Received 'Rising Star' award for proactive learning and contribution to team projects."
+        "Collaborated on designing and implementing networking strategies.",
+        "Assisted in vendor management and equipment procurement.",
+        "Designed and evaluated WAN/LAN connectivity.",
+        "Performed network security design and integration duties.",
+        "Worked with cross-functional teams on technical requirements during project planning."
     ]
   }
 ];
 
 export function AboutMeSection() {
   return (
-    <section id="about" className="py-16 md:py-24 bg-secondary/30">
+    <section id="about" className="py-16 md:py-24 bg-background">
       <div className="container mx-auto px-4 md:px-8">
-        <h2 className="font-headline text-3xl sm:text-4xl md:text-5xl font-bold text-center mb-12 md:mb-16 text-primary">
-          About Me
-        </h2>
+        <div className="text-center mb-12 md:mb-16">
+           <Briefcase className="mx-auto h-12 w-12 text-primary animate-bounce-light mb-2" />
+           <h2 className="font-headline text-3xl sm:text-4xl md:text-5xl font-bold text-primary">
+             About Me
+           </h2>
+            <p className="text-muted-foreground mt-2 text-lg">My journey, skills, and professional background.</p>
+        </div>
 
-        <div className="grid md:grid-cols-5 gap-12">
+        <div className="grid md:grid-cols-5 gap-12 items-start">
           <div className="md:col-span-3">
             <h3 className="font-headline text-2xl md:text-3xl font-semibold mb-8 text-foreground">Work Experience</h3>
-            <div className="space-y-8 relative pl-6 before:absolute before:inset-y-0 before:w-0.5 before:bg-border before:left-0">
+            <div className="space-y-8 relative pl-6 before:absolute before:inset-y-0 before:w-1 before:bg-primary/30 before:left-0 before:rounded-full">
               {experiences.map((exp, index) => (
-                <div key={index} className="relative pl-8 before:absolute before:left-[-26px] before:top-1 before:w-3 before:h-3 before:bg-primary before:rounded-full before:ring-4 before:ring-background">
-                  <Card className="shadow-md hover:shadow-xl hover:border-primary transition-all duration-300 ease-in-out transform hover:-translate-y-1">
+                <div key={index} className="relative pl-8 before:absolute before:left-[-28px] before:top-1.5 before:w-4 before:h-4 before:bg-primary before:rounded-full before:ring-4 before:ring-background shadow-primary-glow/30">
+                  <Card className="shadow-lg hover:shadow-xl hover:shadow-primary-glow hover:border-primary/70 transform hover:-translate-y-1.5 transition-all duration-300 ease-in-out rounded-lg group">
                     <CardHeader>
-                      <CardTitle className="font-headline text-xl text-primary">{exp.title}</CardTitle>
+                      <CardTitle className="font-headline text-xl text-primary group-hover:text-accent transition-colors">{exp.title}</CardTitle>
                       <p className="text-sm text-muted-foreground font-semibold">{exp.company} | {exp.duration}</p>
                     </CardHeader>
                     <CardContent>
-                      <p className="text-foreground mb-3">{exp.description}</p>
+                      <p className="text-foreground mb-3 text-balance">{exp.description}</p>
                       {exp.highlights && (
-                        <ul className="list-disc list-inside space-y-1 text-sm text-muted-foreground">
-                          {exp.highlights.map((highlight, i) => <li key={i}>{highlight}</li>)}
+                        <ul className="space-y-1.5 text-sm text-muted-foreground">
+                          {exp.highlights.map((highlight, i) => (
+                            <li key={i} className="flex items-start">
+                               <CheckCircle className="h-4 w-4 text-primary mr-2 mt-0.5 flex-shrink-0 group-hover:text-accent transition-colors" />
+                               <span>{highlight}</span>
+                            </li>
+                          ))}
                         </ul>
                       )}
                     </CardContent>
@@ -96,13 +114,13 @@ export function AboutMeSection() {
             <h3 className="font-headline text-2xl md:text-3xl font-semibold mb-8 text-foreground">My Skills</h3>
             <div className="space-y-6">
               {skills.map((skill) => (
-                <Card key={skill.name} className="group shadow-md hover:shadow-xl hover:border-accent transition-all duration-300 ease-in-out transform hover:-translate-y-1">
+                <Card key={skill.name} className="group shadow-lg hover:shadow-xl hover:shadow-accent-glow hover:border-accent/70 transform hover:-translate-y-1.5 transition-all duration-300 ease-in-out rounded-lg">
                   <CardContent className="p-6">
                     <div className="flex items-start space-x-4">
-                      <skill.icon className="h-8 w-8 text-accent flex-shrink-0 mt-1 transition-all duration-300 ease-in-out transform group-hover:scale-110 group-hover:text-primary group-hover:rotate-[5deg]" aria-hidden="true" />
+                      <skill.icon className="h-10 w-10 text-accent flex-shrink-0 mt-1 transition-all duration-300 ease-in-out transform group-hover:scale-110 group-hover:text-primary group-hover:rotate-[8deg] group-hover:animate-wiggle" aria-hidden="true" />
                       <div>
-                        <h4 className="font-headline text-lg font-medium text-foreground">{skill.name}</h4>
-                        <p className="text-sm text-muted-foreground">{skill.description}</p>
+                        <h4 className="font-headline text-lg font-medium text-foreground group-hover:text-accent transition-colors">{skill.name}</h4>
+                        <p className="text-sm text-muted-foreground text-balance">{skill.description}</p>
                       </div>
                     </div>
                   </CardContent>
@@ -111,9 +129,9 @@ export function AboutMeSection() {
             </div>
           </div>
         </div>
-         <div className="mt-16 text-center">
-            <p className="text-lg md:text-xl max-w-3xl mx-auto text-foreground leading-relaxed">
-                I am a passionate and results-driven professional with a knack for creating elegant and effective digital solutions. My journey in tech has been fueled by a love for learning and a commitment to excellence. I thrive in collaborative environments and am always eager to take on new challenges that push the boundaries of innovation.
+         <div className="mt-16 text-center animate-fadeInUp [animation-delay:0.5s]">
+            <p className="text-lg md:text-xl max-w-3xl mx-auto text-foreground leading-relaxed text-balance">
+                I am an experienced professional with a strong background in social media, web development, management, content creation, and digital marketing strategies. Known for dependability and a results-focused approach, I thrive in collaborative environments and adapt quickly to changing needs.
             </p>
         </div>
       </div>
