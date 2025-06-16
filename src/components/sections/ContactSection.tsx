@@ -6,8 +6,8 @@ import Link from "next/link";
 const YOUR_EMAIL = "uniquesapkota058@gmail.com"; 
 const YOUR_LINKEDIN_URL = "https://www.linkedin.com/in/unique-sapkota-420997219/"; 
 const YOUR_GITHUB_URL = "https://github.com/uniqueesapkota"; 
-const YOUR_INSTAGRAM_URL = "#"; // Placeholder URL
-const YOUR_FACEBOOK_URL = "#"; // Placeholder URL
+const YOUR_INSTAGRAM_URL = "https://www.instagram.com/uniqueesapkota?igsh=NzdzM3ZuaDVuYnF0&utm_source=qr";
+const YOUR_FACEBOOK_URL = "https://www.facebook.com/unique.sapkota.1?mibextid=rS40aB7S9Ucbxw6v";
 
 
 export function ContactSection() {
