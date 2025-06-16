@@ -22,7 +22,7 @@ export function Footer() {
         ) : (
           <p>Loading copyright year...</p>
         )}
-        <p className="text-sm mt-1">Designed with passion by Unik Sapkota.</p>
+        <p className="text-sm mt-1">Designed with passion by Unique Sapkota.</p>
       </div>
     </footer>
   );

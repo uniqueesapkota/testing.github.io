@@ -7,7 +7,7 @@ import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { Loader2, Send, ArrowDownCircle } from 'lucide-react';
 
-const PORTFOLIO_OWNER_NAME = "Unik Sapkota";
+const PORTFOLIO_OWNER_NAME = "Unique Sapkota";
 const PORTFOLIO_OWNER_SKILLS = ["Social Media Management", "Web Development", "Digital Marketing", "Content Creation"];
 
 export function HeroSection() {

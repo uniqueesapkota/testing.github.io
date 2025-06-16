@@ -1,10 +1,11 @@
+
 import type {Metadata} from 'next';
 import './globals.css';
 import { Toaster } from "@/components/ui/toaster";
 
 export const metadata: Metadata = {
-  title: 'Unik Sapkota - Social Media Handler & Web Developer',
-  description: 'Portfolio of Unik Sapkota, an experienced Social Media Handler and Web Developer specializing in engagement, web development, and digital marketing.',
+  title: 'Unique Sapkota - Social Media Handler & Web Developer',
+  description: 'Portfolio of Unique Sapkota, an experienced Social Media Handler and Web Developer specializing in engagement, web development, and digital marketing.',
 };
 
 export default function RootLayout({
