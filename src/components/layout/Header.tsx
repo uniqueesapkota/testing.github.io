@@ -44,8 +44,8 @@ export function Header() {
         <div className="md:hidden">
           <Sheet open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
             <SheetTrigger asChild>
-              <Button variant="ghost" size="icon" className="hover:bg-accent/20 active:scale-95 transition-transform">
-                <Menu className="h-6 w-6" />
+              <Button variant="ghost" size="icon" className="hover:bg-accent/20 active:scale-95 transition-transform group">
+                <Menu className="h-6 w-6 group-hover:rotate-12 transition-transform duration-300" />
                 <span className="sr-only">Open navigation menu</span>
               </Button>
             </SheetTrigger>
@@ -57,8 +57,8 @@ export function Header() {
                      <span className="font-headline text-xl font-bold text-primary group-hover:text-accent transition-colors duration-300">PortfolioPro</span>
                    </Link>
                    <SheetClose asChild>
-                      <Button variant="ghost" size="icon" onClick={() => setIsMobileMenuOpen(false)} className="hover:bg-accent/20 active:scale-95 transition-transform">
-                        <X className="h-6 w-6" />
+                      <Button variant="ghost" size="icon" onClick={() => setIsMobileMenuOpen(false)} className="hover:bg-accent/20 active:scale-95 transition-transform group">
+                        <X className="h-6 w-6 group-hover:rotate-12 transition-transform duration-300" />
                         <span className="sr-only">Close navigation menu</span>
                       </Button>
                     </SheetClose>

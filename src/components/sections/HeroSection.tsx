@@ -38,7 +38,7 @@ export function HeroSection() {
   return (
     <section id="hero" className="py-24 md:py-40 bg-gradient-to-br from-background via-secondary/30 to-primary/10 overflow-hidden">
       <div className="container mx-auto px-4 md:px-8 text-center">
-        <h1 className="font-headline text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold mb-6 text-primary hover:text-accent transition-colors duration-300 cursor-default animate-bounce-light text-shadow-primary">
+        <h1 className="font-headline text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold mb-6 text-primary hover:text-accent transition-colors duration-300 cursor-default animate-subtle-float text-shadow-primary">
           {PORTFOLIO_OWNER_NAME}
         </h1>
         <div className="min-h-[60px] md:min-h-[80px] flex items-center justify-center mb-10">
@@ -51,12 +51,12 @@ export function HeroSection() {
           )}
         </div>
         <div className="space-x-4 animate-fadeInUp [animation-fill-mode:forwards] [animation-delay:0.8s]">
-          <Button asChild size="lg" className="font-semibold text-lg px-8 py-6 shadow-lg hover:shadow-primary-glow hover:scale-105 transform transition-all duration-300 ease-in-out group">
+          <Button asChild size="lg" className="font-semibold text-lg px-8 py-6 shadow-lg hover:shadow-primary-glow hover:scale-105 hover:brightness-110 transform transition-all duration-300 ease-in-out group">
             <Link href="#projects">
               <ArrowDownCircle className="mr-2 h-5 w-5 group-hover:animate-wiggle" /> View Projects
             </Link>
           </Button>
-          <Button asChild variant="outline" size="lg" className="font-semibold text-lg px-8 py-6 border-primary text-primary hover:bg-primary/10 hover:text-primary-foreground hover:bg-primary hover:scale-105 hover:shadow-primary-glow transform transition-all duration-300 ease-in-out group">
+          <Button asChild variant="outline" size="lg" className="font-semibold text-lg px-8 py-6 border-primary text-primary hover:bg-primary/10 hover:text-primary-foreground hover:bg-primary hover:scale-105 hover:shadow-primary-glow hover:brightness-110 transform transition-all duration-300 ease-in-out group">
             <Link href="#contact">
              <Send className="mr-2 h-5 w-5 group-hover:animate-wiggle" /> Get in Touch
             </Link>

@@ -73,7 +73,7 @@ export function AboutMeSection() {
     <section id="about" className="py-16 md:py-24 bg-background">
       <div className="container mx-auto px-4 md:px-8">
         <div className="text-center mb-12 md:mb-16">
-           <Briefcase className="mx-auto h-12 w-12 text-primary animate-bounce-light mb-2" />
+           <Briefcase className="mx-auto h-12 w-12 text-primary animate-subtle-float mb-2" />
            <h2 className="font-headline text-3xl sm:text-4xl md:text-5xl font-bold text-primary">
              About Me
            </h2>
@@ -97,7 +97,7 @@ export function AboutMeSection() {
                         <ul className="space-y-1.5 text-sm text-muted-foreground">
                           {exp.highlights.map((highlight, i) => (
                             <li key={i} className="flex items-start">
-                               <CheckCircle className="h-4 w-4 text-primary mr-2 mt-0.5 flex-shrink-0 group-hover:text-accent transition-colors" />
+                               <CheckCircle className="h-4 w-4 text-primary mr-2 mt-0.5 flex-shrink-0 group-hover:text-accent group-hover:scale-125 transition-all duration-300" />
                                <span>{highlight}</span>
                             </li>
                           ))}
