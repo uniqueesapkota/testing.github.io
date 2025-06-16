@@ -2,6 +2,7 @@
 import type {Metadata} from 'next';
 import './globals.css';
 import { Toaster } from "@/components/ui/toaster";
+import { ScrollAwareNav } from '@/components/layout/ScrollAwareNav';
 
 export const metadata: Metadata = {
   title: 'Unique Sapkota - Social Media Handler & Web Developer',
@@ -23,6 +24,7 @@ export default function RootLayout({
       </head>
       <body className="font-body antialiased">
         {children}
+        <ScrollAwareNav />
         <Toaster />
       </body>
     </html>
