@@ -1,54 +1,87 @@
-# Local Environment Variables
-.env
-.env.local
-.env.*.local
-.envrc
-
-# Next.js
-/.next/
-/out/
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
 # Dependencies
 /node_modules
 /.pnp
 .pnp.js
 
-# Build output
-/dist
-/build
+# Testing
+/coverage
 
-# Logs
-logs
-*.log
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-pnpm-debug.log*
-report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
+# Next.js build files
+/.next/
+/out/
+
+# Production
+/build
 
 # Misc
 .DS_Store
 *.pem
-*.bak
 
-# Firebase
-.firebase/
-*.firebase.*.log
-database-debug.log
+# Local Environment Variables
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
 
-# TypeScript cache
-*.tsbuildinfo
-next-env.d.ts
+# Log files
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
 
 # Editor directories and files
-.idea/
-.vscode/*
-!.vscode/settings.json
-!.vscode/tasks.json
-!.vscode/launch.json
-!.vscode/extensions.json
-*.sublime-workspace
+.idea
+.vscode
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
 
-# Operating System Files
-ehthumbs.db
+# Firebase
+.firebase
+firebase-debug.log
+database-debug.log
+firestore-debug.log
+
+# Output of 'firebase init'
+hosting.rules
+database.rules.json
+storage.rules
+functions/node_modules
+functions/.eslintrc.js
+functions/package-lock.json
+functions/package.json
+functions/tsconfig.json
+functions/tsconfig.dev.json
+functions/lib
+
+# macOS
+.AppleDouble
+.LSOverride
+
+# Thumbnails
+._*
+
+# Files that might appear in Windows
 Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Optional npm cache directory
+.npm
+
+# Optional eslint cache
+.eslintcache
+
+# Optional stylelint cache
+.stylelintcache
+
+# Output of Storybook builds
+/storybook-static
+
+# Next-Auth specific
+next-auth.session-token
+next-auth.pkce.code_verifier
