@@ -26,7 +26,7 @@ export function Header() {
       <div className="container flex h-16 max-w-screen-2xl items-center justify-between px-4 md:px-8">
         <Link href="/" className="mr-6 flex items-center space-x-2 group">
           <Sparkles className="h-7 w-7 text-primary group-hover:text-accent transition-all duration-300 ease-in-out transform group-hover:animate-icon-sparkle-pop" />
-          <span className="font-headline text-2xl font-bold text-primary group-hover:text-accent transition-colors duration-300 group-hover:scale-105 transform group-hover:text-shadow-accent">PortfolioPro</span>
+          <span className="sr-only">PortfolioPro</span>
         </Link>
 
         <nav className="hidden md:flex md:items-center md:space-x-6 text-sm font-medium">
@@ -54,7 +54,7 @@ export function Header() {
                 <div className="flex justify-between items-center mb-4">
                    <Link href="/" className="flex items-center space-x-2 group" onClick={handleLinkClick}>
                      <Sparkles className="h-6 w-6 text-primary group-hover:text-accent group-hover:animate-icon-sparkle-pop" />
-                     <span className="font-headline text-xl font-bold text-primary group-hover:text-accent transition-colors duration-300">PortfolioPro</span>
+                     <span className="sr-only">PortfolioPro</span>
                    </Link>
                    <SheetClose asChild>
                       <Button variant="ghost" size="icon" onClick={() => setIsMobileMenuOpen(false)} className="hover:bg-accent/20 active:scale-95 transition-transform group">
