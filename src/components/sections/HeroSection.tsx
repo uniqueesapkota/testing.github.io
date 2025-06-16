@@ -28,7 +28,7 @@ export function HeroSection() {
         // For demo purposes, let's assume visitor name is generic.
         // In a real app, this might come from user input or auth.
         const result = await generatePersonalizedWelcome({
-          visitorName: "Valued Visitor", 
+          visitorName: "Valued Visitor",
           portfolioOwnerName: PORTFOLIO_OWNER_NAME,
           portfolioOwnerSkills: PORTFOLIO_OWNER_SKILLS,
         });
@@ -46,8 +46,8 @@ export function HeroSection() {
 
     // Staggered animation triggers
     const timerImg = setTimeout(() => setImageAnimated(true), 50);
-    const timer1 = setTimeout(() => setNameAnimated(true), 200); 
-    const timer2 = setTimeout(() => setMessageAnimated(true), 500); 
+    const timer1 = setTimeout(() => setNameAnimated(true), 200);
+    const timer2 = setTimeout(() => setMessageAnimated(true), 500);
     const timer3 = setTimeout(() => setButtonsAnimated(true), 800);
 
 
@@ -63,7 +63,7 @@ export function HeroSection() {
   return (
     <section id="hero" className="py-24 md:py-32 bg-gradient-to-br from-background via-secondary/30 to-primary/10 overflow-hidden">
       <div className="container mx-auto px-4 md:px-8 text-center">
-        <div 
+        <div
           className={cn(
             "mb-6",
             "opacity-0 transform scale-90",
@@ -77,20 +77,20 @@ export function HeroSection() {
             width={160}
             height={160}
             className="rounded-full mx-auto shadow-xl border-4 border-background object-cover"
-            priority 
+            priority
           />
         </div>
-        <h1 
+        <h1
           className={cn(
             "font-headline text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold mb-6 text-primary hover:text-accent transition-all duration-500 cursor-default text-shadow-primary",
-            "opacity-0 transform translate-y-8", 
+            "opacity-0 transform translate-y-8",
             nameAnimated && "animate-fadeInDown opacity-100 translate-y-0"
           )}
           style={{ animationDuration: '0.8s', animationFillMode: 'forwards', animationDelay: '0.2s' }}
           >
           {PORTFOLIO_OWNER_NAME}
         </h1>
-        <div 
+        <div
           className={cn(
             "min-h-[60px] md:min-h-[80px] flex items-center justify-center mb-10",
              "opacity-0 transform translate-y-8",
@@ -106,7 +106,7 @@ export function HeroSection() {
             </p>
           )}
         </div>
-        <div 
+        <div
           className={cn(
             "space-x-4",
             "opacity-0 transform translate-y-8",
