@@ -29,12 +29,12 @@ export function Header() {
           <span className="sr-only">PortfolioPro</span>
         </Link>
 
-        <nav className="hidden md:flex md:items-center md:space-x-6 text-sm font-medium">
+        <nav className="hidden md:flex md:items-center md:space-x-6 text-sm font-headline">
           {navItems.map((item) => (
             <Link
               key={item.label}
               href={item.href}
-              className="relative transition-all duration-300 ease-in-out hover:text-accent hover:scale-110 transform after:content-[''] after:absolute after:left-0 after:bottom-[-4px] after:w-0 after:h-[2px] after:bg-accent after:transition-all after:duration-300 hover:after:w-full"
+              className="relative transition-all duration-300 ease-in-out hover:text-accent hover:scale-110 hover:text-shadow-accent transform after:content-[''] after:absolute after:left-0 after:bottom-[-4px] after:w-0 after:h-[2px] after:bg-accent after:transition-all after:duration-300 hover:after:w-full"
             >
               {item.label}
             </Link>
@@ -67,7 +67,7 @@ export function Header() {
                   <SheetClose asChild key={item.label}>
                     <Link
                       href={item.href}
-                      className="text-lg transition-all duration-200 hover:text-accent py-2 hover:pl-2 ease-in-out"
+                      className="text-lg font-headline transition-all duration-200 hover:text-accent hover:text-shadow-accent py-2 hover:pl-2 ease-in-out"
                       onClick={handleLinkClick}
                     >
                       {item.label}
