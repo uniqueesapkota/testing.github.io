@@ -91,7 +91,7 @@ export function ProjectGallery() {
                 <CardDescription className="text-muted-foreground mb-4 leading-relaxed text-balance">{project.description}</CardDescription>
                 <div className="flex flex-wrap gap-2 mb-4">
                   {project.tags.map(tag => (
-                    <span key={tag} className="text-xs font-medium bg-accent/20 text-accent-foreground px-3 py-1.5 rounded-full transition-all duration-300 ease-in-out group-hover:bg-primary/80 group-hover:text-primary-foreground group-hover:scale-105 group-hover:shadow-lg">
+                    <span key={tag} className="text-xs font-medium bg-accent/20 text-accent-foreground px-3 py-1.5 rounded-full transition-all duration-300 ease-in-out group-hover:bg-primary/80 group-hover:text-primary-foreground group-hover:animate-tag-hover-pop group-hover:shadow-lg">
                       {tag}
                     </span>
                   ))}
@@ -100,14 +100,14 @@ export function ProjectGallery() {
               <CardFooter className="p-6 bg-card border-t rounded-b-xl">
                 <div className="flex space-x-4">
                   {project.liveLink && (
-                    <Button asChild variant="default" className="font-semibold hover:scale-105 hover:brightness-110 transform transition-transform duration-200 hover:shadow-md hover:bg-primary/90 group/button">
+                    <Button asChild variant="default" className="font-semibold hover:scale-105 hover:brightness-110 transform transition-transform duration-200 hover:shadow-md hover:bg-primary/90 group-hover:animate-subtle-glow group/button">
                       <Link href={project.liveLink} target="_blank" rel="noopener noreferrer">
                         Live Demo <ExternalLink className="ml-2 h-4 w-4 group-hover/button:animate-wiggle" />
                       </Link>
                     </Button>
                   )}
                   {project.repoLink && (
-                    <Button asChild variant="outline" className="font-semibold border-primary text-primary hover:bg-primary/10 hover:text-primary-foreground hover:bg-primary hover:scale-105 hover:brightness-110 transform transition-transform duration-200 hover:shadow-md group/button">
+                    <Button asChild variant="outline" className="font-semibold border-primary text-primary hover:bg-primary/10 hover:text-primary-foreground hover:bg-primary hover:scale-105 hover:brightness-110 transform transition-transform duration-200 hover:shadow-md group-hover:animate-subtle-glow group/button">
                       <Link href={project.repoLink} target="_blank" rel="noopener noreferrer">
                         View Code <ExternalLink className="ml-2 h-4 w-4 group-hover/button:animate-wiggle" />
                       </Link>

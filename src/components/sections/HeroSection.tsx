@@ -23,6 +23,7 @@ export function HeroSection() {
     const fetchWelcomeMessage = async () => {
       setIsLoading(true);
       try {
+        // Ensure "Unique Sapkota" is passed correctly
         const result = await generatePersonalizedWelcome({
           visitorName: "Valued Visitor", 
           portfolioOwnerName: PORTFOLIO_OWNER_NAME,
@@ -39,9 +40,9 @@ export function HeroSection() {
 
     fetchWelcomeMessage();
 
-    const timer1 = setTimeout(() => setNameAnimated(true), 100);
-    const timer2 = setTimeout(() => setMessageAnimated(true), 400);
-    const timer3 = setTimeout(() => setButtonsAnimated(true), 700);
+    const timer1 = setTimeout(() => setNameAnimated(true), 200); // Slightly increased delay
+    const timer2 = setTimeout(() => setMessageAnimated(true), 500); // Staggered delay
+    const timer3 = setTimeout(() => setButtonsAnimated(true), 800); // Staggered delay
 
 
     return () => {
@@ -58,8 +59,8 @@ export function HeroSection() {
         <h1 
           className={cn(
             "font-headline text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold mb-6 text-primary hover:text-accent transition-all duration-500 cursor-default text-shadow-primary",
-            "opacity-0 transform translate-y-10",
-            nameAnimated && "animate-fadeInUp opacity-100 translate-y-0"
+            "opacity-0 transform translate-y-10", // Initial state for animation
+            nameAnimated && "animate-fadeInDown opacity-100 translate-y-0" // Animation class
           )}
           style={{ animationDelay: '0.1s', animationFillMode: 'forwards' }}
           >
@@ -89,12 +90,12 @@ export function HeroSection() {
           )}
           style={{ animationDelay: '0.7s', animationFillMode: 'forwards' }}
         >
-          <Button asChild size="lg" className="font-semibold text-lg px-8 py-6 shadow-lg hover:shadow-primary-glow hover:scale-105 hover:brightness-110 transform transition-all duration-300 ease-in-out group">
+          <Button asChild size="lg" className="font-semibold text-lg px-8 py-6 shadow-lg hover:animate-subtle-glow hover:scale-105 hover:brightness-110 transform transition-all duration-300 ease-in-out group">
             <Link href="#projects">
               <ArrowDownCircle className="mr-2 h-5 w-5 group-hover:animate-wiggle" /> View Projects
             </Link>
           </Button>
-          <Button asChild variant="outline" size="lg" className="font-semibold text-lg px-8 py-6 border-primary text-primary hover:bg-primary/10 hover:text-primary-foreground hover:bg-primary hover:scale-105 hover:shadow-primary-glow hover:brightness-110 transform transition-all duration-300 ease-in-out group">
+          <Button asChild variant="outline" size="lg" className="font-semibold text-lg px-8 py-6 border-primary text-primary hover:bg-primary/10 hover:text-primary-foreground hover:bg-primary hover:scale-105 hover:animate-subtle-glow hover:brightness-110 transform transition-all duration-300 ease-in-out group">
             <Link href="#contact">
              <Send className="mr-2 h-5 w-5 group-hover:animate-wiggle" /> Get in Touch
             </Link>

@@ -12,19 +12,19 @@ export default function Home() {
     <div className="flex flex-col min-h-screen">
       <Header />
       <main className="flex-grow">
-        <AnimatedSection>
+        <AnimatedSection animationType="fadeInDown" delay="delay-0">
           <HeroSection />
         </AnimatedSection>
         
-        <AnimatedSection delay="delay-100">
+        <AnimatedSection animationType="fadeInLeft" delay="delay-200">
           <ProjectGallery />
         </AnimatedSection>
         
-        <AnimatedSection delay="delay-200">
+        <AnimatedSection animationType="fadeInRight" delay="delay-200">
           <AboutMeSection />
         </AnimatedSection>
         
-        <AnimatedSection delay="delay-300">
+        <AnimatedSection animationType="scaleIn" delay="delay-300">
           <ContactSection />
         </AnimatedSection>
       </main>

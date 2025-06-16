@@ -22,7 +22,7 @@ export function ContactSection() {
           I&apos;m always excited to discuss new projects, creative ideas, or opportunities to collaborate.
           Feel free to reach out!
         </p>
-        <Button asChild size="lg" className="font-semibold text-lg px-10 py-7 shadow-lg hover:shadow-primary-glow hover:scale-105 hover:brightness-110 transform transition-all duration-300 ease-in-out group">
+        <Button asChild size="lg" className="font-semibold text-lg px-10 py-7 shadow-lg hover:animate-subtle-glow hover:scale-105 hover:brightness-110 transform transition-all duration-300 ease-in-out group">
           <a href={`mailto:${YOUR_EMAIL}`}>
             <Mail className="mr-2.5 h-5 w-5 group-hover:animate-wiggle" /> Send an Email
           </a>

@@ -152,7 +152,16 @@ export default {
         'card-hover-lift': {
           '0%': { transform: 'translateY(0) scale(1)', boxShadow: '0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -2px rgba(0,0,0,0.05)' },
           '100%': { transform: 'translateY(-8px) scale(1.03)', boxShadow: '0 20px 25px -5px hsl(var(--primary)/0.3), 0 8px 10px -6px hsl(var(--primary)/0.2)' },
-        }
+        },
+        'subtle-glow': {
+          '0%, 100%': { boxShadow: '0 0 8px 0px hsl(var(--primary) / 0.2)' },
+          '50%': { boxShadow: '0 0 16px 4px hsl(var(--primary) / 0.4)' },
+        },
+        'tag-hover-pop': {
+          '0%': { transform: 'scale(1)' },
+          '50%': { transform: 'scale(1.12)' },
+          '100%': { transform: 'scale(1.05)' },
+        },
       },
       animation: {
         'accordion-down': 'accordion-down 0.2s ease-out',
@@ -172,6 +181,8 @@ export default {
         'subtle-float': 'subtle-float 3s ease-in-out infinite',
         'icon-sparkle-pop': 'icon-sparkle-pop 0.8s ease-in-out',
         'card-hover-lift': 'card-hover-lift 0.3s ease-out forwards',
+        'subtle-glow': 'subtle-glow 1.5s ease-in-out infinite alternate',
+        'tag-hover-pop': 'tag-hover-pop 0.3s ease-out forwards',
       },
     },
   },
