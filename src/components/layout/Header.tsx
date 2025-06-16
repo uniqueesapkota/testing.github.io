@@ -25,7 +25,7 @@ export function Header() {
     <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/80 backdrop-blur-lg supports-[backdrop-filter]:bg-background/60">
       <div className="container flex h-16 max-w-screen-2xl items-center justify-between px-4 md:px-8">
         <Link href="/" className="mr-6 flex items-center space-x-2 group">
-          <Sparkles className="h-7 w-7 text-primary group-hover:text-accent transition-all duration-300 ease-in-out transform group-hover:rotate-[25deg] group-hover:scale-110" />
+          <Sparkles className="h-7 w-7 text-primary group-hover:text-accent transition-all duration-300 ease-in-out transform group-hover:animate-icon-sparkle-pop" />
           <span className="font-headline text-2xl font-bold text-primary group-hover:text-accent transition-colors duration-300 group-hover:scale-105 transform group-hover:text-shadow-accent">PortfolioPro</span>
         </Link>
 
@@ -53,7 +53,7 @@ export function Header() {
               <div className="flex flex-col space-y-5">
                 <div className="flex justify-between items-center mb-4">
                    <Link href="/" className="flex items-center space-x-2 group" onClick={handleLinkClick}>
-                     <Sparkles className="h-6 w-6 text-primary group-hover:text-accent" />
+                     <Sparkles className="h-6 w-6 text-primary group-hover:text-accent group-hover:animate-icon-sparkle-pop" />
                      <span className="font-headline text-xl font-bold text-primary group-hover:text-accent transition-colors duration-300">PortfolioPro</span>
                    </Link>
                    <SheetClose asChild>

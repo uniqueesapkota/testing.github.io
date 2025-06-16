@@ -69,7 +69,10 @@ export function ProjectGallery() {
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
           {projects.map((project) => (
-            <Card key={project.id} className="group flex flex-col overflow-hidden shadow-lg hover:shadow-xl hover:shadow-primary-glow hover:border-primary/70 transform hover:-translate-y-2 transition-all duration-300 ease-in-out rounded-xl">
+            <Card 
+              key={project.id} 
+              className="group flex flex-col overflow-hidden shadow-lg hover:animate-card-hover-lift transition-all duration-300 ease-in-out rounded-xl border border-transparent hover:border-primary/50"
+            >
               <CardHeader className="p-0">
                 <div className="aspect-video relative overflow-hidden rounded-t-xl">
                   <Image
@@ -78,7 +81,7 @@ export function ProjectGallery() {
                     layout="fill"
                     objectFit="cover"
                     data-ai-hint={project.imageHint}
-                    className="transition-all duration-500 ease-in-out group-hover:scale-105 group-hover:brightness-110"
+                    className="transition-all duration-500 ease-in-out group-hover:scale-110 group-hover:brightness-110"
                   />
                    <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent group-hover:from-black/50 transition-all duration-300"></div>
                 </div>

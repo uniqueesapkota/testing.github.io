@@ -8,14 +8,14 @@ interface AnimatedSectionProps {
   children: ReactNode;
   className?: string;
   delay?: string; 
-  animationType?: 'fadeInUp' | 'scaleIn' | 'slideInRight'; // Add animationType
+  animationType?: 'fadeInUp' | 'scaleIn' | 'slideInRight' | 'fadeInLeft' | 'fadeInDown' | 'fadeIn';
 }
 
 export const AnimatedSection: React.FC<AnimatedSectionProps> = ({ 
   children, 
   className, 
   delay = '',
-  animationType = 'fadeInUp' // Default animation
+  animationType = 'fadeInUp'
 }) => {
   const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -47,20 +47,30 @@ export const AnimatedSection: React.FC<AnimatedSectionProps> = ({
     };
   }, []);
 
-  const animationClasses = {
-    fadeInUp: isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10',
-    scaleIn: isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-90',
-    slideInRight: isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-10',
-  };
+  const getAnimationClasses = () => {
+    if (!isVisible) return 'opacity-0';
+    switch(animationType) {
+      case 'fadeInUp': return 'animate-fadeInUp opacity-100';
+      case 'fadeInDown': return 'animate-fadeInDown opacity-100';
+      case 'fadeInLeft': return 'animate-fadeInLeft opacity-100';
+      case 'fadeInRight': return 'animate-fadeInRight opacity-100';
+      case 'scaleIn': return 'animate-scaleIn opacity-100';
+      case 'fadeIn': return 'animate-fadeIn opacity-100';
+      default: return 'animate-fadeInUp opacity-100';
+    }
+  }
 
   return (
     <div
       ref={sectionRef}
       className={cn(
-        'transition-all duration-1000 ease-out', 
-        animationClasses[animationType],
+        'transition-opacity duration-1000 ease-out', 
+        getAnimationClasses(),
         delay,
-        className
+        className,
+        !isVisible && (animationType === 'fadeInUp' || animationType === 'fadeInDown' ? 'translate-y-10' : ''),
+        !isVisible && (animationType === 'fadeInLeft' || animationType === 'fadeInRight' ? 'translate-x-10' : ''),
+        !isVisible && animationType === 'scaleIn' && 'scale-90'
       )}
     >
       {children}
