@@ -2,6 +2,7 @@
 "use client";
 
 import { useEffect, useState } from 'react';
+import Image from 'next/image';
 import { generatePersonalizedWelcome } from '@/ai/flows/personalized-welcome';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
@@ -14,6 +15,7 @@ const PORTFOLIO_OWNER_SKILLS = ["Social Media Management", "Web Development", "D
 export function HeroSection() {
   const [welcomeMessage, setWelcomeMessage] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [imageAnimated, setImageAnimated] = useState(false);
   const [nameAnimated, setNameAnimated] = useState(false);
   const [messageAnimated, setMessageAnimated] = useState(false);
   const [buttonsAnimated, setButtonsAnimated] = useState(false);
@@ -23,6 +25,8 @@ export function HeroSection() {
     const fetchWelcomeMessage = async () => {
       setIsLoading(true);
       try {
+        // For demo purposes, let's assume visitor name is generic.
+        // In a real app, this might come from user input or auth.
         const result = await generatePersonalizedWelcome({
           visitorName: "Valued Visitor", 
           portfolioOwnerName: PORTFOLIO_OWNER_NAME,
@@ -31,6 +35,7 @@ export function HeroSection() {
         setWelcomeMessage(result.welcomeMessage);
       } catch (error) {
         console.error("Failed to generate welcome message:", error);
+        // Fallback message
         setWelcomeMessage(`Welcome to ${PORTFOLIO_OWNER_NAME}'s portfolio! Discover a blend of social media expertise and web development skills, crafting impactful digital experiences.`);
       } finally {
         setIsLoading(false);
@@ -40,12 +45,14 @@ export function HeroSection() {
     fetchWelcomeMessage();
 
     // Staggered animation triggers
-    const timer1 = setTimeout(() => setNameAnimated(true), 100); 
-    const timer2 = setTimeout(() => setMessageAnimated(true), 400); 
-    const timer3 = setTimeout(() => setButtonsAnimated(true), 700);
+    const timerImg = setTimeout(() => setImageAnimated(true), 50);
+    const timer1 = setTimeout(() => setNameAnimated(true), 200); 
+    const timer2 = setTimeout(() => setMessageAnimated(true), 500); 
+    const timer3 = setTimeout(() => setButtonsAnimated(true), 800);
 
 
     return () => {
+      clearTimeout(timerImg);
       clearTimeout(timer1);
       clearTimeout(timer2);
       clearTimeout(timer3);
@@ -54,15 +61,33 @@ export function HeroSection() {
   }, []);
 
   return (
-    <section id="hero" className="py-24 md:py-40 bg-gradient-to-br from-background via-secondary/30 to-primary/10 overflow-hidden">
+    <section id="hero" className="py-24 md:py-32 bg-gradient-to-br from-background via-secondary/30 to-primary/10 overflow-hidden">
       <div className="container mx-auto px-4 md:px-8 text-center">
+        <div 
+          className={cn(
+            "mb-6",
+            "opacity-0 transform scale-90",
+            imageAnimated && "animate-scaleIn opacity-100 scale-100"
+          )}
+          style={{ animationDuration: '0.7s', animationFillMode: 'forwards', animationDelay: '0.05s' }}
+        >
+          <Image
+            src="https://placehold.co/160x160.png"
+            alt="Unique Sapkota - Profile Picture"
+            data-ai-hint="profile portrait"
+            width={160}
+            height={160}
+            className="rounded-full mx-auto shadow-xl border-4 border-background object-cover"
+            priority // Good to add for LCP elements
+          />
+        </div>
         <h1 
           className={cn(
             "font-headline text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold mb-6 text-primary hover:text-accent transition-all duration-500 cursor-default text-shadow-primary",
             "opacity-0 transform translate-y-8", 
             nameAnimated && "animate-fadeInDown opacity-100 translate-y-0"
           )}
-          style={{ animationDuration: '0.8s', animationFillMode: 'forwards' }}
+          style={{ animationDuration: '0.8s', animationFillMode: 'forwards', animationDelay: '0.2s' }}
           >
           {PORTFOLIO_OWNER_NAME}
         </h1>
@@ -72,7 +97,7 @@ export function HeroSection() {
              "opacity-0 transform translate-y-8",
             messageAnimated && "animate-fadeInUp opacity-100 translate-y-0"
             )}
-          style={{ animationDuration: '0.8s', animationFillMode: 'forwards', animationDelay: '0.3s' }}
+          style={{ animationDuration: '0.8s', animationFillMode: 'forwards', animationDelay: '0.5s' }}
         >
           {isLoading ? (
             <Loader2 className="h-10 w-10 animate-spin text-primary" />
@@ -88,7 +113,7 @@ export function HeroSection() {
             "opacity-0 transform translate-y-8",
             buttonsAnimated && "animate-fadeInUp opacity-100 translate-y-0"
           )}
-          style={{ animationDuration: '0.8s', animationFillMode: 'forwards', animationDelay: '0.6s' }}
+          style={{ animationDuration: '0.8s', animationFillMode: 'forwards', animationDelay: '0.8s' }}
         >
           <Button asChild size="lg" className="font-semibold text-lg px-8 py-6 shadow-lg hover:animate-subtle-glow hover:scale-105 hover:brightness-110 transform transition-all duration-300 ease-in-out group">
             <Link href="#projects">
