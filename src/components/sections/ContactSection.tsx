@@ -4,7 +4,7 @@ import { Mail, Linkedin, Github, Send } from "lucide-react";
 import Link from "next/link";
 
 const YOUR_EMAIL = "sapkotayunik@gmail.com"; 
-const YOUR_LINKEDIN_URL = "https://www.linkedin.com/in/unique-sapkota-730153267/"; 
+const YOUR_LINKEDIN_URL = "https://www.linkedin.com/in/unique-sapkota-420997219/"; 
 const YOUR_GITHUB_URL = "https://github.com/UniqueSapkota"; 
 
 
