@@ -25,8 +25,6 @@ export function HeroSection() {
     const fetchWelcomeMessage = async () => {
       setIsLoading(true);
       try {
-        // For demo purposes, let's assume visitor name is generic.
-        // In a real app, this might come from user input or auth.
         const result = await generatePersonalizedWelcome({
           visitorName: "Valued Visitor",
           portfolioOwnerName: PORTFOLIO_OWNER_NAME,
@@ -35,7 +33,6 @@ export function HeroSection() {
         setWelcomeMessage(result.welcomeMessage);
       } catch (error) {
         console.error("Failed to generate welcome message:", error);
-        // Fallback message
         setWelcomeMessage(`Welcome to ${PORTFOLIO_OWNER_NAME}'s portfolio! Discover a blend of social media expertise and web development skills, crafting impactful digital experiences.`);
       } finally {
         setIsLoading(false);
@@ -44,11 +41,10 @@ export function HeroSection() {
 
     fetchWelcomeMessage();
 
-    // Staggered animation triggers
-    const timerImg = setTimeout(() => setImageAnimated(true), 50);
-    const timer1 = setTimeout(() => setNameAnimated(true), 200);
-    const timer2 = setTimeout(() => setMessageAnimated(true), 500);
-    const timer3 = setTimeout(() => setButtonsAnimated(true), 800);
+    const timerImg = setTimeout(() => setImageAnimated(true), 50); // Image first
+    const timer1 = setTimeout(() => setNameAnimated(true), 250); // Name slightly after image
+    const timer2 = setTimeout(() => setMessageAnimated(true), 500); // Message after name
+    const timer3 = setTimeout(() => setButtonsAnimated(true), 750); // Buttons last
 
 
     return () => {
@@ -76,25 +72,28 @@ export function HeroSection() {
             alt="Unique Sapkota - Profile Picture"
             width={160}
             height={160}
-            className="rounded-full mx-auto shadow-xl border-4 border-background object-cover"
+            className={cn(
+                "rounded-full mx-auto border-4 border-background object-cover",
+                imageAnimated ? "animate-heroImageGlow" : ""
+            )}
             priority
           />
         </div>
         <h1
           className={cn(
             "font-headline text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold mb-6 text-primary hover:text-accent transition-all duration-500 cursor-default text-shadow-primary",
-            "opacity-0 transform translate-y-8",
-            nameAnimated && "animate-fadeInDown opacity-100 translate-y-0"
+            "opacity-0 transform translate-y-8", // Initial: hidden, slightly down
+            nameAnimated && "animate-fadeInDown opacity-100 translate-y-0" // Target: visible, original position
           )}
-          style={{ animationDuration: '0.8s', animationFillMode: 'forwards', animationDelay: '0.2s' }}
+          style={{ animationDuration: '0.8s', animationFillMode: 'forwards', animationDelay: '0.25s' }}
           >
           {PORTFOLIO_OWNER_NAME}
         </h1>
         <div
           className={cn(
             "min-h-[60px] md:min-h-[80px] flex items-center justify-center mb-10",
-             "opacity-0 transform translate-y-8",
-            messageAnimated && "animate-fadeInUp opacity-100 translate-y-0"
+             "opacity-0 transform translate-y-8", // Initial: hidden, slightly down
+            messageAnimated && "animate-fadeInUp opacity-100 translate-y-0" // Target: visible, original position
             )}
           style={{ animationDuration: '0.8s', animationFillMode: 'forwards', animationDelay: '0.5s' }}
         >
@@ -109,10 +108,10 @@ export function HeroSection() {
         <div
           className={cn(
             "space-x-4",
-            "opacity-0 transform translate-y-8",
-            buttonsAnimated && "animate-fadeInUp opacity-100 translate-y-0"
+            "opacity-0 transform translate-y-8", // Initial: hidden, slightly down
+            buttonsAnimated && "animate-fadeInUp opacity-100 translate-y-0" // Target: visible, original position
           )}
-          style={{ animationDuration: '0.8s', animationFillMode: 'forwards', animationDelay: '0.8s' }}
+          style={{ animationDuration: '0.8s', animationFillMode: 'forwards', animationDelay: '0.75s' }}
         >
           <Button asChild size="lg" className="font-semibold text-lg px-8 py-6 shadow-lg hover:animate-subtle-glow hover:scale-105 hover:brightness-110 transform transition-all duration-300 ease-in-out group">
             <Link href="#projects">
