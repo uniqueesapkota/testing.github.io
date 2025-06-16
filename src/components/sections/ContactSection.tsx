@@ -5,7 +5,7 @@ import Link from "next/link";
 
 const YOUR_EMAIL = "sapkotayunik@gmail.com"; 
 const YOUR_LINKEDIN_URL = "https://www.linkedin.com/in/unique-sapkota-420997219/"; 
-const YOUR_GITHUB_URL = "https://github.com/UniqueSapkota"; 
+const YOUR_GITHUB_URL = "https://github.com/uniqueesapkota"; 
 
 
 export function ContactSection() {
