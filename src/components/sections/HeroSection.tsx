@@ -72,13 +72,12 @@ export function HeroSection() {
           style={{ animationDuration: '0.7s', animationFillMode: 'forwards', animationDelay: '0.05s' }}
         >
           <Image
-            src="https://placehold.co/160x160.png"
+            src="https://i.postimg.cc/XNypkfWQ/Whats-App-Image-2025-03-10-at-17-12-40.jpg"
             alt="Unique Sapkota - Profile Picture"
-            data-ai-hint="profile portrait"
             width={160}
             height={160}
             className="rounded-full mx-auto shadow-xl border-4 border-background object-cover"
-            priority // Good to add for LCP elements
+            priority 
           />
         </div>
         <h1 
