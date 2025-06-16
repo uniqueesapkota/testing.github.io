@@ -40,23 +40,23 @@ export function HeroSection() {
   return (
     <section id="hero" className="py-20 md:py-32 bg-gradient-to-br from-background to-secondary/30">
       <div className="container mx-auto px-4 md:px-8 text-center">
-        <h1 className="font-headline text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6 text-primary">
+        <h1 className="font-headline text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6 text-primary hover:text-accent transition-colors duration-300 cursor-default animate-scaleIn [animation-fill-mode:forwards]">
           {PORTFOLIO_OWNER_NAME}
         </h1>
         <div className="min-h-[60px] md:min-h-[80px] flex items-center justify-center mb-8">
           {isLoading ? (
             <Loader2 className="h-8 w-8 animate-spin text-primary" />
           ) : (
-            <p className="text-lg sm:text-xl md:text-2xl max-w-3xl mx-auto text-foreground leading-relaxed">
+            <p className="text-lg sm:text-xl md:text-2xl max-w-3xl mx-auto text-foreground leading-relaxed animate-fadeIn [animation-fill-mode:forwards] [animation-delay:0.3s]">
               {welcomeMessage}
             </p>
           )}
         </div>
         <div className="space-x-4">
-          <Button asChild size="lg" className="font-semibold">
+          <Button asChild size="lg" className="font-semibold hover:scale-110 transform transition-transform duration-300 hover:shadow-lg">
             <Link href="#projects">View Projects</Link>
           </Button>
-          <Button asChild variant="outline" size="lg" className="font-semibold border-primary text-primary hover:bg-primary/10">
+          <Button asChild variant="outline" size="lg" className="font-semibold border-primary text-primary hover:bg-primary/10 hover:scale-110 transform transition-transform duration-300 hover:shadow-lg">
             <Link href="#contact">Get in Touch</Link>
           </Button>
         </div>

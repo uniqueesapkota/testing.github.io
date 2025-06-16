@@ -45,7 +45,7 @@ export const AnimatedSection: React.FC<AnimatedSectionProps> = ({ children, clas
     <div
       ref={sectionRef}
       className={cn(
-        'transition-all duration-700 ease-out',
+        'transition-all duration-1000 ease-out', // Increased duration
         isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10',
         delay,
         className

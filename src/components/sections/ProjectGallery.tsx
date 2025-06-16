@@ -65,16 +65,16 @@ export function ProjectGallery() {
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
           {projects.map((project) => (
-            <Card key={project.id} className="flex flex-col overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300">
+            <Card key={project.id} className="group flex flex-col overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 ease-in-out hover:scale-[1.03] transform">
               <CardHeader className="p-0">
-                <div className="aspect-video relative">
+                <div className="aspect-video relative overflow-hidden"> {/* Added overflow-hidden here for image scale */}
                   <Image
                     src={project.imageUrl}
                     alt={project.title}
                     layout="fill"
                     objectFit="cover"
                     data-ai-hint={project.imageHint}
-                    className="transition-transform duration-300 group-hover:scale-105"
+                    className="transition-all duration-500 ease-in-out group-hover:scale-110 group-hover:brightness-105"
                   />
                 </div>
               </CardHeader>
@@ -83,21 +83,21 @@ export function ProjectGallery() {
                 <CardDescription className="text-muted-foreground mb-4 leading-relaxed">{project.description}</CardDescription>
                 <div className="flex flex-wrap gap-2 mb-4">
                   {project.tags.map(tag => (
-                    <span key={tag} className="text-xs bg-accent/20 text-accent-foreground px-2 py-1 rounded-full">{tag}</span>
+                    <span key={tag} className="text-xs bg-accent/20 text-accent-foreground px-2 py-1 rounded-full transition-all duration-200 hover:bg-primary hover:text-primary-foreground">{tag}</span>
                   ))}
                 </div>
               </CardContent>
               <CardFooter className="p-6 bg-secondary/30 border-t">
                 <div className="flex space-x-4">
                   {project.liveLink && (
-                    <Button asChild variant="default" className="font-semibold">
+                    <Button asChild variant="default" className="font-semibold hover:scale-105 transform transition-transform">
                       <Link href={project.liveLink} target="_blank" rel="noopener noreferrer">
                         Live Demo <ExternalLink className="ml-2 h-4 w-4" />
                       </Link>
                     </Button>
                   )}
                   {project.repoLink && (
-                    <Button asChild variant="outline" className="font-semibold border-primary text-primary hover:bg-primary/10">
+                    <Button asChild variant="outline" className="font-semibold border-primary text-primary hover:bg-primary/10 hover:scale-105 transform transition-transform">
                       <Link href={project.repoLink} target="_blank" rel="noopener noreferrer">
                         View Code <ExternalLink className="ml-2 h-4 w-4" />
                       </Link>

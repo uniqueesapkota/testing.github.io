@@ -73,7 +73,7 @@ export function AboutMeSection() {
             <div className="space-y-8 relative pl-6 before:absolute before:inset-y-0 before:w-0.5 before:bg-border before:left-0">
               {experiences.map((exp, index) => (
                 <div key={index} className="relative pl-8 before:absolute before:left-[-26px] before:top-1 before:w-3 before:h-3 before:bg-primary before:rounded-full before:ring-4 before:ring-background">
-                  <Card className="shadow-md hover:shadow-lg transition-shadow duration-300">
+                  <Card className="shadow-md hover:shadow-xl hover:border-primary transition-all duration-300 ease-in-out transform hover:-translate-y-1">
                     <CardHeader>
                       <CardTitle className="font-headline text-xl text-primary">{exp.title}</CardTitle>
                       <p className="text-sm text-muted-foreground font-semibold">{exp.company} | {exp.duration}</p>
@@ -96,10 +96,10 @@ export function AboutMeSection() {
             <h3 className="font-headline text-2xl md:text-3xl font-semibold mb-8 text-foreground">My Skills</h3>
             <div className="space-y-6">
               {skills.map((skill) => (
-                <Card key={skill.name} className="shadow-md hover:shadow-lg transition-shadow duration-300">
+                <Card key={skill.name} className="group shadow-md hover:shadow-xl hover:border-accent transition-all duration-300 ease-in-out transform hover:-translate-y-1">
                   <CardContent className="p-6">
                     <div className="flex items-start space-x-4">
-                      <skill.icon className="h-8 w-8 text-accent flex-shrink-0 mt-1" aria-hidden="true" />
+                      <skill.icon className="h-8 w-8 text-accent flex-shrink-0 mt-1 transition-all duration-300 ease-in-out transform group-hover:scale-110 group-hover:text-primary group-hover:rotate-[5deg]" aria-hidden="true" />
                       <div>
                         <h4 className="font-headline text-lg font-medium text-foreground">{skill.name}</h4>
                         <p className="text-sm text-muted-foreground">{skill.description}</p>
