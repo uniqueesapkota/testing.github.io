@@ -23,7 +23,6 @@ export function HeroSection() {
     const fetchWelcomeMessage = async () => {
       setIsLoading(true);
       try {
-        // Ensure "Unique Sapkota" is passed correctly
         const result = await generatePersonalizedWelcome({
           visitorName: "Valued Visitor", 
           portfolioOwnerName: PORTFOLIO_OWNER_NAME,
@@ -40,9 +39,10 @@ export function HeroSection() {
 
     fetchWelcomeMessage();
 
-    const timer1 = setTimeout(() => setNameAnimated(true), 200); // Slightly increased delay
-    const timer2 = setTimeout(() => setMessageAnimated(true), 500); // Staggered delay
-    const timer3 = setTimeout(() => setButtonsAnimated(true), 800); // Staggered delay
+    // Staggered animation triggers
+    const timer1 = setTimeout(() => setNameAnimated(true), 100); 
+    const timer2 = setTimeout(() => setMessageAnimated(true), 400); 
+    const timer3 = setTimeout(() => setButtonsAnimated(true), 700);
 
 
     return () => {
@@ -59,20 +59,20 @@ export function HeroSection() {
         <h1 
           className={cn(
             "font-headline text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold mb-6 text-primary hover:text-accent transition-all duration-500 cursor-default text-shadow-primary",
-            "opacity-0 transform translate-y-10", // Initial state for animation
-            nameAnimated && "animate-fadeInDown opacity-100 translate-y-0" // Animation class
+            "opacity-0 transform translate-y-8", 
+            nameAnimated && "animate-fadeInDown opacity-100 translate-y-0"
           )}
-          style={{ animationDelay: '0.1s', animationFillMode: 'forwards' }}
+          style={{ animationDuration: '0.8s', animationFillMode: 'forwards' }}
           >
           {PORTFOLIO_OWNER_NAME}
         </h1>
         <div 
           className={cn(
             "min-h-[60px] md:min-h-[80px] flex items-center justify-center mb-10",
-             "opacity-0 transform translate-y-10",
+             "opacity-0 transform translate-y-8",
             messageAnimated && "animate-fadeInUp opacity-100 translate-y-0"
             )}
-          style={{ animationDelay: '0.4s', animationFillMode: 'forwards' }}
+          style={{ animationDuration: '0.8s', animationFillMode: 'forwards', animationDelay: '0.3s' }}
         >
           {isLoading ? (
             <Loader2 className="h-10 w-10 animate-spin text-primary" />
@@ -85,10 +85,10 @@ export function HeroSection() {
         <div 
           className={cn(
             "space-x-4",
-            "opacity-0 transform translate-y-10",
+            "opacity-0 transform translate-y-8",
             buttonsAnimated && "animate-fadeInUp opacity-100 translate-y-0"
           )}
-          style={{ animationDelay: '0.7s', animationFillMode: 'forwards' }}
+          style={{ animationDuration: '0.8s', animationFillMode: 'forwards', animationDelay: '0.6s' }}
         >
           <Button asChild size="lg" className="font-semibold text-lg px-8 py-6 shadow-lg hover:animate-subtle-glow hover:scale-105 hover:brightness-110 transform transition-all duration-300 ease-in-out group">
             <Link href="#projects">

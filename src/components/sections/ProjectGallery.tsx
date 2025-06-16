@@ -71,7 +71,7 @@ export function ProjectGallery() {
           {projects.map((project) => (
             <Card 
               key={project.id} 
-              className="group flex flex-col overflow-hidden shadow-lg hover:animate-card-hover-lift transition-all duration-300 ease-in-out rounded-xl border border-transparent hover:border-primary/50"
+              className="group flex flex-col overflow-hidden shadow-lg hover:animate-card-hover-lift transition-all duration-300 ease-in-out rounded-xl border-2 border-transparent hover:border-primary/60"
             >
               <CardHeader className="p-0">
                 <div className="aspect-video relative overflow-hidden rounded-t-xl">
@@ -81,9 +81,9 @@ export function ProjectGallery() {
                     layout="fill"
                     objectFit="cover"
                     data-ai-hint={project.imageHint}
-                    className="transition-all duration-500 ease-in-out group-hover:scale-110 group-hover:brightness-110"
+                    className="transition-all duration-500 ease-in-out group-hover:scale-105 group-hover:brightness-105"
                   />
-                   <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent group-hover:from-black/50 transition-all duration-300"></div>
+                   <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent group-hover:from-black/40 transition-all duration-300"></div>
                 </div>
               </CardHeader>
               <CardContent className="p-6 flex-grow">
@@ -91,7 +91,7 @@ export function ProjectGallery() {
                 <CardDescription className="text-muted-foreground mb-4 leading-relaxed text-balance">{project.description}</CardDescription>
                 <div className="flex flex-wrap gap-2 mb-4">
                   {project.tags.map(tag => (
-                    <span key={tag} className="text-xs font-medium bg-accent/20 text-accent-foreground px-3 py-1.5 rounded-full transition-all duration-300 ease-in-out group-hover:bg-primary/80 group-hover:text-primary-foreground group-hover:animate-tag-hover-pop group-hover:shadow-lg">
+                    <span key={tag} className="text-xs font-medium bg-accent/20 text-accent-foreground px-3 py-1.5 rounded-full transition-all duration-300 ease-in-out group-hover:bg-primary/80 group-hover:text-primary-foreground hover:animate-tag-hover-pop hover:shadow-md">
                       {tag}
                     </span>
                   ))}
