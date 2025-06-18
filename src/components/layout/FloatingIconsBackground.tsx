@@ -4,17 +4,18 @@
 import { Player } from '@lottiefiles/react-lottie-player';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { cn } from '@/lib/utils';
-import { useRef } from 'react';
+import { useRef, useState, useEffect } from 'react';
 
 interface BackgroundIconConfig {
   id: string;
   lottieSrc: string; 
   wrapperClassName: string; 
   iconClassName: string; 
-  parallaxSpeed: number; // Added for parallax effect
+  parallaxSpeed: number;
 }
 
-const backgroundIcons: BackgroundIconConfig[] = [
+// Base configuration without random animation values
+const baseBackgroundIcons: BackgroundIconConfig[] = [
   {
     id: "react",
     lottieSrc: "https://assets3.lottiefiles.com/packages/lf20_g9epds9h.json",
@@ -87,42 +88,61 @@ const backgroundIcons: BackgroundIconConfig[] = [
   },
 ];
 
+interface ClientSideIconConfig extends BackgroundIconConfig {
+  animationDuration: number;
+  animationDelay: number;
+}
+
 export function FloatingIconsBackground() {
   const containerRef = useRef(null);
   const { scrollYProgress } = useScroll({
-    target: containerRef, // Though we use window scroll, Framer Motion examples sometimes use a target.
-                          // For global scroll, this might not be strictly necessary if defaults are used.
+    target: containerRef,
     offset: ['start start', 'end start'] 
   });
 
+  const [clientSideIcons, setClientSideIcons] = useState<ClientSideIconConfig[]>([]);
+
+  useEffect(() => {
+    // Generate random animation properties on the client side after mount
+    setClientSideIcons(
+      baseBackgroundIcons.map(icon => ({
+        ...icon,
+        animationDuration: Math.random() * 10 + 15, // Random duration between 15-25s
+        animationDelay: Math.random() * 7, // Random initial delay up to 7s
+      }))
+    );
+  }, []); // Empty dependency array ensures this runs once on mount
+
+  if (clientSideIcons.length === 0) {
+    // Optionally, render nothing or a placeholder until client-side effect runs
+    return null; 
+  }
+
   return (
     <div ref={containerRef} className="fixed inset-0 z-0 overflow-hidden pointer-events-none">
-      {backgroundIcons.map(({ id, lottieSrc, wrapperClassName, iconClassName, parallaxSpeed }) => {
-        // Transform scrollYProgress (0 to 1) to a y-translation (e.g., -50px to 50px)
-        // The range of y-translation can be adjusted based on parallaxSpeed
+      {clientSideIcons.map(({ id, lottieSrc, wrapperClassName, iconClassName, parallaxSpeed, animationDuration, animationDelay }) => {
         const y = useTransform(scrollYProgress, [0, 1], [-50 * parallaxSpeed * 5, 50 * parallaxSpeed * 5]);
 
         return (
           <motion.div
             key={id}
             className={cn(
-              "absolute blur-xs", // Reduced blur slightly
+              "absolute", // Removed blur-xs
               wrapperClassName 
             )}
-            style={{ y }} // Apply parallax y-translation
-            // Existing random float animation
-            initial={{ y: 0, x: 0, rotate: 0, scale: 1 }}
+            style={{ y }} 
+            initial={{ y: 0, x: 0, rotate: 0, scale: 1 }} // Initial properties for the floating animation itself
             animate={{
-              y: [0, -15, 0, 10, 0], // This will be combined with the parallax y
+              y: [0, -15, 0, 10, 0], // This will be combined with the parallax y from style prop
               x: [0, 10, -10, 5, 0],
               rotate: [0, 5, -3, 2, 0],
               scale: [1, 1.05, 1, 0.95, 1],
             }}
             transition={{
-              duration: Math.random() * 10 + 15, // Random duration between 15-25s
+              duration: animationDuration,
               repeat: Infinity,
               ease: "linear",
-              delay: Math.random() * 7, // Random initial delay up to 7s
+              delay: animationDelay,
             }}
           >
             <Player
