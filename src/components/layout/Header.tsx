@@ -4,11 +4,11 @@
 import Link from "next/link";
 import { Menu, X, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Sheet, SheetContent, SheetTrigger, SheetClose } from "@/components/ui/sheet";
+import { Sheet, SheetContent, SheetTrigger, SheetClose, SheetHeader, SheetTitle, SheetDescription } from "@/components/ui/sheet";
 import { useState, useEffect } from "react";
 import { cn } from "@/lib/utils";
 import { ThemeToggle } from "./ThemeToggle";
-import { motion } from 'framer-motion'; // Added import for motion
+import { motion } from 'framer-motion';
 
 const YOUR_RESUME_URL = "https://unique-link.tiiny.site/";
 const PORTFOLIO_OWNER_NAME = "Unique Sapkota";
@@ -87,6 +87,12 @@ export function Header() {
                 </Button>
               </SheetTrigger>
               <SheetContent side="right" className="w-full max-w-xs bg-background p-6 shadow-xl">
+                <SheetHeader className="mb-4">
+                  <SheetTitle>Navigation Menu</SheetTitle>
+                  <SheetDescription className="sr-only">
+                    Main navigation links for the portfolio of {PORTFOLIO_OWNER_NAME}.
+                  </SheetDescription>
+                </SheetHeader>
                 <div className="flex flex-col space-y-5">
                   <div className="flex justify-between items-center mb-4">
                      <Link href="/" className="flex items-center space-x-2 group" onClick={handleLinkClick}>

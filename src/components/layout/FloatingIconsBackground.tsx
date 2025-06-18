@@ -1,10 +1,10 @@
 
 "use client";
 
-import { motion, useScroll } from 'framer-motion'; // useTransform is no longer directly used in map here
+import { motion, useScroll } from 'framer-motion';
 import { cn } from '@/lib/utils';
 import { useRef, useState, useEffect } from 'react';
-import { FloatingIconItem } from './FloatingIconItem'; // Import the new component
+import { FloatingIconItem } from './FloatingIconItem';
 
 interface BaseIconConfig {
   id: string;
@@ -96,7 +96,8 @@ export function FloatingIconsBackground() {
   const containerRef = useRef(null);
   const { scrollYProgress } = useScroll({
     target: containerRef,
-    offset: ['start start', 'end start']
+    offset: ['start start', 'end start'],
+    layoutEffect: false, // Added to address hydration warning
   });
 
   const [clientSideIcons, setClientSideIcons] = useState<ClientSideIconConfig[]>([]);
