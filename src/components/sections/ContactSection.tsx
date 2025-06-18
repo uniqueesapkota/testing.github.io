@@ -1,6 +1,6 @@
 
 import { Button } from "@/components/ui/button";
-import { Mail, Linkedin, Github, Send, Instagram, Facebook } from "lucide-react";
+import { Mail, Linkedin, Github, Send, Instagram, Facebook, MessageSquare } from "lucide-react";
 import Link from "next/link";
 
 const YOUR_EMAIL = "uniquesapkota058@gmail.com"; 
@@ -8,6 +8,7 @@ const YOUR_LINKEDIN_URL = "https://www.linkedin.com/in/unique-sapkota-420997219/
 const YOUR_GITHUB_URL = "https://github.com/uniqueesapkota"; 
 const YOUR_INSTAGRAM_URL = "https://www.instagram.com/uniqueesapkota?igsh=NzdzM3ZuaDVuYnF0&utm_source=qr";
 const YOUR_FACEBOOK_URL = "https://www.facebook.com/unique.sapkota.1?mibextid=rS40aB7S9Ucbxw6v";
+const YOUR_WHATSAPP_NUMBER = "12345678900"; // Replace with your full WhatsApp number including country code (e.g., 1XXXXXXXXXX for US)
 
 
 export function ContactSection() {
@@ -30,25 +31,30 @@ export function ContactSection() {
           </a>
         </Button>
 
-        <div className="mt-16 flex justify-center space-x-4 sm:space-x-6">
+        <div className="mt-16 flex justify-center space-x-3 sm:space-x-4">
             <Link href={YOUR_LINKEDIN_URL} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn Profile">
-                <Button variant="outline" size="icon" className="rounded-full w-14 h-14 border-2 border-primary text-primary hover:bg-primary/10 hover:text-primary-foreground hover:bg-primary hover:scale-110 hover:brightness-110 hover:shadow-primary-glow transform transition-all duration-300 ease-in-out group">
-                    <Linkedin className="h-7 w-7 group-hover:animate-wiggle" />
+                <Button variant="outline" size="icon" className="rounded-full w-12 h-12 sm:w-14 sm:h-14 border-2 border-primary text-primary hover:bg-primary/10 hover:text-primary-foreground hover:bg-primary hover:scale-110 hover:brightness-110 hover:shadow-primary-glow transform transition-all duration-300 ease-in-out group">
+                    <Linkedin className="h-6 w-6 sm:h-7 sm:w-7 group-hover:animate-wiggle" />
                 </Button>
             </Link>
             <Link href={YOUR_GITHUB_URL} target="_blank" rel="noopener noreferrer" aria-label="GitHub Profile">
-                 <Button variant="outline" size="icon" className="rounded-full w-14 h-14 border-2 border-primary text-primary hover:bg-primary/10 hover:text-primary-foreground hover:bg-primary hover:scale-110 hover:brightness-110 hover:shadow-primary-glow transform transition-all duration-300 ease-in-out group">
-                    <Github className="h-7 w-7 group-hover:animate-wiggle" />
+                 <Button variant="outline" size="icon" className="rounded-full w-12 h-12 sm:w-14 sm:h-14 border-2 border-primary text-primary hover:bg-primary/10 hover:text-primary-foreground hover:bg-primary hover:scale-110 hover:brightness-110 hover:shadow-primary-glow transform transition-all duration-300 ease-in-out group">
+                    <Github className="h-6 w-6 sm:h-7 sm:w-7 group-hover:animate-wiggle" />
                 </Button>
             </Link>
             <Link href={YOUR_INSTAGRAM_URL} target="_blank" rel="noopener noreferrer" aria-label="Instagram Profile">
-                <Button variant="outline" size="icon" className="rounded-full w-14 h-14 border-2 border-primary text-primary hover:bg-primary/10 hover:text-primary-foreground hover:bg-primary hover:scale-110 hover:brightness-110 hover:shadow-primary-glow transform transition-all duration-300 ease-in-out group">
-                    <Instagram className="h-7 w-7 group-hover:animate-wiggle" />
+                <Button variant="outline" size="icon" className="rounded-full w-12 h-12 sm:w-14 sm:h-14 border-2 border-primary text-primary hover:bg-primary/10 hover:text-primary-foreground hover:bg-primary hover:scale-110 hover:brightness-110 hover:shadow-primary-glow transform transition-all duration-300 ease-in-out group">
+                    <Instagram className="h-6 w-6 sm:h-7 sm:w-7 group-hover:animate-wiggle" />
                 </Button>
             </Link>
             <Link href={YOUR_FACEBOOK_URL} target="_blank" rel="noopener noreferrer" aria-label="Facebook Profile">
-                 <Button variant="outline" size="icon" className="rounded-full w-14 h-14 border-2 border-primary text-primary hover:bg-primary/10 hover:text-primary-foreground hover:bg-primary hover:scale-110 hover:brightness-110 hover:shadow-primary-glow transform transition-all duration-300 ease-in-out group">
-                    <Facebook className="h-7 w-7 group-hover:animate-wiggle" />
+                 <Button variant="outline" size="icon" className="rounded-full w-12 h-12 sm:w-14 sm:h-14 border-2 border-primary text-primary hover:bg-primary/10 hover:text-primary-foreground hover:bg-primary hover:scale-110 hover:brightness-110 hover:shadow-primary-glow transform transition-all duration-300 ease-in-out group">
+                    <Facebook className="h-6 w-6 sm:h-7 sm:w-7 group-hover:animate-wiggle" />
+                </Button>
+            </Link>
+            <Link href={`https://wa.me/${YOUR_WHATSAPP_NUMBER}`} target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
+                 <Button variant="outline" size="icon" className="rounded-full w-12 h-12 sm:w-14 sm:h-14 border-2 border-primary text-primary hover:bg-primary/10 hover:text-primary-foreground hover:bg-primary hover:scale-110 hover:brightness-110 hover:shadow-primary-glow transform transition-all duration-300 ease-in-out group">
+                    <MessageSquare className="h-6 w-6 sm:h-7 sm:w-7 group-hover:animate-wiggle" />
                 </Button>
             </Link>
         </div>
