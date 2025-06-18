@@ -22,10 +22,11 @@ const sectionVariants: Variants = {
     y: 0,
     scale: 1,
     transition: {
+      type: "tween", // Explicitly set type
       delay,
       duration: 0.8,
       ease: cinematicEasing,
-      when: "beforeChildren", // Ensure parent animates before children if staggered
+      when: "beforeChildren", 
     }
   })
 };
@@ -43,10 +44,11 @@ export const AnimatedSection: React.FC<AnimatedSectionProps> = ({
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, amount: 0.3 }}
-      custom={delay} // Pass delay to variants
-      {...(staggerChildren && { transition: { staggerChildren } })} // Apply stagger if provided
+      custom={delay} 
+      {...(staggerChildren && { transition: { ...sectionVariants.visible(delay).transition, staggerChildren } })}
     >
       {children}
     </motion.section>
   );
 };
+

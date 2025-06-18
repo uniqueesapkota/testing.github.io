@@ -17,12 +17,12 @@ const YOUR_WHATSAPP_NUMBER = "9779806089328";
 
 const titleParentVariants: Variants = {
   hidden: {},
-  visible: { transition: { staggerChildren: 0.15, delayChildren: 0.1, ease: cinematicEasing } },
+  visible: { transition: { type: "tween", staggerChildren: 0.15, delayChildren: 0.1, ease: cinematicEasing } },
 };
 
 const titleChildVariants: Variants = {
   hidden: { opacity: 0, y: 20, scale: 0.98 },
-  visible: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.6, ease: cinematicEasing } },
+  visible: { opacity: 1, y: 0, scale: 1, transition: { type: "tween", duration: 0.6, ease: cinematicEasing } },
 };
 
 const iconButtonVariants: Variants = {
@@ -61,7 +61,7 @@ export function ContactSection() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.3 }}
-          transition={{ duration: 0.7, ease: cinematicEasing, delay: 0.2 }}
+          transition={{ type: "tween", duration: 0.7, ease: cinematicEasing, delay: 0.2 }}
         >
           I&apos;m always excited to discuss new projects, creative ideas, or opportunities to collaborate.
           Feel free to reach out!
@@ -70,7 +70,7 @@ export function ContactSection() {
             className="inline-block"
             initial="initial"
             whileHover="hover"
-            variants={iconButtonVariants} // Reuse for general button hover
+            variants={iconButtonVariants}
         >
             <Button asChild size="lg" className="font-semibold text-lg px-10 py-7 shadow-lg group">
             <a href={`mailto:${YOUR_EMAIL}`}>
@@ -84,7 +84,7 @@ export function ContactSection() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.3 }}
-          transition={{ duration: 0.7, ease: cinematicEasing, delay: 0.4, staggerChildren: 0.1 }}
+          transition={{ type: "tween", duration: 0.7, ease: cinematicEasing, delay: 0.4, staggerChildren: 0.1 }}
         >
             {[
                 { href: YOUR_LINKEDIN_URL, label: "LinkedIn Profile", Icon: Linkedin },
@@ -97,9 +97,9 @@ export function ContactSection() {
                     key={item.label}
                     initial={{y: 20, opacity: 0}}
                     animate={{y:0, opacity: 1}}
-                    variants={iconButtonVariants} // Apply hover effect to the wrapper
-                    whileHover="hover" // Trigger 'hover' variant
-                    transition={{type: "spring", stiffness: 400, damping:10}}
+                    variants={iconButtonVariants} 
+                    whileHover="hover" 
+                    transition={{type: "spring", stiffness: 400, damping:10}} // This transition is for the whileHover
                 >
                     <Link href={item.href} target="_blank" rel="noopener noreferrer" aria-label={item.label}>
                         <Button variant="outline" size="icon" className="rounded-full w-12 h-12 sm:w-14 sm:h-14 border-2 border-primary text-primary hover:bg-primary/10 hover:text-primary-foreground hover:bg-primary group">
@@ -113,3 +113,4 @@ export function ContactSection() {
     </section>
   );
 }
+

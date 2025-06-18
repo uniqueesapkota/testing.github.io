@@ -11,16 +11,17 @@ import { motion, Variants } from 'framer-motion';
 
 const PORTFOLIO_OWNER_NAME = "Unique Sapkota";
 const PORTFOLIO_OWNER_SKILLS = ["Social Media Management", "Web Development", "Digital Marketing", "Content Creation"];
-const cinematicEasing = [0.6, 0.01, -0.05, 0.95]; // For tween animations
+const cinematicEasing = [0.6, 0.01, -0.05, 0.95];
 
 const heroParentVariants: Variants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
     transition: {
+      type: "tween", // Explicitly set type
       staggerChildren: 0.2,
       delayChildren: 0.1,
-      ease: cinematicEasing, // This is okay as it's for the parent staggering, not a spring itself
+      ease: cinematicEasing,
     },
   },
 };
@@ -35,7 +36,6 @@ const heroChildVariants: Variants = {
       type: "spring",
       stiffness: 100,
       damping: 15,
-      // Removed: duration: 0.7 and ease: cinematicEasing
     },
   },
 };
@@ -50,7 +50,6 @@ const nameVariants: Variants = {
       type: "spring",
       stiffness: 80,
       damping: 12,
-      // Removed: duration: 1 and ease: [0.6, 0.01, -0.05, 0.95]
     },
   },
 };
@@ -100,7 +99,7 @@ export function HeroSection() {
   }, []);
   
   const nameAnimateProps = isHeroNameScrolledOut ? 
-    { opacity: 0, scale: 0.9, y: -20, transition: { duration: 0.4, ease: cinematicEasing } } : 
+    { opacity: 0, scale: 0.9, y: -20, transition: { type: "tween", duration: 0.4, ease: cinematicEasing } } : 
     { opacity: 1, scale: 1, y: 0 };
 
 
@@ -172,3 +171,4 @@ export function HeroSection() {
     </motion.section>
   );
 }
+

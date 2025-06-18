@@ -66,6 +66,7 @@ const titleParentVariants: Variants = {
   visible: {
     opacity: 1,
     transition: {
+      type: "tween", // Explicitly set type
       staggerChildren: 0.15,
       delayChildren: 0.1,
       ease: cinematicEasing,
@@ -80,6 +81,7 @@ const titleChildVariants: Variants = {
     y: 0,
     scale: 1,
     transition: {
+      type: "tween", // Explicitly set type
       duration: 0.6,
       ease: cinematicEasing,
     },
@@ -89,10 +91,10 @@ const titleChildVariants: Variants = {
 
 export function ProjectGallery() {
   return (
-    <section id="projects" className="py-16 md:py-24">
+    <section id="projects" className="py-12 md:py-20">
       <div className="container mx-auto px-4 md:px-8">
         <motion.div 
-          className="text-center mb-12 md:mb-16"
+          className="text-center mb-10 md:mb-14"
           variants={titleParentVariants}
           initial="hidden"
           whileInView="visible"
@@ -114,14 +116,14 @@ export function ProjectGallery() {
             A glimpse into my development journey and capabilities.
           </motion.p>
         </motion.div>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10" style={{ perspective: '1000px' }}>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8" style={{ perspective: '1000px' }}>
           {projects.map((project, index) => (
             <motion.div
               key={project.id}
               initial={{ opacity: 0, y: 40, scale: 0.95 }}
               whileInView={{ opacity: 1, y: 0, scale: 1 }}
               viewport={{ once: true, amount: 0.2 }}
-              transition={{ duration: 0.6, delay: index * 0.1, ease: cinematicEasing }}
+              transition={{ type: "tween", duration: 0.6, delay: index * 0.1, ease: cinematicEasing }} // Explicitly set type
               whileHover={{ 
                 scale: 1.03, 
                 rotateX: 5, 
@@ -134,46 +136,46 @@ export function ProjectGallery() {
                 className="group flex flex-col overflow-hidden shadow-xl h-full bg-card border-2 border-transparent hover:border-primary/30"
               >
                 <CardHeader className="p-0">
-                  <div className="aspect-video relative overflow-hidden rounded-t-xl">
+                  <div className="aspect-video relative overflow-hidden rounded-t-lg">
                     <Image
                       src={project.imageUrl}
                       alt={project.title}
-                      fill // Changed from layout="fill"
+                      fill
                       sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                      style={{objectFit: "cover"}} // Changed from objectFit="cover"
+                      style={{objectFit: "cover"}}
                       data-ai-hint={project.imageHint}
                       className="transition-all duration-500 ease-in-out group-hover:scale-105 group-hover:brightness-110"
                     />
                      <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent group-hover:from-black/60 transition-all duration-300"></div>
                   </div>
                 </CardHeader>
-                <CardContent className="p-5 flex-grow flex flex-col">
-                  <CardTitle className="font-headline text-xl mb-2 text-primary-foreground group-hover:text-primary transition-colors duration-300">{project.title}</CardTitle>
-                  <CardDescription className="text-muted-foreground mb-4 leading-relaxed text-balance flex-grow">{project.description}</CardDescription>
-                  <div className="flex flex-wrap gap-2 mb-1 mt-auto">
+                <CardContent className="p-4 flex-grow flex flex-col">
+                  <CardTitle className="font-headline text-lg mb-1.5 text-primary-foreground group-hover:text-primary transition-colors duration-300">{project.title}</CardTitle>
+                  <CardDescription className="text-muted-foreground text-sm mb-3 leading-relaxed text-balance flex-grow">{project.description}</CardDescription>
+                  <div className="flex flex-wrap gap-1.5 mb-1 mt-auto">
                     {project.tags.map(tag => (
-                      <span key={tag} className="text-xs font-medium bg-accent/20 text-accent-foreground px-3 py-1.5 rounded-full transition-all duration-300 ease-in-out group-hover:bg-primary/80 group-hover:text-primary-foreground">
+                      <span key={tag} className="text-xs font-medium bg-accent/20 text-accent-foreground px-2.5 py-1 rounded-full transition-all duration-300 ease-in-out group-hover:bg-primary/80 group-hover:text-primary-foreground">
                         {tag}
                       </span>
                     ))}
                   </div>
                 </CardContent>
-                <CardFooter className="p-5 bg-card/50 border-t border-border/50 rounded-b-xl">
-                  <div className="flex space-x-3">
+                <CardFooter className="p-4 bg-card/50 border-t border-border/50 rounded-b-lg">
+                  <div className="flex space-x-2.5">
                     {project.liveLink && (
                        <motion.div whileHover={{scale: 1.08}} transition={{type: "spring", stiffness: 300}}>
-                        <Button asChild variant="default" size="sm" className="font-semibold group/button">
+                        <Button asChild variant="default" size="sm" className="font-semibold group/button text-xs px-3 py-1.5 h-auto">
                           <Link href={project.liveLink} target="_blank" rel="noopener noreferrer">
-                            Live Demo <ExternalLink className="ml-1.5 h-4 w-4 group-hover/button:animate-wiggle" />
+                            Live Demo <ExternalLink className="ml-1 h-3.5 w-3.5 group-hover/button:animate-wiggle" />
                           </Link>
                         </Button>
                       </motion.div>
                     )}
                     {project.repoLink && (
                       <motion.div whileHover={{scale: 1.08}} transition={{type: "spring", stiffness: 300}}>
-                        <Button asChild variant="outline" size="sm" className="font-semibold border-primary text-primary hover:bg-primary/10 hover:text-primary-foreground hover:bg-primary group/button">
+                        <Button asChild variant="outline" size="sm" className="font-semibold border-primary text-primary hover:bg-primary/10 hover:text-primary-foreground hover:bg-primary group/button text-xs px-3 py-1.5 h-auto">
                           <Link href={project.repoLink} target="_blank" rel="noopener noreferrer">
-                            View Code <ExternalLink className="ml-1.5 h-4 w-4 group-hover/button:animate-wiggle" />
+                            View Code <ExternalLink className="ml-1 h-3.5 w-3.5 group-hover/button:animate-wiggle" />
                           </Link>
                         </Button>
                       </motion.div>
@@ -188,3 +190,4 @@ export function ProjectGallery() {
     </section>
   );
 }
+

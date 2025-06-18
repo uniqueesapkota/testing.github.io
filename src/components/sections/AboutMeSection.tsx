@@ -78,12 +78,12 @@ const YOUR_RESUME_URL = "https://unique-link.tiiny.site/";
 
 const titleParentVariants: Variants = {
   hidden: {},
-  visible: { transition: { staggerChildren: 0.1, delayChildren: 0.1, ease: cinematicEasing } },
+  visible: { transition: { type: "tween", staggerChildren: 0.1, delayChildren: 0.1, ease: cinematicEasing } },
 };
 
 const titleChildVariants: Variants = {
   hidden: { opacity: 0, y: 20, scale: 0.98 },
-  visible: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.6, ease: cinematicEasing } },
+  visible: { opacity: 1, y: 0, scale: 1, transition: { type: "tween", duration: 0.6, ease: cinematicEasing } },
 };
 
 const cardHover = {
@@ -126,7 +126,7 @@ export function AboutMeSection() {
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, amount: 0.2 }}
-            transition={{ duration: 0.7, ease: cinematicEasing, delay: 0.2 }}
+            transition={{ type: "tween", duration: 0.7, ease: cinematicEasing, delay: 0.2 }}
           >
             <h3 className="font-headline text-2xl md:text-3xl font-semibold mb-8 text-foreground">Work Experience</h3>
             <div className="space-y-8 relative pl-6 before:absolute before:inset-y-0 before:w-1 before:bg-primary/30 before:left-0 before:rounded-full">
@@ -137,7 +137,7 @@ export function AboutMeSection() {
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, amount: 0.2 }}
-                  transition={{ duration: 0.5, delay: index * 0.15, ease: cinematicEasing }}
+                  transition={{ type: "tween", duration: 0.5, delay: index * 0.15, ease: cinematicEasing }}
                 >
                   <motion.div whileHover={cardHover}>
                     <Card className="shadow-lg group bg-card border border-border/30 hover:border-primary/50 transition-colors duration-300">
@@ -170,7 +170,7 @@ export function AboutMeSection() {
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, amount: 0.2 }}
-            transition={{ duration: 0.7, ease: cinematicEasing, delay: 0.3 }}
+            transition={{ type: "tween", duration: 0.7, ease: cinematicEasing, delay: 0.3 }}
           >
             <h3 className="font-headline text-2xl md:text-3xl font-semibold mb-8 text-foreground">My Skills</h3>
             <div className="space-y-6">
@@ -180,7 +180,7 @@ export function AboutMeSection() {
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, amount: 0.2 }}
-                  transition={{ duration: 0.5, delay: index * 0.15, ease: cinematicEasing }}
+                  transition={{ type: "tween", duration: 0.5, delay: index * 0.15, ease: cinematicEasing }}
                 >
                   <motion.div whileHover={cardHover}>
                     <Card className="group shadow-lg bg-card border border-border/30 hover:border-accent/50 transition-colors duration-300">
@@ -205,7 +205,7 @@ export function AboutMeSection() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: 0.7, ease: cinematicEasing, delay: 0.4 }}
+            transition={{ type: "tween", duration: 0.7, ease: cinematicEasing, delay: 0.4 }}
           >
             <p className="text-lg md:text-xl max-w-3xl mx-auto text-foreground leading-relaxed text-balance">
                 I am an experienced professional with a strong background in social media, web development, management, content creation, and digital marketing strategies. Known for dependability and a results-focused approach, I thrive in collaborative environments and adapt quickly to changing needs.
@@ -226,3 +226,4 @@ export function AboutMeSection() {
     </section>
   );
 }
+
