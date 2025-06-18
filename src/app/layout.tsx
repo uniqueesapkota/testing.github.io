@@ -7,9 +7,8 @@ import { ScrollAwareNav } from '@/components/layout/ScrollAwareNav';
 import { FloatingIconsBackground } from '@/components/layout/FloatingIconsBackground';
 import { motion, AnimatePresence } from 'framer-motion';
 import { usePathname } from 'next/navigation';
+import { ThemeProvider } from 'next-themes';
 
-// Easing for cinematic feel (used for tween animations)
-const cinematicEasing = [0.6, 0.01, -0.05, 0.95];
 
 export default function RootLayout({
   children,
@@ -19,7 +18,7 @@ export default function RootLayout({
   const pathname = usePathname();
 
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <head>
         <title>Unique Sapkota - Social Media Handler & Web Developer</title>
         <meta name="description" content="Portfolio of Unique Sapkota, an experienced Social Media Handler and Web Developer specializing in engagement, web development, and digital marketing." />
@@ -29,25 +28,26 @@ export default function RootLayout({
         <link href="https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet" />
       </head>
       <body className="font-body antialiased bg-background text-foreground">
-        <FloatingIconsBackground />
-        <AnimatePresence mode="wait" initial={false}>
-          <motion.div
-            key={pathname}
-            initial={{ opacity: 0, y: 20, scale: 0.98 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: -20, scale: 0.98 }}
-            transition={{
-              type: "spring", 
-              stiffness: 100, 
-              damping: 18 
-              // Removed: ease: cinematicEasing and duration: 0.7 as they conflict with type: "spring"
-            }}
-          >
-            {children}
-          </motion.div>
-        </AnimatePresence>
-        <ScrollAwareNav />
-        <Toaster />
+        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false}>
+          <FloatingIconsBackground />
+          <AnimatePresence mode="wait" initial={false}>
+            <motion.div
+              key={pathname}
+              initial={{ opacity: 0, y: 20, scale: 0.98 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: -20, scale: 0.98 }}
+              transition={{
+                type: "spring", 
+                stiffness: 100, 
+                damping: 18
+              }}
+            >
+              {children}
+            </motion.div>
+          </AnimatePresence>
+          <ScrollAwareNav />
+          <Toaster />
+        </ThemeProvider>
       </body>
     </html>
   );

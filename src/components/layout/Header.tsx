@@ -7,9 +7,10 @@ import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger, SheetClose } from "@/components/ui/sheet";
 import { useState, useEffect } from "react";
 import { cn } from "@/lib/utils";
+import { ThemeToggle } from "./ThemeToggle"; // Added ThemeToggle import
 
 const YOUR_RESUME_URL = "https://unique-link.tiiny.site/";
-const PORTFOLIO_OWNER_NAME = "Unique Sapkota"; // Added owner's name
+const PORTFOLIO_OWNER_NAME = "Unique Sapkota";
 
 const navItems = [
   { href: "#hero", label: "Home" },
@@ -25,7 +26,7 @@ export function Header() {
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 150) { // Threshold for showing name in header
+      if (window.scrollY > 150) {
         setIsScrolled(true);
       } else {
         setIsScrolled(false);
@@ -33,7 +34,7 @@ export function Header() {
     };
 
     window.addEventListener('scroll', handleScroll);
-    handleScroll(); // Check on initial load
+    handleScroll(); 
 
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
@@ -48,9 +49,14 @@ export function Header() {
         <Link href="/" className="mr-6 flex items-center space-x-2 group">
           <Sparkles className="h-7 w-7 text-primary group-hover:text-accent transition-all duration-300 ease-in-out transform group-hover:animate-icon-sparkle-pop" />
           {isScrolled && (
-            <span className="font-headline text-xl text-primary animate-fade-in-header-name ml-1">
+            <motion.span 
+              className="font-headline text-xl text-primary ml-1"
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ type: "tween", duration: 0.3 }}
+            >
               {PORTFOLIO_OWNER_NAME}
-            </span>
+            </motion.span>
           )}
            <span className="sr-only">Portfolio of {PORTFOLIO_OWNER_NAME}</span>
            {!isScrolled && <span className="sr-only">{PORTFOLIO_OWNER_NAME}</span>}
@@ -68,47 +74,50 @@ export function Header() {
             </Link>
           ))}
         </nav>
-
-        <div className="md:hidden">
-          <Sheet open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
-            <SheetTrigger asChild>
-              <Button variant="ghost" size="icon" className="hover:bg-accent/20 active:scale-95 transition-transform group">
-                <Menu className="h-6 w-6 group-hover:rotate-12 transition-transform duration-300" />
-                <span className="sr-only">Open navigation menu</span>
-              </Button>
-            </SheetTrigger>
-            <SheetContent side="right" className="w-full max-w-xs bg-background p-6 shadow-xl">
-              <div className="flex flex-col space-y-5">
-                <div className="flex justify-between items-center mb-4">
-                   <Link href="/" className="flex items-center space-x-2 group" onClick={handleLinkClick}>
-                     <Sparkles className="h-6 w-6 text-primary group-hover:text-accent group-hover:animate-icon-sparkle-pop" />
-                      <span className="font-headline text-lg text-primary ml-1">
-                        {PORTFOLIO_OWNER_NAME}
-                      </span>
-                     <span className="sr-only">Portfolio of {PORTFOLIO_OWNER_NAME}</span>
-                   </Link>
-                   <SheetClose asChild>
-                      <Button variant="ghost" size="icon" onClick={() => setIsMobileMenuOpen(false)} className="hover:bg-accent/20 active:scale-95 transition-transform group">
-                        <X className="h-6 w-6 group-hover:rotate-12 transition-transform duration-300" />
-                        <span className="sr-only">Close navigation menu</span>
-                      </Button>
+        
+        <div className="flex items-center gap-2">
+          <ThemeToggle />
+          <div className="md:hidden">
+            <Sheet open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
+              <SheetTrigger asChild>
+                <Button variant="ghost" size="icon" className="hover:bg-accent/20 active:scale-95 transition-transform group h-9 w-9">
+                  <Menu className="h-6 w-6 group-hover:rotate-12 transition-transform duration-300" />
+                  <span className="sr-only">Open navigation menu</span>
+                </Button>
+              </SheetTrigger>
+              <SheetContent side="right" className="w-full max-w-xs bg-background p-6 shadow-xl">
+                <div className="flex flex-col space-y-5">
+                  <div className="flex justify-between items-center mb-4">
+                     <Link href="/" className="flex items-center space-x-2 group" onClick={handleLinkClick}>
+                       <Sparkles className="h-6 w-6 text-primary group-hover:text-accent group-hover:animate-icon-sparkle-pop" />
+                        <span className="font-headline text-lg text-primary ml-1">
+                          {PORTFOLIO_OWNER_NAME}
+                        </span>
+                       <span className="sr-only">Portfolio of {PORTFOLIO_OWNER_NAME}</span>
+                     </Link>
+                     <SheetClose asChild>
+                        <Button variant="ghost" size="icon" onClick={() => setIsMobileMenuOpen(false)} className="hover:bg-accent/20 active:scale-95 transition-transform group h-9 w-9">
+                          <X className="h-6 w-6 group-hover:rotate-12 transition-transform duration-300" />
+                          <span className="sr-only">Close navigation menu</span>
+                        </Button>
+                      </SheetClose>
+                  </div>
+                  {navItems.map((item) => (
+                    <SheetClose asChild key={item.label}>
+                      <Link
+                        href={item.href}
+                        className="text-lg font-headline transition-all duration-200 hover:text-accent hover:text-shadow-accent py-2 hover:pl-2 ease-in-out"
+                        onClick={handleLinkClick}
+                        {...(item.isExternal ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+                      >
+                        {item.label}
+                      </Link>
                     </SheetClose>
+                  ))}
                 </div>
-                {navItems.map((item) => (
-                  <SheetClose asChild key={item.label}>
-                    <Link
-                      href={item.href}
-                      className="text-lg font-headline transition-all duration-200 hover:text-accent hover:text-shadow-accent py-2 hover:pl-2 ease-in-out"
-                      onClick={handleLinkClick}
-                      {...(item.isExternal ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-                    >
-                      {item.label}
-                    </Link>
-                  </SheetClose>
-                ))}
-              </div>
-            </SheetContent>
-          </Sheet>
+              </SheetContent>
+            </Sheet>
+          </div>
         </div>
       </div>
     </header>
