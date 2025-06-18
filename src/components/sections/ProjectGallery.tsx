@@ -8,7 +8,7 @@ import Link from 'next/link';
 import { ExternalLink, Layers } from 'lucide-react';
 import { motion, Variants } from 'framer-motion';
 
-const cinematicEasingString = "cubic-bezier(0.23, 1, 0.32, 1)"; // Valid easeOutQuint
+const cinematicEasingString = "cubic-bezier(0.23, 1, 0.32, 1)"; // Kept for reference
 
 interface Project {
   id: string;
@@ -69,7 +69,7 @@ const titleParentVariants: Variants = {
       type: "tween",
       staggerChildren: 0.15,
       delayChildren: 0.1,
-      ease: cinematicEasingString,
+      // ease: cinematicEasingString, // Removed
       duration: 0.5, 
     },
   },
@@ -84,7 +84,7 @@ const titleChildVariants: Variants = {
     transition: {
       type: "tween",
       duration: 0.6,
-      ease: cinematicEasingString,
+      // ease: cinematicEasingString, // Removed
     },
   },
 };
@@ -124,7 +124,7 @@ export function ProjectGallery() {
               initial={{ opacity: 0, y: 40, scale: 0.95 }}
               whileInView={{ opacity: 1, y: 0, scale: 1 }}
               viewport={{ once: true, amount: 0.2 }}
-              transition={{ type: "tween", duration: 0.6, delay: index * 0.1, ease: cinematicEasingString }}
+              transition={{ type: "tween", duration: 0.6, delay: index * 0.1 /* ease: cinematicEasingString */ }} // Removed ease
               whileHover={{
                 scale: 1.03,
                 rotateX: 5,

@@ -11,7 +11,7 @@ import { motion, Variants } from 'framer-motion';
 
 const PORTFOLIO_OWNER_NAME = "Unique Sapkota";
 const PORTFOLIO_OWNER_SKILLS = ["Social Media Management", "Web Development", "Digital Marketing", "Content Creation"];
-const cinematicEasingString = "cubic-bezier(0.23, 1, 0.32, 1)"; // Valid easeOutQuint
+const cinematicEasingString = "cubic-bezier(0.23, 1, 0.32, 1)"; // Kept for reference
 
 const heroParentVariants: Variants = {
   hidden: { opacity: 0 },
@@ -21,7 +21,7 @@ const heroParentVariants: Variants = {
       type: "tween",
       staggerChildren: 0.2,
       delayChildren: 0.1,
-      ease: cinematicEasingString, 
+      // ease: cinematicEasingString, // Removed
       duration: 0.5, 
     },
   },
@@ -35,7 +35,7 @@ const heroChildVariants: Variants = {
     scale: 1,
     transition: {
       type: "tween",
-      ease: cinematicEasingString,
+      // ease: cinematicEasingString, // Removed
       duration: 0.7,
     },
   },
@@ -49,7 +49,7 @@ const nameVariants: Variants = {
     rotate: 0,
     transition: {
       type: "tween",
-      ease: cinematicEasingString,
+      // ease: cinematicEasingString, // Removed
       duration: 0.8,
     },
   },
@@ -100,8 +100,8 @@ export function HeroSection() {
   }, []);
 
   const nameAnimateProps = isHeroNameScrolledOut ?
-    { opacity: 0, scale: 0.9, y: -20, transition: { type: "tween", duration: 0.4, ease: cinematicEasingString } } :
-    { opacity: 1, scale: 1, y: 0, transition: { type: "tween", duration: 0.4, ease: cinematicEasingString } };
+    { opacity: 0, scale: 0.9, y: -20, transition: { type: "tween", duration: 0.4 /* ease: cinematicEasingString */ } } : // Removed ease
+    { opacity: 1, scale: 1, y: 0, transition: { type: "tween", duration: 0.4 /* ease: cinematicEasingString */ } }; // Removed ease
 
 
   return (

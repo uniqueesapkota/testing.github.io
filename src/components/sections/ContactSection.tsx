@@ -6,7 +6,7 @@ import { Mail, Linkedin, Github, Send, Instagram, Facebook, MessageSquare } from
 import Link from "next/link";
 import { motion, Variants } from 'framer-motion';
 
-const cinematicEasingString = "cubic-bezier(0.23, 1, 0.32, 1)"; // Valid easeOutQuint
+const cinematicEasingString = "cubic-bezier(0.23, 1, 0.32, 1)"; // Kept for reference
 
 const YOUR_EMAIL = "uniquesapkota058@gmail.com";
 const YOUR_LINKEDIN_URL = "https://www.linkedin.com/in/unique-sapkota-420997219/";
@@ -19,13 +19,13 @@ const titleParentVariants: Variants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
-    transition: { type: "tween", staggerChildren: 0.15, delayChildren: 0.1, ease: cinematicEasingString, duration: 0.5 }
+    transition: { type: "tween", staggerChildren: 0.15, delayChildren: 0.1, /* ease: cinematicEasingString, */ duration: 0.5 } // Removed ease
   },
 };
 
 const titleChildVariants: Variants = {
   hidden: { opacity: 0, y: 20, scale: 0.98 },
-  visible: { opacity: 1, y: 0, scale: 1, transition: { type: "tween", duration: 0.6, ease: cinematicEasingString } },
+  visible: { opacity: 1, y: 0, scale: 1, transition: { type: "tween", duration: 0.6 /* ease: cinematicEasingString */ } }, // Removed ease
 };
 
 const iconButtonVariants: Variants = {
@@ -42,7 +42,7 @@ const socialIconItemVariants: Variants = {
   visible: {
     y: 0,
     opacity: 1,
-    transition: { type: "tween", ease: cinematicEasingString, duration: 0.5 } // Added duration for consistency
+    transition: { type: "tween", /* ease: cinematicEasingString, */ duration: 0.5 } // Removed ease
   },
 };
 
@@ -73,7 +73,7 @@ export function ContactSection() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.3 }}
-          transition={{ type: "tween", duration: 0.7, ease: cinematicEasingString, delay: 0.2 }}
+          transition={{ type: "tween", duration: 0.7, /* ease: cinematicEasingString, */ delay: 0.2 }} // Removed ease
         >
           I&apos;m always excited to discuss new projects, creative ideas, or opportunities to collaborate.
           Feel free to reach out!
@@ -99,7 +99,7 @@ export function ContactSection() {
               transition: {
                 type: "tween",
                 duration: 0.7,
-                ease: cinematicEasingString,
+                // ease: cinematicEasingString, // Removed
                 delay: 0.4,
                 staggerChildren: 0.1,
               },
