@@ -7,18 +7,18 @@ import { cn } from '@/lib/utils';
 interface AnimatedSectionProps {
   children: ReactNode;
   className?: string;
-  delay?: string; // e.g., 'delay-200', 'delay-300'
+  delay?: string; // Tailwind class for CSS transition-delay (e.g., 'delay-200')
   animationType?: 'fadeInUp' | 'scaleIn' | 'fadeInLeft' | 'fadeInRight' | 'fadeInDown' | 'fadeIn';
-  duration?: string; // e.g., 'duration-700', 'duration-1000'
+  duration?: string; // Tailwind class for CSS transition-duration (e.g., 'duration-700')
   threshold?: number; // IntersectionObserver threshold
 }
 
-export const AnimatedSection: React.FC<AnimatedSectionProps> = ({ 
-  children, 
-  className, 
-  delay = '',
+export const AnimatedSection: React.FC<AnimatedSectionProps> = ({
+  children,
+  className,
+  delay = '', // Default CSS transition delay
   animationType = 'fadeInUp',
-  duration = 'duration-700', // Default duration
+  duration = 'duration-700', // Default CSS transition duration for opacity fade-out
   threshold = 0.1,
 }) => {
   const [isVisible, setIsVisible] = useState(false);
@@ -27,15 +27,12 @@ export const AnimatedSection: React.FC<AnimatedSectionProps> = ({
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-          observer.unobserve(entry.target); 
-        }
+        setIsVisible(entry.isIntersecting); // Set visibility based on intersection status
       },
       {
-        root: null, 
+        root: null,
         rootMargin: '0px',
-        threshold: threshold, 
+        threshold: threshold,
       }
     );
 
@@ -46,16 +43,13 @@ export const AnimatedSection: React.FC<AnimatedSectionProps> = ({
 
     return () => {
       if (currentRef) {
-        observer.unobserve(currentRef);
+        observer.unobserve(currentRef); // Clean up observer on unmount
       }
     };
-  }, [threshold]);
+  }, [threshold]); // Re-run effect if threshold changes
 
-  const getAnimationClasses = () => {
-    if (!isVisible) return 'opacity-0'; // Keep it initially transparent
-    
-    // Return animation class which will be applied once visible
-    // The 'forwards' fill mode for animations is handled by tailwind.config.ts
+  const getAnimationClass = () => {
+    // This function is called when isVisible is true to get the animation class
     switch(animationType) {
       case 'fadeInUp': return 'animate-fadeInUp';
       case 'fadeInDown': return 'animate-fadeInDown';
@@ -65,26 +59,27 @@ export const AnimatedSection: React.FC<AnimatedSectionProps> = ({
       case 'fadeIn': return 'animate-fadeIn';
       default: return 'animate-fadeInUp';
     }
-  }
-  
-  // Initial transform states are now part of the keyframes themselves or applied if not visible yet
-  // and animation fill mode 'forwards' will keep the final state.
-  const initialTransformClass = !isVisible ? 
-    (animationType === 'fadeInUp' || animationType === 'fadeInDown' ? 'translate-y-5' : 
-    (animationType === 'fadeInLeft' || animationType === 'fadeInRight' ? 'translate-x-5' : 
-    (animationType === 'scaleIn' ? 'scale-95' : '')))
-    : '';
+  };
 
+  // Defines the starting visual state (transform) for when the element is not visible or before animating in.
+  // This state is applied when isVisible is false, allowing a smooth transition out.
+  const initialTransformClass =
+    animationType === 'fadeInUp' ? 'translate-y-5' :
+    animationType === 'fadeInDown' ? '-translate-y-5' : // Simplified starting point for consistency
+    animationType === 'fadeInLeft' ? '-translate-x-5' :
+    animationType === 'fadeInRight' ? 'translate-x-5' :
+    animationType === 'scaleIn' ? 'scale-95' :
+    ''; // For 'fadeIn' or default, no specific initial transform beyond opacity
 
   return (
     <div
       ref={sectionRef}
       className={cn(
-        'transition-opacity ease-out',
-        duration, // Apply duration
-        delay,    // Apply delay
-        isVisible ? getAnimationClasses() : 'opacity-0', // Apply animation or remain hidden
-        isVisible ? '' : initialTransformClass, // Apply initial transform if not visible
+        'transition-opacity ease-out', // Applies to opacity changes when isVisible toggles
+        duration,    // Duration for the opacity transition (e.g., fade-out)
+        delay,       // Delay for the opacity transition (e.g., fade-out)
+        isVisible ? getAnimationClass() : 'opacity-0', // Apply animation if visible, else set opacity to 0 for fade-out
+        isVisible ? '' : initialTransformClass, // If not visible, apply the initial transform state
         className
       )}
     >
@@ -92,3 +87,5 @@ export const AnimatedSection: React.FC<AnimatedSectionProps> = ({
     </div>
   );
 };
+
+    
