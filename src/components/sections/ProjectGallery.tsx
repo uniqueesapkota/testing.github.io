@@ -19,7 +19,7 @@ interface Project {
 const projects: Project[] = [
   {
     id: "1",
-    title: "E-commerce Platform Pro",
+    title: "Quick Commerce",
     description: "A full-featured online store with modern UI, secure payments, and robust inventory management. Built with Next.js, Tailwind CSS, and Stripe.",
     imageUrl: "https://placehold.co/600x400.png",
     imageHint: "online store",
