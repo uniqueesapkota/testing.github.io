@@ -8,16 +8,19 @@ import { motion, Variants } from 'framer-motion';
 
 const cinematicEasing = [0.6, 0.01, -0.05, 0.95];
 
-const YOUR_EMAIL = "uniquesapkota058@gmail.com"; 
-const YOUR_LINKEDIN_URL = "https://www.linkedin.com/in/unique-sapkota-420997219/"; 
-const YOUR_GITHUB_URL = "https://github.com/uniqueesapkota"; 
+const YOUR_EMAIL = "uniquesapkota058@gmail.com";
+const YOUR_LINKEDIN_URL = "https://www.linkedin.com/in/unique-sapkota-420997219/";
+const YOUR_GITHUB_URL = "https://github.com/uniqueesapkota";
 const YOUR_INSTAGRAM_URL = "https://www.instagram.com/uniqueesapkota?igsh=NzdzM3ZuaDVuYnF0&utm_source=qr";
 const YOUR_FACEBOOK_URL = "https://www.facebook.com/unique.sapkota.1?mibextid=rS40aB7S9Ucbxw6v";
-const YOUR_WHATSAPP_NUMBER = "9779806089328"; 
+const YOUR_WHATSAPP_NUMBER = "9779806089328";
 
 const titleParentVariants: Variants = {
-  hidden: {},
-  visible: { transition: { type: "tween", staggerChildren: 0.15, delayChildren: 0.1, ease: cinematicEasing } },
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { type: "tween", staggerChildren: 0.15, delayChildren: 0.1, ease: cinematicEasing, duration: 0.5 }
+  },
 };
 
 const titleChildVariants: Variants = {
@@ -26,20 +29,30 @@ const titleChildVariants: Variants = {
 };
 
 const iconButtonVariants: Variants = {
-  initial: { scale: 1 },
-  hover: { 
-    scale: 1.15, 
+  // 'initial' state is not strictly needed here if not used by variants prop directly for entrance
+  hover: {
+    scale: 1.15,
     y: -3,
     boxShadow: "0px 8px 15px hsl(var(--primary)/0.3)",
     transition: { type: "spring", stiffness: 300, damping: 10 }
   }
 };
 
+const socialIconItemVariants: Variants = {
+  hidden: { y: 20, opacity: 0 },
+  visible: {
+    y: 0,
+    opacity: 1,
+    // Transition for this entrance is governed by the parent's staggerChildren settings
+  },
+};
+
+
 export function ContactSection() {
   return (
     <section id="contact" className="py-16 md:py-24 bg-gradient-to-b from-card/50 to-background">
       <div className="container mx-auto px-4 md:px-8 text-center">
-        <motion.div 
+        <motion.div
           className="mb-10 md:mb-12"
           variants={titleParentVariants}
           initial="hidden"
@@ -49,14 +62,14 @@ export function ContactSection() {
           <motion.div variants={titleChildVariants}>
             <Send className="mx-auto h-12 w-12 text-primary animate-subtle-float mb-2" />
           </motion.div>
-          <motion.h2 
+          <motion.h2
             variants={titleChildVariants}
             className="font-headline text-3xl sm:text-4xl md:text-5xl font-bold text-primary"
           >
             Get in Touch
           </motion.h2>
         </motion.div>
-        <motion.p 
+        <motion.p
           className="text-lg md:text-xl max-w-2xl mx-auto text-muted-foreground mb-10 leading-relaxed text-balance"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -66,11 +79,14 @@ export function ContactSection() {
           I&apos;m always excited to discuss new projects, creative ideas, or opportunities to collaborate.
           Feel free to reach out!
         </motion.p>
-        <motion.div 
+        <motion.div
             className="inline-block"
-            initial="initial"
-            whileHover="hover"
-            variants={iconButtonVariants}
+            whileHover={{ // Directly apply hover effects, inherit spring transition from iconButtonVariants if needed, or define here
+              scale: iconButtonVariants.hover.scale,
+              y: iconButtonVariants.hover.y,
+              boxShadow: iconButtonVariants.hover.boxShadow,
+              transition: iconButtonVariants.hover.transition
+            }}
         >
             <Button asChild size="lg" className="font-semibold text-lg px-10 py-7 shadow-lg group">
             <a href={`mailto:${YOUR_EMAIL}`}>
@@ -79,12 +95,25 @@ export function ContactSection() {
             </Button>
         </motion.div>
 
-        <motion.div 
+        <motion.div
           className="mt-16 flex justify-center space-x-3 sm:space-x-4"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          variants={{
+            hidden: { opacity: 0, y: 20 },
+            visible: {
+              opacity: 1,
+              y: 0,
+              transition: {
+                type: "tween",
+                duration: 0.7,
+                ease: cinematicEasing,
+                delay: 0.4, // Delay for the container itself
+                staggerChildren: 0.1, // Stagger for its children
+              },
+            },
+          }}
+          initial="hidden"
+          whileInView="visible"
           viewport={{ once: true, amount: 0.3 }}
-          transition={{ type: "tween", duration: 0.7, ease: cinematicEasing, delay: 0.4, staggerChildren: 0.1 }}
         >
             {[
                 { href: YOUR_LINKEDIN_URL, label: "LinkedIn Profile", Icon: Linkedin },
@@ -92,14 +121,16 @@ export function ContactSection() {
                 { href: YOUR_INSTAGRAM_URL, label: "Instagram Profile", Icon: Instagram },
                 { href: YOUR_FACEBOOK_URL, label: "Facebook Profile", Icon: Facebook },
                 { href: `https://wa.me/${YOUR_WHATSAPP_NUMBER}`, label: "WhatsApp", Icon: MessageSquare }
-            ].map((item, index) => (
+            ].map((item) => (
                 <motion.div
                     key={item.label}
-                    initial={{y: 20, opacity: 0}}
-                    animate={{y:0, opacity: 1}}
-                    variants={iconButtonVariants} 
-                    whileHover="hover" 
-                    transition={{type: "spring", stiffness: 400, damping:10}} // This transition is for the whileHover
+                    variants={socialIconItemVariants} // Governs entrance animation (opacity, y) via parent stagger
+                    whileHover={{ // Governs hover animation, uses its own spring transition
+                        scale: iconButtonVariants.hover.scale,
+                        y: iconButtonVariants.hover.y,
+                        boxShadow: iconButtonVariants.hover.boxShadow,
+                        transition: iconButtonVariants.hover.transition
+                    }}
                 >
                     <Link href={item.href} target="_blank" rel="noopener noreferrer" aria-label={item.label}>
                         <Button variant="outline" size="icon" className="rounded-full w-12 h-12 sm:w-14 sm:h-14 border-2 border-primary text-primary hover:bg-primary/10 hover:text-primary-foreground hover:bg-primary group">
@@ -113,4 +144,3 @@ export function ContactSection() {
     </section>
   );
 }
-
