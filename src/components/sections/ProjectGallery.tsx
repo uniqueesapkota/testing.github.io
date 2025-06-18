@@ -8,7 +8,7 @@ import Link from 'next/link';
 import { ExternalLink, Layers } from 'lucide-react';
 import { motion, Variants } from 'framer-motion';
 
-const cinematicEasingString = "cubic-bezier(0.6, 0.01, -0.05, 0.95)";
+const cinematicEasingString = "cubic-bezier(0.23, 1, 0.32, 1)"; // Valid easeOutQuint
 
 interface Project {
   id: string;
@@ -70,7 +70,7 @@ const titleParentVariants: Variants = {
       staggerChildren: 0.15,
       delayChildren: 0.1,
       ease: cinematicEasingString,
-      duration: 0.5, // Duration for parent opacity animation
+      duration: 0.5, 
     },
   },
 };

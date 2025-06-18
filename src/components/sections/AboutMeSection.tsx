@@ -1,12 +1,12 @@
 
 "use client";
-import { Briefcase, CodeXmlIcon, PaletteIcon, LightbulbIcon, UsersIcon, Share2Icon, BarChartIcon, FileTextIcon, NetworkIcon, TrendingUpIcon, CheckCircle, Download } from 'lucide-react';
+import { Briefcase, CodeXmlIcon, UsersIcon, Share2Icon, TrendingUpIcon, FileTextIcon, NetworkIcon, CheckCircle, Download } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { motion, Variants } from 'framer-motion';
 
-const cinematicEasingString = "cubic-bezier(0.6, 0.01, -0.05, 0.95)";
+const cinematicEasingString = "cubic-bezier(0.23, 1, 0.32, 1)"; // Valid easeOutQuint
 
 interface Skill {
   name: string;

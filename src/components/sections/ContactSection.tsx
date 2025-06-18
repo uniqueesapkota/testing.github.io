@@ -6,7 +6,7 @@ import { Mail, Linkedin, Github, Send, Instagram, Facebook, MessageSquare } from
 import Link from "next/link";
 import { motion, Variants } from 'framer-motion';
 
-const cinematicEasingString = "cubic-bezier(0.6, 0.01, -0.05, 0.95)";
+const cinematicEasingString = "cubic-bezier(0.23, 1, 0.32, 1)"; // Valid easeOutQuint
 
 const YOUR_EMAIL = "uniquesapkota058@gmail.com";
 const YOUR_LINKEDIN_URL = "https://www.linkedin.com/in/unique-sapkota-420997219/";
@@ -42,7 +42,7 @@ const socialIconItemVariants: Variants = {
   visible: {
     y: 0,
     opacity: 1,
-    transition: { type: "tween", ease: cinematicEasingString }
+    transition: { type: "tween", ease: cinematicEasingString, duration: 0.5 } // Added duration for consistency
   },
 };
 
@@ -80,12 +80,7 @@ export function ContactSection() {
         </motion.p>
         <motion.div
             className="inline-block"
-            whileHover={{
-              scale: iconButtonVariants.hover.scale,
-              y: iconButtonVariants.hover.y,
-              boxShadow: iconButtonVariants.hover.boxShadow,
-              transition: iconButtonVariants.hover.transition
-            }}
+            whileHover={iconButtonVariants.hover}
         >
             <Button asChild size="lg" className="font-semibold text-lg px-10 py-7 shadow-lg group">
             <a href={`mailto:${YOUR_EMAIL}`}>
@@ -124,12 +119,7 @@ export function ContactSection() {
                 <motion.div
                     key={item.label}
                     variants={socialIconItemVariants} 
-                    whileHover={{
-                        scale: iconButtonVariants.hover.scale,
-                        y: iconButtonVariants.hover.y,
-                        boxShadow: iconButtonVariants.hover.boxShadow,
-                        transition: iconButtonVariants.hover.transition
-                    }}
+                    whileHover={iconButtonVariants.hover}
                 >
                     <Link href={item.href} target="_blank" rel="noopener noreferrer" aria-label={item.label}>
                         <Button variant="outline" size="icon" className="rounded-full w-12 h-12 sm:w-14 sm:h-14 border-2 border-primary text-primary hover:bg-primary/10 hover:text-primary-foreground hover:bg-primary group">

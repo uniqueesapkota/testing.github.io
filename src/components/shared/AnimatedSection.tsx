@@ -5,19 +5,18 @@ import { type ReactNode } from 'react';
 import { motion, type Variants } from 'framer-motion';
 import { cn } from '@/lib/utils';
 
-// Cinematic easing as a string for direct WAAPI compatibility
-const cinematicEasingString = "cubic-bezier(0.6, 0.01, -0.05, 0.95)";
+const cinematicEasingString = "cubic-bezier(0.23, 1, 0.32, 1)"; // Valid easeOutQuint
 
 interface AnimatedSectionProps {
   children: ReactNode;
   className?: string;
-  delay?: number; // Delay in seconds
-  staggerChildren?: number;
+  delay?: number; 
+  staggerAmount?: number; 
 }
 
 const sectionVariants: Variants = {
   hidden: { opacity: 0, y: 40, scale: 0.98 },
-  visible: (delay = 0) => ({
+  visible: ({ delay = 0, staggerAmount = 0 } : { delay?: number; staggerAmount?: number }) => ({
     opacity: 1,
     y: 0,
     scale: 1,
@@ -26,6 +25,7 @@ const sectionVariants: Variants = {
       delay,
       duration: 0.8,
       ease: cinematicEasingString,
+      staggerChildren: staggerAmount,
       when: "beforeChildren",
     }
   })
@@ -35,7 +35,7 @@ export const AnimatedSection: React.FC<AnimatedSectionProps> = ({
   children,
   className,
   delay = 0,
-  staggerChildren,
+  staggerAmount = 0,
 }) => {
   return (
     <motion.section
@@ -44,8 +44,7 @@ export const AnimatedSection: React.FC<AnimatedSectionProps> = ({
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, amount: 0.3 }}
-      custom={delay}
-      {...(staggerChildren && { transition: { ...sectionVariants.visible(delay).transition, staggerChildren } })}
+      custom={{ delay, staggerAmount }}
     >
       {children}
     </motion.section>

@@ -11,7 +11,7 @@ import { motion, Variants } from 'framer-motion';
 
 const PORTFOLIO_OWNER_NAME = "Unique Sapkota";
 const PORTFOLIO_OWNER_SKILLS = ["Social Media Management", "Web Development", "Digital Marketing", "Content Creation"];
-const cinematicEasingString = "cubic-bezier(0.6, 0.01, -0.05, 0.95)";
+const cinematicEasingString = "cubic-bezier(0.23, 1, 0.32, 1)"; // Valid easeOutQuint
 
 const heroParentVariants: Variants = {
   hidden: { opacity: 0 },
@@ -21,8 +21,8 @@ const heroParentVariants: Variants = {
       type: "tween",
       staggerChildren: 0.2,
       delayChildren: 0.1,
-      ease: cinematicEasingString, // For parent's own animation if any property changes
-      duration: 0.5, // Example for parent, might not be needed if only staggering
+      ease: cinematicEasingString, 
+      duration: 0.5, 
     },
   },
 };
@@ -125,8 +125,8 @@ export function HeroSection() {
           />
         </motion.div>
         <motion.h1
-          variants={nameVariants} // For initial animation if parent staggers it
-          animate={nameAnimateProps} // For scroll-based animation changes
+          variants={nameVariants} 
+          animate={nameAnimateProps} 
           className="font-headline text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold my-6 text-primary hover:text-accent transition-colors duration-300 cursor-default text-shadow-primary"
         >
           {PORTFOLIO_OWNER_NAME}
