@@ -33,6 +33,26 @@ const SvgYouTubePlay = (props: React.SVGProps<SVGSVGElement>) => (
   </svg>
 );
 
+const SvgGitHub = (props: React.SVGProps<SVGSVGElement>) => (
+  <svg viewBox="0 0 16 16" fill="currentColor" {...props}>
+    <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
+  </svg>
+);
+
+const SvgJavaScript = (props: React.SVGProps<SVGSVGElement>) => (
+  <svg viewBox="0 0 64 64" fill="currentColor" {...props}>
+    <rect width="64" height="64" rx="8" ry="8" fill="#F7DF1E"/>
+    <path d="M20.48 49.27H27.37V33.68H20.48V49.27ZM43.14 49.07C46.25 49.07 48.5 47.58 49.55 45.2L43.9 42.7C43.61 43.57 42.83 44.12 41.83 44.12C40.73 44.12 39.92 43.43 39.92 42.12V33.68H46.8V28.8H39.92V23.85H34.05V28.8H31.07V33.68H34.05V42.57C34.05 46.42 36.61 49.07 40.68 49.07C41.78 49.07 42.65 48.83 43.14 49.07Z" fill="#000"/>
+  </svg>
+);
+
+const SvgPostman = (props: React.SVGProps<SVGSVGElement>) => (
+  <svg viewBox="0 0 24 24" fill="currentColor" {...props}>
+    <path d="M18.66 3.52a.75.75 0 00-1.05-.21l-5.75 3.5a.75.75 0 000 1.28l5.75 3.5a.75.75 0 001.05-.21.75.75 0 00-.21-1.05L13.76 7.5l4.69-2.93a.75.75 0 00.21-1.05zM12.41 9.92a.75.75 0 00-1.05.21l-1.5 2.5a.75.75 0 000 .74l1.5 2.5a.75.75 0 101.26-.76L11.7 13.5l.92-1.54a.75.75 0 00-.21-1.04zm-1.16 7.56a.75.75 0 001.05.21l5.75-3.5a.75.75 0 000-1.28l-5.75-3.5a.75.75 0 10-.84 1.5L16.24 13.5l-4.69 2.93a.75.75 0 00-.21 1.05zM5.13 3.52a.75.75 0 00-.84 1.5L8.98 7.5l-4.69 2.93a.75.75 0 10.84 1.5l5.75-3.5a.75.75 0 000-1.28L5.13 3.52zm0 10.96a.75.75 0 00-.84 1.5l4.69 2.93-4.69 2.93a.75.75 0 10.84 1.5l5.75-3.5a.75.75 0 000-1.28l-5.75-3.5z"/>
+  </svg>
+);
+
+
 interface BackgroundIconConfig {
   id: string;
   Icon: ElementType;
@@ -42,15 +62,16 @@ interface BackgroundIconConfig {
 }
 
 const backgroundIcons: BackgroundIconConfig[] = [
-  { id: "react", Icon: SvgReact, wrapperClassName: "top-[10%] left-[10%] opacity-[0.2]", iconClassName: "w-16 h-16 text-primary/70", animationClassName: "[animation-duration:18s] [animation-delay:-2s]" },
-  { id: "nodejs", Icon: SvgNodeJs, wrapperClassName: "top-[15%] right-[12%] opacity-[0.22]", iconClassName: "w-20 h-20 text-accent/70", animationClassName: "[animation-duration:22s] [animation-delay:-5s]" },
-  { id: "code", Icon: CodeXml, wrapperClassName: "bottom-[10%] left-[20%] opacity-[0.2]", iconClassName: "w-16 h-16 text-primary/70", animationClassName: "[animation-duration:20s] [animation-delay:-8s]" },
-  { id: "db", Icon: Database, wrapperClassName: "bottom-[20%] right-[15%] opacity-[0.22]", iconClassName: "w-14 h-14 text-accent/70", animationClassName: "[animation-duration:17s] [animation-delay:-3s]" },
-  { id: "google", Icon: SvgGoogleG, wrapperClassName: "top-[50%] left-[45%] opacity-[0.18]", iconClassName: "w-12 h-12 text-primary/60", animationClassName: "[animation-duration:25s] [animation-delay:-10s]" },
-  { id: "youtube", Icon: SvgYouTubePlay, wrapperClassName: "top-[70%] left-[5%] opacity-[0.25]", iconClassName: "w-20 h-20 text-red-500/70", animationClassName: "[animation-duration:19s] [animation-delay:-6s]" },
-  // Add more icons as needed, for example:
-  // { id: "microsoft", Icon: SvgMicrosoft, wrapperClassName: "top-[30%] left-[60%] opacity-[0.2]", iconClassName: "w-14 h-14 text-blue-500/70", animationClassName: "[animation-duration:23s] [animation-delay:-4s]" },
-  // { id: "tailwind", Icon: SvgTailwind, wrapperClassName: "bottom-[30%] right-[40%] opacity-[0.19]", iconClassName: "w-18 h-18 text-sky-500/70", animationClassName: "[animation-duration:16s] [animation-delay:-7s]" },
+  { id: "react", Icon: SvgReact, wrapperClassName: "top-[10%] left-[5%] opacity-[0.2]", iconClassName: "w-14 h-14 text-sky-400/70", animationClassName: "[animation-duration:18s] [animation-delay:-2s]" },
+  { id: "nodejs", Icon: SvgNodeJs, wrapperClassName: "top-[12%] right-[8%] opacity-[0.22]", iconClassName: "w-16 h-16 text-green-500/70", animationClassName: "[animation-duration:22s] [animation-delay:-5s]" },
+  { id: "code", Icon: CodeXml, wrapperClassName: "bottom-[8%] left-[15%] opacity-[0.18]", iconClassName: "w-14 h-14 text-primary/60", animationClassName: "[animation-duration:20s] [animation-delay:-8s]" },
+  { id: "db", Icon: Database, wrapperClassName: "bottom-[15%] right-[10%] opacity-[0.2]", iconClassName: "w-12 h-12 text-accent/60", animationClassName: "[animation-duration:17s] [animation-delay:-3s]" },
+  { id: "google", Icon: SvgGoogleG, wrapperClassName: "top-[45%] left-[40%] opacity-[0.15]", iconClassName: "w-10 h-10 text-blue-500/70", animationClassName: "[animation-duration:25s] [animation-delay:-10s]" },
+  { id: "youtube", Icon: SvgYouTubePlay, wrapperClassName: "top-[65%] left-[2%] opacity-[0.23]", iconClassName: "w-16 h-16 text-red-600/80", animationClassName: "[animation-duration:19s] [animation-delay:-6s]" },
+  { id: "github", Icon: SvgGitHub, wrapperClassName: "top-[30%] right-[25%] opacity-[0.2]", iconClassName: "w-14 h-14 text-neutral-400/70", animationClassName: "[animation-duration:21s] [animation-delay:-4s]" },
+  { id: "javascript", Icon: SvgJavaScript, wrapperClassName: "bottom-[30%] left-[30%] opacity-[0.22]", iconClassName: "w-12 h-12", animationClassName: "[animation-duration:16s] [animation-delay:-7s]" }, // JS icon uses its own fill
+  { id: "postman", Icon: SvgPostman, wrapperClassName: "top-[50%] right-[45%] opacity-[0.18]", iconClassName: "w-14 h-14 text-orange-500/70", animationClassName: "[animation-duration:23s] [animation-delay:-9s]" },
+  { id: "code2", Icon: CodeXml, wrapperClassName: "top-[80%] right-[20%] opacity-[0.17]", iconClassName: "w-10 h-10 text-primary/50", animationClassName: "[animation-duration:15s] [animation-delay:-1s]" },
 ];
 
 export function FloatingIconsBackground() {
@@ -71,3 +92,5 @@ export function FloatingIconsBackground() {
     </div>
   );
 }
+
+    
