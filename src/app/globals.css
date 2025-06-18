@@ -1,3 +1,4 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -127,23 +128,23 @@
   }
 
   @keyframes fadeInUp {
-    0% { opacity: 0; transform: translateY(40px); } /* Increased distance */
+    0% { opacity: 0; transform: translateY(40px); } 
     100% { opacity: 1; transform: translateY(0); }
   }
   @keyframes fadeInDown {
-    0% { opacity: 0; transform: translateY(-40px); } /* Increased distance */
+    0% { opacity: 0; transform: translateY(-40px); } 
     100% { opacity: 1; transform: translateY(0); }
   }
   @keyframes fadeInLeft {
-    0% { opacity: 0; transform: translateX(-40px); } /* Increased distance */
+    0% { opacity: 0; transform: translateX(-40px); } 
     100% { opacity: 1; transform: translateX(0); }
   }
   @keyframes fadeInRight {
-    0% { opacity: 0; transform: translateX(40px); } /* Increased distance */
+    0% { opacity: 0; transform: translateX(40px); } 
     100% { opacity: 1; transform: translateX(0); }
   }
   @keyframes scaleIn {
-    0% { opacity: 0; transform: scale(0.85); } /* More noticeable scale */
+    0% { opacity: 0; transform: scale(0.85); } 
     100% { opacity: 1; transform: scale(1); }
   }
   @keyframes subtlePulse { 

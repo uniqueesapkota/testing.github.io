@@ -13,11 +13,11 @@ const PORTFOLIO_OWNER_NAME = "Unique Sapkota";
 const PORTFOLIO_OWNER_SKILLS = ["Social Media Management", "Web Development", "Digital Marketing", "Content Creation"];
 
 const backgroundIcons = [
-  { Icon: CodeXml, className: "top-[10%] left-[15%] w-16 h-16 text-primary/20 [animation-duration:18s] [animation-delay:-2s]" },
-  { Icon: Layers, className: "top-[20%] right-[10%] w-20 h-20 text-accent/15 [animation-duration:22s] [animation-delay:-5s]" },
-  { Icon: ToyBrick, className: "bottom-[15%] left-[25%] w-14 h-14 text-primary/20 [animation-duration:20s] [animation-delay:-8s]" },
-  { Icon: GitFork, className: "bottom-[25%] right-[20%] w-16 h-16 text-accent/15 [animation-duration:17s] [animation-delay:-3s]" },
-  { Icon: Database, className: "top-[50%] left-[45%] w-12 h-12 text-primary/15 [animation-duration:25s] [animation-delay:-10s]" },
+  { Icon: CodeXml, className: "top-[10%] left-[15%] w-16 h-16 text-primary opacity-[0.07] [animation-duration:18s] [animation-delay:-2s]" },
+  { Icon: Layers, className: "top-[20%] right-[10%] w-20 h-20 text-accent opacity-[0.05] [animation-duration:22s] [animation-delay:-5s]" },
+  { Icon: ToyBrick, className: "bottom-[15%] left-[25%] w-14 h-14 text-primary opacity-[0.07] [animation-duration:20s] [animation-delay:-8s]" },
+  { Icon: GitFork, className: "bottom-[25%] right-[20%] w-16 h-16 text-accent opacity-[0.05] [animation-duration:17s] [animation-delay:-3s]" },
+  { Icon: Database, className: "top-[50%] left-[45%] w-12 h-12 text-primary opacity-[0.06] [animation-duration:25s] [animation-delay:-10s]" },
 ];
 
 export function HeroSection() {
@@ -83,8 +83,8 @@ export function HeroSection() {
           <div
             key={index}
             className={cn(
-              "absolute opacity-5 blur-md animate-hero-bg-icon-float",
-              className
+              "absolute blur-md animate-hero-bg-icon-float",
+              className 
             )}
           >
             <Icon />

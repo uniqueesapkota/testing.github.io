@@ -1,3 +1,4 @@
+
 import type {Config} from 'tailwindcss';
 
 export default {
@@ -93,23 +94,23 @@ export default {
           },
         },
         fadeInUp: {
-          '0%': { opacity: '0', transform: 'translateY(40px)' }, /* Increased distance */
+          '0%': { opacity: '0', transform: 'translateY(40px)' }, 
           '100%': { opacity: '1', transform: 'translateY(0)' },
         },
         fadeInDown: {
-          '0%': { opacity: '0', transform: 'translateY(-40px)' }, /* Increased distance */
+          '0%': { opacity: '0', transform: 'translateY(-40px)' }, 
           '100%': { opacity: '1', transform: 'translateY(0)' },
         },
         fadeInLeft: {
-          '0%': { opacity: '0', transform: 'translateX(-40px)' }, /* Increased distance */
+          '0%': { opacity: '0', transform: 'translateX(-40px)' }, 
           '100%': { opacity: '1', transform: 'translateX(0)' },
         },
         fadeInRight: {
-          '0%': { opacity: '0', transform: 'translateX(40px)' }, /* Increased distance */
+          '0%': { opacity: '0', transform: 'translateX(40px)' }, 
           '100%': { opacity: '1', transform: 'translateX(0)' },
         },
         scaleIn: {
-          '0%': { opacity: '0', transform: 'scale(0.85)' }, /* More noticeable scale */
+          '0%': { opacity: '0', transform: 'scale(0.85)' }, 
           '100%': { opacity: '1', transform: 'scale(1)' },
         },
         'subtle-pulse-animation': { 
