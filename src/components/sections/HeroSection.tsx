@@ -21,7 +21,7 @@ const heroParentVariants: Variants = {
       type: "tween",
       staggerChildren: 0.2,
       delayChildren: 0.1,
-      ease: cinematicEasing, // This ease applies to the stagger itself or parent properties
+      ease: cinematicEasing,
     },
   },
 };
@@ -33,9 +33,9 @@ const heroChildVariants: Variants = {
     y: 0,
     scale: 1,
     transition: {
-      type: "tween", // Changed from spring
-      ease: cinematicEasing, // Added
-      duration: 0.7, // Added example duration
+      type: "tween",
+      ease: cinematicEasing,
+      duration: 0.7,
     },
   },
 };
@@ -47,9 +47,9 @@ const nameVariants: Variants = {
     y: 0,
     rotate: 0,
     transition: {
-      type: "tween", // Changed from spring
-      ease: cinematicEasing, // Added
-      duration: 0.8, // Added example duration
+      type: "tween",
+      ease: cinematicEasing,
+      duration: 0.8,
     },
   },
 };
@@ -100,7 +100,7 @@ export function HeroSection() {
   
   const nameAnimateProps = isHeroNameScrolledOut ? 
     { opacity: 0, scale: 0.9, y: -20, transition: { type: "tween", duration: 0.4, ease: cinematicEasing } } : 
-    { opacity: 1, scale: 1, y: 0 };
+    { opacity: 1, scale: 1, y: 0, transition: { type: "tween", duration: 0.4, ease: cinematicEasing } };
 
 
   return (
@@ -124,8 +124,8 @@ export function HeroSection() {
           />
         </motion.div>
         <motion.h1
-          variants={nameVariants} // initial 'hidden' to 'visible' is now tween
-          animate={nameAnimateProps} // scroll-out is also tween
+          variants={nameVariants}
+          animate={nameAnimateProps} 
           className="font-headline text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold my-6 text-primary hover:text-accent transition-colors duration-300 cursor-default text-shadow-primary"
         >
           {PORTFOLIO_OWNER_NAME}
