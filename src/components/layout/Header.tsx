@@ -7,7 +7,8 @@ import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger, SheetClose } from "@/components/ui/sheet";
 import { useState, useEffect } from "react";
 import { cn } from "@/lib/utils";
-import { ThemeToggle } from "./ThemeToggle"; // Added ThemeToggle import
+import { ThemeToggle } from "./ThemeToggle";
+import { motion } from 'framer-motion'; // Added import for motion
 
 const YOUR_RESUME_URL = "https://unique-link.tiiny.site/";
 const PORTFOLIO_OWNER_NAME = "Unique Sapkota";
