@@ -5,8 +5,6 @@ import { type ReactNode } from 'react';
 import { motion, type Variants } from 'framer-motion';
 import { cn } from '@/lib/utils';
 
-const cinematicEasingString = "cubic-bezier(0.23, 1, 0.32, 1)"; // Valid easeOutQuint - Kept for reference, but not used in transition
-
 interface AnimatedSectionProps {
   children: ReactNode;
   className?: string;
@@ -24,7 +22,6 @@ const sectionVariants: Variants = {
       type: "tween",
       delay,
       duration: 0.8,
-      // ease: cinematicEasingString, // Removed
       staggerChildren: staggerAmount,
       when: "beforeChildren",
     }
