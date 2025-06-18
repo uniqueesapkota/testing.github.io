@@ -18,10 +18,10 @@ const heroParentVariants: Variants = {
   visible: {
     opacity: 1,
     transition: {
-      type: "tween", // Explicitly set type
+      type: "tween",
       staggerChildren: 0.2,
       delayChildren: 0.1,
-      ease: cinematicEasing,
+      ease: cinematicEasing, // This ease applies to the stagger itself or parent properties
     },
   },
 };
@@ -33,9 +33,9 @@ const heroChildVariants: Variants = {
     y: 0,
     scale: 1,
     transition: {
-      type: "spring",
-      stiffness: 100,
-      damping: 15,
+      type: "tween", // Changed from spring
+      ease: cinematicEasing, // Added
+      duration: 0.7, // Added example duration
     },
   },
 };
@@ -47,9 +47,9 @@ const nameVariants: Variants = {
     y: 0,
     rotate: 0,
     transition: {
-      type: "spring",
-      stiffness: 80,
-      damping: 12,
+      type: "tween", // Changed from spring
+      ease: cinematicEasing, // Added
+      duration: 0.8, // Added example duration
     },
   },
 };
@@ -124,8 +124,8 @@ export function HeroSection() {
           />
         </motion.div>
         <motion.h1
-          variants={nameVariants}
-          animate={nameAnimateProps} 
+          variants={nameVariants} // initial 'hidden' to 'visible' is now tween
+          animate={nameAnimateProps} // scroll-out is also tween
           className="font-headline text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold my-6 text-primary hover:text-accent transition-colors duration-300 cursor-default text-shadow-primary"
         >
           {PORTFOLIO_OWNER_NAME}
