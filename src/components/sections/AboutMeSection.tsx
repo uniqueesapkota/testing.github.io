@@ -1,6 +1,8 @@
 
-import { Briefcase, CodeXmlIcon, PaletteIcon, LightbulbIcon, UsersIcon, Share2Icon, BarChartIcon, FileTextIcon, NetworkIcon, TrendingUpIcon, CheckCircle } from 'lucide-react';
+import { Briefcase, CodeXmlIcon, PaletteIcon, LightbulbIcon, UsersIcon, Share2Icon, BarChartIcon, FileTextIcon, NetworkIcon, TrendingUpIcon, CheckCircle, Download } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
+import Link from 'next/link';
 
 interface Skill {
   name: string;
@@ -68,6 +70,8 @@ const experiences: Experience[] = [
   }
 ];
 
+const YOUR_RESUME_URL = "https://unique-link.tiiny.site/";
+
 export function AboutMeSection() {
   return (
     <section id="about" className="py-16 md:py-24 bg-background">
@@ -133,6 +137,11 @@ export function AboutMeSection() {
             <p className="text-lg md:text-xl max-w-3xl mx-auto text-foreground leading-relaxed text-balance">
                 I am an experienced professional with a strong background in social media, web development, management, content creation, and digital marketing strategies. Known for dependability and a results-focused approach, I thrive in collaborative environments and adapt quickly to changing needs.
             </p>
+            <Button asChild size="lg" className="font-semibold text-lg px-8 py-6 shadow-lg hover:animate-subtle-glow hover:scale-105 hover:brightness-110 transform transition-all duration-300 ease-in-out group mt-10">
+              <Link href={YOUR_RESUME_URL} target="_blank" rel="noopener noreferrer">
+                <Download className="mr-2.5 h-5 w-5 group-hover:animate-wiggle" /> Download Resume
+              </Link>
+            </Button>
         </div>
       </div>
     </section>
