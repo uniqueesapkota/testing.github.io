@@ -1,19 +1,23 @@
+
 'use client';
 
 import './globals.css';
 import { Toaster } from "@/components/ui/toaster";
 import { ScrollAwareNav } from '@/components/layout/ScrollAwareNav';
 import { FloatingIconsBackground } from '@/components/layout/FloatingIconsBackground';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
+import { usePathname } from 'next/navigation';
 
-// Removed metadata export as it's not allowed in client components.
-// Title and description are now set directly in the <head> below.
+// Easing for cinematic feel
+const cinematicEasing = [0.6, 0.01, -0.05, 0.95];
 
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const pathname = usePathname();
+
   return (
     <html lang="en">
       <head>
@@ -24,15 +28,25 @@ export default function RootLayout({
         <link href="https://fonts.googleapis.com/css2?family=Belleza&display=swap" rel="stylesheet" />
         <link href="https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet" />
       </head>
-      <body className="font-body antialiased">
+      <body className="font-body antialiased bg-background text-foreground">
         <FloatingIconsBackground />
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, ease: "easeInOut" }}
-        >
-          {children}
-        </motion.div>
+        <AnimatePresence mode="wait" initial={false}>
+          <motion.div
+            key={pathname} // AnimatePresence needs a key to detect route changes
+            initial={{ opacity: 0, y: 20, scale: 0.98 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: -20, scale: 0.98 }}
+            transition={{
+              duration: 0.7,
+              ease: cinematicEasing,
+              type: "spring", 
+              stiffness: 100, 
+              damping: 18 
+            }}
+          >
+            {children}
+          </motion.div>
+        </AnimatePresence>
         <ScrollAwareNav />
         <Toaster />
       </body>

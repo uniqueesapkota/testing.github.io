@@ -1,24 +1,67 @@
 
 "use client";
 
-import { useEffect, useState, type ElementType } from 'react';
+import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { generatePersonalizedWelcome } from '@/ai/flows/personalized-welcome';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { Loader2, Send, ArrowDownCircle } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { motion, Variants } from 'framer-motion';
 
 const PORTFOLIO_OWNER_NAME = "Unique Sapkota";
 const PORTFOLIO_OWNER_SKILLS = ["Social Media Management", "Web Development", "Digital Marketing", "Content Creation"];
+const cinematicEasing = [0.6, 0.01, -0.05, 0.95];
+
+const heroParentVariants: Variants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.2,
+      delayChildren: 0.1,
+      ease: cinematicEasing,
+    },
+  },
+};
+
+const heroChildVariants: Variants = {
+  hidden: { opacity: 0, y: 30, scale: 0.95 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    transition: {
+      duration: 0.7,
+      ease: cinematicEasing,
+      type: "spring",
+      stiffness: 100,
+      damping: 15,
+    },
+  },
+};
+
+const nameVariants: Variants = {
+  hidden: { opacity: 0, y: -50, rotate: -5 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    rotate: 0,
+    transition: {
+      duration: 1,
+      ease: [0.6, 0.01, -0.05, 0.95], // Cinematic fall and settle
+      type: "spring",
+      stiffness: 80,
+      damping: 12,
+    },
+  },
+};
+
 
 export function HeroSection() {
   const [welcomeMessage, setWelcomeMessage] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(true);
-  const [imageAnimated, setImageAnimated] = useState(false);
-  const [nameAnimated, setNameAnimated] = useState(false);
-  const [messageAnimated, setMessageAnimated] = useState(false);
-  const [buttonsAnimated, setButtonsAnimated] = useState(false);
   const [isHeroNameScrolledOut, setIsHeroNameScrolledOut] = useState(false);
 
 
@@ -41,12 +84,7 @@ export function HeroSection() {
     };
 
     fetchWelcomeMessage();
-
-    const timerImg = setTimeout(() => setImageAnimated(true), 50); 
-    const timerNameAnimation = setTimeout(() => setNameAnimated(true), 250); 
-    const timerMsgAnimation = setTimeout(() => setMessageAnimated(true), 700);
-    const timerBtnsAnimation = setTimeout(() => setButtonsAnimated(true), 950);
-
+    
     const handleScroll = () => {
       if (window.scrollY > 100) { 
         setIsHeroNameScrolledOut(true);
@@ -59,61 +97,45 @@ export function HeroSection() {
     handleScroll(); 
 
     return () => {
-      clearTimeout(timerImg);
-      clearTimeout(timerNameAnimation);
-      clearTimeout(timerMsgAnimation);
-      clearTimeout(timerBtnsAnimation);
       window.removeEventListener('scroll', handleScroll);
     }
 
   }, []);
+  
+  const nameAnimateProps = isHeroNameScrolledOut ? 
+    { opacity: 0, scale: 0.9, y: -20, transition: { duration: 0.4, ease: cinematicEasing } } : 
+    { opacity: 1, scale: 1, y: 0 };
+
 
   return (
-    <section id="hero" className="relative py-24 md:py-32 bg-gradient-to-br from-background via-secondary/30 to-primary/10 overflow-hidden">
-      {/* Background icons are now handled globally by FloatingIconsBackground.tsx */}
-      
+    <motion.section 
+      id="hero" 
+      className="relative py-24 md:py-32 overflow-hidden min-h-[80vh] flex flex-col items-center justify-center"
+      variants={heroParentVariants}
+      initial="hidden"
+      animate="visible"
+    >
       <div className="relative z-10 container mx-auto px-4 md:px-8 text-center">
-        <div
-          className={cn(
-            "mb-6",
-            "opacity-0 transform scale-90", 
-            imageAnimated && "animate-scaleIn opacity-100 scale-100"
-          )}
-          style={{ animationDuration: '0.7s', animationFillMode: 'forwards', animationDelay: '0.05s' }}
-        >
+        <motion.div variants={heroChildVariants}>
           <Image
             src="https://i.postimg.cc/XNypkfWQ/Whats-App-Image-2025-03-10-at-17-12-40.jpg"
             alt="Unique Sapkota - Profile Picture"
             width={160}
             height={160}
-            className={cn(
-                "rounded-full mx-auto border-4 border-background object-cover",
-                imageAnimated ? "animate-heroImageGlow" : ""
-            )}
+            className="rounded-full mx-auto border-4 border-background object-cover animate-heroImageGlow" // Kept existing CSS glow
             priority
           />
-        </div>
-        <h1
-          className={cn(
-            "font-headline text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold mb-6 text-primary hover:text-accent transition-all duration-500 cursor-default text-shadow-primary",
-            !nameAnimated && !isHeroNameScrolledOut && "opacity-0", 
-            nameAnimated && !isHeroNameScrolledOut && "animate-name-fall-settle", 
-            isHeroNameScrolledOut && "animate-hero-name-scroll-out" 
-          )}
-          style={{
-            animationDelay: (nameAnimated && !isHeroNameScrolledOut) ? '0.25s' : '0s', 
-            animationFillMode: 'forwards'
-          }}
-          >
+        </motion.div>
+        <motion.h1
+          variants={nameVariants}
+          animate={nameAnimateProps} // Controls scroll-out behavior
+          className="font-headline text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold my-6 text-primary hover:text-accent transition-colors duration-300 cursor-default text-shadow-primary"
+        >
           {PORTFOLIO_OWNER_NAME}
-        </h1>
-        <div
-          className={cn(
-            "min-h-[60px] md:min-h-[80px] flex items-center justify-center mb-10",
-             "opacity-0 transform translate-y-8", 
-            messageAnimated && "animate-fadeInUp opacity-100 translate-y-0" 
-            )}
-          style={{ animationDuration: '0.8s', animationFillMode: 'forwards', animationDelay: '0.7s' }}
+        </motion.h1>
+        <motion.div
+          variants={heroChildVariants}
+          className="min-h-[60px] md:min-h-[80px] flex items-center justify-center mb-10"
         >
           {isLoading ? (
             <Loader2 className="h-10 w-10 animate-spin text-primary" />
@@ -122,27 +144,33 @@ export function HeroSection() {
               {welcomeMessage}
             </p>
           )}
-        </div>
-        <div
-          className={cn(
-            "space-x-4",
-            "opacity-0 transform translate-y-8", 
-            buttonsAnimated && "animate-fadeInUp opacity-100 translate-y-0" 
-          )}
-          style={{ animationDuration: '0.8s', animationFillMode: 'forwards', animationDelay: '0.95s' }}
+        </motion.div>
+        <motion.div
+          variants={heroChildVariants}
+          className="space-x-0 space-y-4 sm:space-y-0 sm:space-x-4 flex flex-col sm:flex-row items-center justify-center"
         >
-          <Button asChild size="lg" className="font-semibold text-lg px-8 py-6 shadow-lg hover:animate-subtle-glow hover:scale-105 hover:brightness-110 transform transition-all duration-300 ease-in-out group">
-            <Link href="#projects">
-              <ArrowDownCircle className="mr-2 h-5 w-5 group-hover:animate-wiggle" /> View Projects
-            </Link>
-          </Button>
-          <Button asChild variant="outline" size="lg" className="font-semibold text-lg px-8 py-6 border-primary text-primary hover:bg-primary/10 hover:text-primary-foreground hover:bg-primary hover:scale-105 hover:animate-subtle-glow hover:brightness-110 transform transition-all duration-300 ease-in-out group">
-            <Link href="#contact">
-             <Send className="mr-2 h-5 w-5 group-hover:animate-wiggle" /> Get in Touch
-            </Link>
-          </Button>
-        </div>
+          <motion.div
+            whileHover={{ scale: 1.05, y: -2, boxShadow: "0 10px 20px -5px hsl(var(--primary)/0.3)" }}
+            transition={{ type: "spring", stiffness: 300, damping: 10 }}
+          >
+            <Button asChild size="lg" className="font-semibold text-lg px-8 py-6 shadow-lg group w-full sm:w-auto">
+              <Link href="#projects">
+                <ArrowDownCircle className="mr-2 h-5 w-5 group-hover:animate-wiggle" /> View Projects
+              </Link>
+            </Button>
+          </motion.div>
+          <motion.div
+            whileHover={{ scale: 1.05, y: -2, boxShadow: "0 10px 20px -5px hsl(var(--accent)/0.3)" }}
+            transition={{ type: "spring", stiffness: 300, damping: 10 }}
+          >
+            <Button asChild variant="outline" size="lg" className="font-semibold text-lg px-8 py-6 border-primary text-primary hover:bg-primary/10 hover:text-primary-foreground hover:bg-primary group w-full sm:w-auto">
+              <Link href="#contact">
+               <Send className="mr-2 h-5 w-5 group-hover:animate-wiggle" /> Get in Touch
+              </Link>
+            </Button>
+          </motion.div>
+        </motion.div>
       </div>
-    </section>
+    </motion.section>
   );
 }

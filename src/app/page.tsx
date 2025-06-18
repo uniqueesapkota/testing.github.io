@@ -12,19 +12,18 @@ export default function Home() {
     <div className="flex flex-col min-h-screen">
       <Header />
       <main className="flex-grow">
-        <AnimatedSection animationType="fadeInDown" delay="delay-0">
-          <HeroSection />
-        </AnimatedSection>
+        {/* HeroSection has its own internal animation handling for stagger */}
+        <HeroSection />
         
-        <AnimatedSection animationType="fadeInLeft" delay="delay-200">
+        <AnimatedSection delay={0.2}>
           <ProjectGallery />
         </AnimatedSection>
         
-        <AnimatedSection animationType="fadeInRight" delay="delay-200">
+        <AnimatedSection delay={0.3}>
           <AboutMeSection />
         </AnimatedSection>
         
-        <AnimatedSection animationType="scaleIn" delay="delay-300">
+        <AnimatedSection delay={0.4}>
           <ContactSection />
         </AnimatedSection>
       </main>

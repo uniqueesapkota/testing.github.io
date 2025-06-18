@@ -5,95 +5,81 @@
 
 @layer base {
   :root {
-    --background: 174 23% 96%; /* #F2F4F3 - Light Off-White */
-    --foreground: 215 25% 25%;
+    /* Luxury Tech Minimalism Palette */
+    --background: 215 30% 17%; /* #1E293B Gunmetal Navy */
+    --foreground: 215 16% 85%; /* #E2E8F0 Slate 200 - General text */
 
-    --card: 0 0% 100%;
-    --card-foreground: 215 25% 25%;
+    --card: 222 47% 11%; /* #0F172A Rich Deep Indigo - Card background */
+    --card-foreground: 215 25% 80%; /* #CBD5E1 Slate 300 - Card text */
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 215 25% 25%;
+    --popover: 222 47% 11%; /* #0F172A */
+    --popover-foreground: 215 16% 85%; /* #E2E8F0 */
 
-    --primary: 171 28% 57%; /* #73AFA5 - Muted Teal */
-    --primary-foreground: 0 0% 100%; 
+    --primary: 221 83% 53%; /* #2563EB Blue 600 - Interactive elements */
+    --primary-foreground: 0 0% 100%; /* #FFFFFF */
 
-    --secondary: 210 20% 94%;
-    --secondary-foreground: 215 20% 40%;
+    --secondary: 215 28% 26%; /* #334155 Slate 700 - Secondary elements */
+    --secondary-foreground: 215 16% 85%; /* #E2E8F0 */
 
-    --muted: 210 20% 88%;
-    --muted-foreground: 215 15% 55%;
+    --muted: 215 30% 31%; /* #475569 Slate 600 - Muted text/elements */
+    --muted-foreground: 215 20% 55%; /* #718096 Slate 500 */
 
-    --accent: 13 65% 82%; /* #E5B9AD - Soft Peach */
-    --accent-foreground: 13 25% 35%; 
+    --accent: 210 40% 56%; /* #60A5FA Blue 400 - Lighter blue for accent */
+    --accent-foreground: 222 47% 11%; /* #0F172A - To contrast with light accent */
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 0 0% 98%;
+    --destructive: 0 72% 51%; /* #EF4444 Red 500 */
+    --destructive-foreground: 0 0% 100%; /* #FFFFFF */
 
-    --border: 210 20% 88%;
-    --input: 210 20% 92%;
-    --ring: 171 28% 57%; /* Primary color for rings */
+    --border: 215 28% 26%; /* #334155 Slate 700 - Borders */
+    --input: 215 28% 22%; /* #2A374A - Darker input background */
+    --ring: 221 83% 53%; /* #2563EB Blue 600 - Focus rings */
 
     --radius: 0.5rem;
 
-    --chart-1: 171 28% 57%; /* primary */
-    --chart-2: 13 65% 82%; /* accent */
-    --chart-3: 180 50% 50%; 
-    --chart-4: 260 60% 65%; 
-    --chart-5: 50 70% 60%; 
+    --chart-1: 221 83% 53%; /* primary */
+    --chart-2: 210 40% 56%; /* accent */
+    --chart-3: 160 70% 45%; 
+    --chart-4: 260 70% 65%; 
+    --chart-5: 30 80% 55%; 
 
-    --sidebar-background: 174 15% 95%; 
-    --sidebar-foreground: 215 25% 20%;
-    --sidebar-primary: 171 28% 57%;
+    /* Sidebar colors adapted to the new dark theme */
+    --sidebar-background: 222 47% 9%; /* Slightly darker than card for depth */
+    --sidebar-foreground: 215 16% 80%;
+    --sidebar-primary: 221 83% 53%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 13 65% 82%;
-    --sidebar-accent-foreground: 13 25% 35%;
-    --sidebar-border: 174 10% 88%;
-    --sidebar-ring: 171 28% 57%;
+    --sidebar-accent: 210 40% 56%;
+    --sidebar-accent-foreground: 222 47% 11%;
+    --sidebar-border: 222 47% 15%;
+    --sidebar-ring: 221 83% 53%;
   }
 
+  /* The .dark class can be used for slight variations or future alternative dark themes */
+  /* For now, it will inherit most from :root, or be very similar */
   .dark {
-    --background: 215 25% 15%; 
-    --foreground: 174 20% 90%; 
+    --background: 222 47% 8%; /* Even darker background for .dark variant */
+    --foreground: 215 16% 88%;
 
-    --card: 215 25% 18%;
-    --card-foreground: 174 20% 90%;
+    --card: 215 30% 17%; /* Gunmetal for cards in .dark */
+    --card-foreground: 215 16% 85%;
 
-    --popover: 215 25% 18%;
-    --popover-foreground: 174 20% 90%;
+    --popover: 215 30% 17%;
+    --popover-foreground: 215 16% 85%;
 
-    --primary: 171 35% 65%; /* Slightly brighter teal for dark mode */
-    --primary-foreground: 215 15% 10%; 
+    --primary: 210 40% 56%; /* Lighter blue for primary in .dark */
+    --primary-foreground: 222 47% 11%; 
 
-    --secondary: 215 25% 22%; 
-    --secondary-foreground: 174 20% 80%;
+    --secondary: 215 30% 22%; 
+    --secondary-foreground: 215 16% 80%;
 
-    --muted: 215 25% 28%;
-    --muted-foreground: 174 20% 65%; 
+    --muted: 215 30% 28%;
+    --muted-foreground: 215 20% 60%; 
 
-    --accent: 13 70% 85%; /* Slightly brighter peach for dark mode */
-    --accent-foreground: 13 15% 92%; 
+    --accent: 221 83% 60%; /* Slightly brighter primary blue as accent in .dark */
+    --accent-foreground: 0 0% 100%; 
 
-    --destructive: 0 70% 50%;
-    --destructive-foreground: 0 0% 98%;
-
-    --border: 215 25% 28%;
-    --input: 215 25% 28%;
-    --ring: 171 35% 65%;
-
-    --chart-1: 171 35% 65%; /* primary */
-    --chart-2: 13 70% 85%; /* accent */
-    --chart-3: 180 55% 60%; 
-    --chart-4: 260 65% 70%; 
-    --chart-5: 50 75% 65%; 
-
-    --sidebar-background: 215 25% 17%;
-    --sidebar-foreground: 174 20% 88%;
-    --sidebar-primary: 171 35% 65%;
-    --sidebar-primary-foreground: 215 15% 10%;
-    --sidebar-accent: 13 70% 85%;
-    --sidebar-accent-foreground: 13 15% 92%;
-    --sidebar-border: 215 25% 30%;
-    --sidebar-ring: 171 35% 65%;
+    --border: 215 30% 25%;
+    --input: 215 30% 20%;
+    --ring: 210 40% 56%;
   }
 }
 
@@ -106,7 +92,12 @@
     font-family: 'Alegreya', serif;
   }
   h1, h2, h3, h4, h5, h6 {
-    @apply font-headline;
+    font-family: 'Belleza', sans-serif; /* Ensure headline font is applied */
+    @apply text-foreground; /* Default heading color */
+  }
+  /* Ensuring links also adopt a good default color from the new palette */
+  a {
+    @apply text-primary hover:text-accent transition-colors;
   }
 }
 
@@ -127,7 +118,18 @@
      box-shadow: 0 0 15px 5px hsl(var(--accent) / 0.2), 0 0 5px 2px hsl(var(--accent) / 0.15);
   }
 
-  @keyframes fadeInUp {
+  /* Removed heroBgIconFloat as Framer Motion will handle similar effects */
+
+  @keyframes accordion-down {
+    from { height: 0; }
+    to { height: var(--radix-accordion-content-height); }
+  }
+  @keyframes accordion-up {
+    from { height: var(--radix-accordion-content-height); }
+    to { height: 0; }
+  }
+  /* Keeping general keyframes that might be used by ShadCN components or other UI elements if not directly overridden by Framer Motion */
+   @keyframes fadeInUp {
     0% { opacity: 0; transform: translateY(40px); } 
     100% { opacity: 1; transform: translateY(0); }
   }
@@ -187,8 +189,9 @@
     80% { transform: scale(0.95) rotate(3deg) translateY(0px); opacity: 0.95; filter: brightness(1); }
     100% { transform: scale(1.1) rotate(0deg) translateY(0px); opacity: 1; filter: brightness(1.05); }
   }
+  /* card-hover-lift might be replaced by Framer Motion, but keep for potential non-FM cards */
   @keyframes card-hover-lift { 
-    0% { transform: translateY(0) scale(1) rotateX(0) rotateY(0); box-shadow: 0 8px 12px -3px rgba(0,0,0,0.08), 0 3px 5px -2px rgba(0,0,0,0.04); }
+    0% { transform: translateY(0) scale(1) rotateX(0) rotateY(0); box-shadow: 0 8px 12px -3px hsl(var(--card)/0.08), 0 3px 5px -2px hsl(var(--card)/0.04); }
     100% { transform: translateY(-8px) scale(1.03) rotateX(2deg) rotateY(1deg); box-shadow: 0 18px 25px -5px hsl(var(--primary)/0.28), 0 8px 10px -6px hsl(var(--primary)/0.18); }
   }
   @keyframes subtle-glow { 
@@ -202,12 +205,12 @@
   }
   @keyframes heroImageGlow {
     0%, 100% {
-      box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1), 0 8px 10px -6px rgba(0,0,0,0.1), 
-                  0 0 15px 2px hsl(var(--primary) / 0.2); 
+      box-shadow: 0 20px 25px -5px hsl(var(--background)/0.1), 0 8px 10px -6px hsl(var(--background)/0.1), 
+                  0 0 15px 2px hsl(var(--primary) / 0.3); 
     }
     50% {
-      box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1), 0 8px 10px -6px rgba(0,0,0,0.1), 
-                  0 0 30px 8px hsl(var(--primary) / 0.3); 
+      box-shadow: 0 20px 25px -5px hsl(var(--background)/0.1), 0 8px 10px -6px hsl(var(--background)/0.1), 
+                  0 0 30px 8px hsl(var(--primary) / 0.4); 
     }
   }
   @keyframes nameFallAndSettle {

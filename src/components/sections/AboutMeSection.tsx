@@ -1,8 +1,12 @@
 
+"use client";
 import { Briefcase, CodeXmlIcon, PaletteIcon, LightbulbIcon, UsersIcon, Share2Icon, BarChartIcon, FileTextIcon, NetworkIcon, TrendingUpIcon, CheckCircle, Download } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
+import { motion, Variants } from 'framer-motion';
+
+const cinematicEasing = [0.6, 0.01, -0.05, 0.95];
 
 interface Skill {
   name: string;
@@ -72,77 +76,152 @@ const experiences: Experience[] = [
 
 const YOUR_RESUME_URL = "https://unique-link.tiiny.site/";
 
+const titleParentVariants: Variants = {
+  hidden: {},
+  visible: { transition: { staggerChildren: 0.1, delayChildren: 0.1, ease: cinematicEasing } },
+};
+
+const titleChildVariants: Variants = {
+  hidden: { opacity: 0, y: 20, scale: 0.98 },
+  visible: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.6, ease: cinematicEasing } },
+};
+
+const cardHover = {
+  scale: 1.03,
+  boxShadow: "0px 10px 20px -8px hsl(var(--primary)/0.25)",
+  transition: { type: "spring", stiffness: 300, damping: 12 }
+};
+
 export function AboutMeSection() {
   return (
-    <section id="about" className="py-16 md:py-24 bg-background">
+    <section id="about" className="py-16 md:py-24">
       <div className="container mx-auto px-4 md:px-8">
-        <div className="text-center mb-12 md:mb-16">
-           <Briefcase className="mx-auto h-12 w-12 text-primary animate-subtle-float mb-2" />
-           <h2 className="font-headline text-3xl sm:text-4xl md:text-5xl font-bold text-primary">
+        <motion.div 
+          className="text-center mb-12 md:mb-16"
+          variants={titleParentVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.3 }}
+        >
+           <motion.div variants={titleChildVariants}>
+            <Briefcase className="mx-auto h-12 w-12 text-primary animate-subtle-float mb-2" />
+           </motion.div>
+           <motion.h2 
+            variants={titleChildVariants}
+            className="font-headline text-3xl sm:text-4xl md:text-5xl font-bold text-primary"
+           >
              About Me
-           </h2>
-            <p className="text-muted-foreground mt-2 text-lg">My journey, skills, and professional background.</p>
-        </div>
+           </motion.h2>
+            <motion.p 
+              variants={titleChildVariants}
+              className="text-muted-foreground mt-3 text-lg"
+            >
+              My journey, skills, and professional background.
+            </motion.p>
+        </motion.div>
 
         <div className="grid md:grid-cols-5 gap-12 items-start">
-          <div className="md:col-span-3">
+          <motion.div 
+            className="md:col-span-3"
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.7, ease: cinematicEasing, delay: 0.2 }}
+          >
             <h3 className="font-headline text-2xl md:text-3xl font-semibold mb-8 text-foreground">Work Experience</h3>
             <div className="space-y-8 relative pl-6 before:absolute before:inset-y-0 before:w-1 before:bg-primary/30 before:left-0 before:rounded-full">
               {experiences.map((exp, index) => (
-                <div key={index} className="relative pl-8 before:absolute before:left-[-28px] before:top-1.5 before:w-4 before:h-4 before:bg-primary before:rounded-full before:ring-4 before:ring-background shadow-primary-glow/30">
-                  <Card className="shadow-lg hover:shadow-xl hover:shadow-primary-glow hover:border-primary/70 transform hover:-translate-y-1.5 transition-all duration-300 ease-in-out rounded-lg group">
-                    <CardHeader>
-                      <CardTitle className="font-headline text-xl text-primary group-hover:text-accent transition-colors">{exp.title}</CardTitle>
-                      <p className="text-sm text-muted-foreground font-semibold">{exp.company} | {exp.duration}</p>
-                    </CardHeader>
-                    <CardContent>
-                      <p className="text-foreground mb-3 text-balance">{exp.description}</p>
-                      {exp.highlights && (
-                        <ul className="space-y-1.5 text-sm text-muted-foreground">
-                          {exp.highlights.map((highlight, i) => (
-                            <li key={i} className="flex items-start">
-                               <CheckCircle className="h-4 w-4 text-primary mr-2 mt-0.5 flex-shrink-0 group-hover:text-accent group-hover:scale-125 transition-all duration-300" />
-                               <span>{highlight}</span>
-                            </li>
-                          ))}
-                        </ul>
-                      )}
-                    </CardContent>
-                  </Card>
-                </div>
+                <motion.div 
+                  key={index} 
+                  className="relative pl-8 before:absolute before:left-[-28px] before:top-1.5 before:w-4 before:h-4 before:bg-primary before:rounded-full before:ring-4 before:ring-background"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.2 }}
+                  transition={{ duration: 0.5, delay: index * 0.15, ease: cinematicEasing }}
+                >
+                  <motion.div whileHover={cardHover}>
+                    <Card className="shadow-lg group bg-card border border-border/30 hover:border-primary/50 transition-colors duration-300">
+                      <CardHeader>
+                        <CardTitle className="font-headline text-xl text-primary group-hover:text-accent transition-colors">{exp.title}</CardTitle>
+                        <p className="text-sm text-muted-foreground font-semibold">{exp.company} | {exp.duration}</p>
+                      </CardHeader>
+                      <CardContent>
+                        <p className="text-card-foreground mb-3 text-balance">{exp.description}</p>
+                        {exp.highlights && (
+                          <ul className="space-y-1.5 text-sm text-muted-foreground">
+                            {exp.highlights.map((highlight, i) => (
+                              <li key={i} className="flex items-start">
+                                 <CheckCircle className="h-4 w-4 text-primary mr-2 mt-0.5 flex-shrink-0 group-hover:text-accent group-hover:scale-125 transition-all duration-300" />
+                                 <span>{highlight}</span>
+                              </li>
+                            ))}
+                          </ul>
+                        )}
+                      </CardContent>
+                    </Card>
+                  </motion.div>
+                </motion.div>
               ))}
             </div>
-          </div>
+          </motion.div>
 
-          <div className="md:col-span-2">
+          <motion.div 
+            className="md:col-span-2"
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.7, ease: cinematicEasing, delay: 0.3 }}
+          >
             <h3 className="font-headline text-2xl md:text-3xl font-semibold mb-8 text-foreground">My Skills</h3>
             <div className="space-y-6">
-              {skills.map((skill) => (
-                <Card key={skill.name} className="group shadow-lg hover:shadow-xl hover:shadow-accent-glow hover:border-accent/70 transform hover:-translate-y-1.5 transition-all duration-300 ease-in-out rounded-lg">
-                  <CardContent className="p-6">
-                    <div className="flex items-start space-x-4">
-                      <skill.icon className="h-10 w-10 text-accent flex-shrink-0 mt-1 transition-all duration-300 ease-in-out transform group-hover:scale-110 group-hover:text-primary group-hover:rotate-[8deg] group-hover:animate-wiggle" aria-hidden="true" />
-                      <div>
-                        <h4 className="font-headline text-lg font-medium text-foreground group-hover:text-accent transition-colors">{skill.name}</h4>
-                        <p className="text-sm text-muted-foreground text-balance">{skill.description}</p>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
+              {skills.map((skill, index) => (
+                <motion.div 
+                  key={skill.name}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.2 }}
+                  transition={{ duration: 0.5, delay: index * 0.15, ease: cinematicEasing }}
+                >
+                  <motion.div whileHover={cardHover}>
+                    <Card className="group shadow-lg bg-card border border-border/30 hover:border-accent/50 transition-colors duration-300">
+                      <CardContent className="p-6">
+                        <div className="flex items-start space-x-4">
+                          <skill.icon className="h-10 w-10 text-accent flex-shrink-0 mt-1 transition-all duration-300 ease-in-out transform group-hover:scale-110 group-hover:text-primary group-hover:rotate-[8deg] group-hover:animate-wiggle" aria-hidden="true" />
+                          <div>
+                            <h4 className="font-headline text-lg font-medium text-primary-foreground group-hover:text-accent transition-colors">{skill.name}</h4>
+                            <p className="text-sm text-muted-foreground text-balance">{skill.description}</p>
+                          </div>
+                        </div>
+                      </CardContent>
+                    </Card>
+                  </motion.div>
+                </motion.div>
               ))}
             </div>
-          </div>
+          </motion.div>
         </div>
-         <div className="mt-16 text-center animate-fadeInUp [animation-delay:0.5s]">
+         <motion.div 
+            className="mt-16 text-center"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.7, ease: cinematicEasing, delay: 0.4 }}
+          >
             <p className="text-lg md:text-xl max-w-3xl mx-auto text-foreground leading-relaxed text-balance">
                 I am an experienced professional with a strong background in social media, web development, management, content creation, and digital marketing strategies. Known for dependability and a results-focused approach, I thrive in collaborative environments and adapt quickly to changing needs.
             </p>
-            <Button asChild size="lg" className="font-semibold text-lg px-8 py-6 shadow-lg hover:animate-subtle-glow hover:scale-105 hover:brightness-110 transform transition-all duration-300 ease-in-out group mt-10">
-              <Link href={YOUR_RESUME_URL} target="_blank" rel="noopener noreferrer">
-                <Download className="mr-2.5 h-5 w-5 group-hover:animate-wiggle" /> Download Resume
-              </Link>
-            </Button>
-        </div>
+            <motion.div 
+              className="mt-10 inline-block"
+              whileHover={{ scale: 1.05, y: -2, boxShadow: "0 10px 20px -5px hsl(var(--primary)/0.3)" }}
+              transition={{ type: "spring", stiffness: 300, damping: 10 }}
+            >
+              <Button asChild size="lg" className="font-semibold text-lg px-8 py-6 shadow-lg group">
+                <Link href={YOUR_RESUME_URL} target="_blank" rel="noopener noreferrer">
+                  <Download className="mr-2.5 h-5 w-5 group-hover:animate-wiggle" /> Download Resume
+                </Link>
+              </Button>
+            </motion.div>
+        </motion.div>
       </div>
     </section>
   );

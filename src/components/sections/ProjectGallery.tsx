@@ -1,9 +1,14 @@
 
+"use client";
+
 import Image from 'next/image';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { ExternalLink, Layers } from 'lucide-react';
+import { motion, Variants } from 'framer-motion';
+
+const cinematicEasing = [0.6, 0.01, -0.05, 0.95];
 
 interface Project {
   id: string;
@@ -56,66 +61,127 @@ const projects: Project[] = [
   }
 ];
 
+const titleParentVariants: Variants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.15,
+      delayChildren: 0.1,
+      ease: cinematicEasing,
+    },
+  },
+};
+
+const titleChildVariants: Variants = {
+  hidden: { opacity: 0, y: 20, scale: 0.98 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    transition: {
+      duration: 0.6,
+      ease: cinematicEasing,
+    },
+  },
+};
+
+
 export function ProjectGallery() {
   return (
-    <section id="projects" className="py-12 md:py-20 bg-secondary/20">
+    <section id="projects" className="py-16 md:py-24">
       <div className="container mx-auto px-4 md:px-8">
-        <div className="text-center mb-10 md:mb-14">
-          <Layers className="mx-auto h-12 w-12 text-primary animate-subtle-float mb-2" />
-          <h2 className="font-headline text-3xl sm:text-4xl md:text-5xl font-bold text-primary">
+        <motion.div 
+          className="text-center mb-12 md:mb-16"
+          variants={titleParentVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.3 }}
+        >
+          <motion.div variants={titleChildVariants}>
+            <Layers className="mx-auto h-12 w-12 text-primary animate-subtle-float mb-2" />
+          </motion.div>
+          <motion.h2 
+            variants={titleChildVariants}
+            className="font-headline text-3xl sm:text-4xl md:text-5xl font-bold text-primary"
+          >
             Featured Projects
-          </h2>
-          <p className="text-muted-foreground mt-2 text-lg">A glimpse into my development journey and capabilities.</p>
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10">
-          {projects.map((project) => (
-            <Card 
-              key={project.id} 
-              className="group flex flex-col overflow-hidden shadow-lg hover:animate-card-hover-lift transition-all duration-300 ease-in-out rounded-xl border-2 border-transparent hover:border-primary/60"
+          </motion.h2>
+          <motion.p 
+            variants={titleChildVariants}
+            className="text-muted-foreground mt-3 text-lg"
+          >
+            A glimpse into my development journey and capabilities.
+          </motion.p>
+        </motion.div>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10" style={{ perspective: '1000px' }}>
+          {projects.map((project, index) => (
+            <motion.div
+              key={project.id}
+              initial={{ opacity: 0, y: 40, scale: 0.95 }}
+              whileInView={{ opacity: 1, y: 0, scale: 1 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 0.6, delay: index * 0.1, ease: cinematicEasing }}
+              whileHover={{ 
+                scale: 1.03, 
+                rotateX: 5, 
+                rotateY: -3,
+                boxShadow: "0px 20px 30px -10px hsl(var(--primary)/0.3)",
+                transition: { type: "spring", stiffness: 250, damping: 15 }
+              }}
             >
-              <CardHeader className="p-0">
-                <div className="aspect-video relative overflow-hidden rounded-t-xl">
-                  <Image
-                    src={project.imageUrl}
-                    alt={project.title}
-                    layout="fill"
-                    objectFit="cover"
-                    data-ai-hint={project.imageHint}
-                    className="transition-all duration-500 ease-in-out group-hover:scale-105 group-hover:brightness-105"
-                  />
-                   <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent group-hover:from-black/40 transition-all duration-300"></div>
-                </div>
-              </CardHeader>
-              <CardContent className="p-5 flex-grow">
-                <CardTitle className="font-headline text-xl mb-2 text-foreground group-hover:text-primary transition-colors duration-300">{project.title}</CardTitle>
-                <CardDescription className="text-muted-foreground mb-3 leading-relaxed text-balance">{project.description}</CardDescription>
-                <div className="flex flex-wrap gap-2 mb-3">
-                  {project.tags.map(tag => (
-                    <span key={tag} className="text-xs font-medium bg-accent/20 text-accent-foreground px-3 py-1.5 rounded-full transition-all duration-300 ease-in-out group-hover:bg-primary/80 group-hover:text-primary-foreground hover:animate-tag-hover-pop hover:shadow-md">
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-              </CardContent>
-              <CardFooter className="p-5 bg-card border-t rounded-b-xl">
-                <div className="flex space-x-3">
-                  {project.liveLink && (
-                    <Button asChild variant="default" className="font-semibold hover:scale-105 hover:brightness-110 transform transition-transform duration-200 hover:shadow-md hover:bg-primary/90 group-hover:animate-subtle-glow group/button text-sm px-4 py-2">
-                      <Link href={project.liveLink} target="_blank" rel="noopener noreferrer">
-                        Live Demo <ExternalLink className="ml-1.5 h-4 w-4 group-hover/button:animate-wiggle" />
-                      </Link>
-                    </Button>
-                  )}
-                  {project.repoLink && (
-                    <Button asChild variant="outline" className="font-semibold border-primary text-primary hover:bg-primary/10 hover:text-primary-foreground hover:bg-primary hover:scale-105 hover:brightness-110 transform transition-transform duration-200 hover:shadow-md group-hover:animate-subtle-glow group/button text-sm px-4 py-2">
-                      <Link href={project.repoLink} target="_blank" rel="noopener noreferrer">
-                        View Code <ExternalLink className="ml-1.5 h-4 w-4 group-hover/button:animate-wiggle" />
-                      </Link>
-                    </Button>
-                  )}
-                </div>
-              </CardFooter>
-            </Card>
+              <Card 
+                className="group flex flex-col overflow-hidden shadow-xl h-full bg-card border-2 border-transparent hover:border-primary/30"
+              >
+                <CardHeader className="p-0">
+                  <div className="aspect-video relative overflow-hidden rounded-t-xl">
+                    <Image
+                      src={project.imageUrl}
+                      alt={project.title}
+                      fill // Changed from layout="fill"
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                      style={{objectFit: "cover"}} // Changed from objectFit="cover"
+                      data-ai-hint={project.imageHint}
+                      className="transition-all duration-500 ease-in-out group-hover:scale-105 group-hover:brightness-110"
+                    />
+                     <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent group-hover:from-black/60 transition-all duration-300"></div>
+                  </div>
+                </CardHeader>
+                <CardContent className="p-5 flex-grow flex flex-col">
+                  <CardTitle className="font-headline text-xl mb-2 text-primary-foreground group-hover:text-primary transition-colors duration-300">{project.title}</CardTitle>
+                  <CardDescription className="text-muted-foreground mb-4 leading-relaxed text-balance flex-grow">{project.description}</CardDescription>
+                  <div className="flex flex-wrap gap-2 mb-1 mt-auto">
+                    {project.tags.map(tag => (
+                      <span key={tag} className="text-xs font-medium bg-accent/20 text-accent-foreground px-3 py-1.5 rounded-full transition-all duration-300 ease-in-out group-hover:bg-primary/80 group-hover:text-primary-foreground">
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                </CardContent>
+                <CardFooter className="p-5 bg-card/50 border-t border-border/50 rounded-b-xl">
+                  <div className="flex space-x-3">
+                    {project.liveLink && (
+                       <motion.div whileHover={{scale: 1.08}} transition={{type: "spring", stiffness: 300}}>
+                        <Button asChild variant="default" size="sm" className="font-semibold group/button">
+                          <Link href={project.liveLink} target="_blank" rel="noopener noreferrer">
+                            Live Demo <ExternalLink className="ml-1.5 h-4 w-4 group-hover/button:animate-wiggle" />
+                          </Link>
+                        </Button>
+                      </motion.div>
+                    )}
+                    {project.repoLink && (
+                      <motion.div whileHover={{scale: 1.08}} transition={{type: "spring", stiffness: 300}}>
+                        <Button asChild variant="outline" size="sm" className="font-semibold border-primary text-primary hover:bg-primary/10 hover:text-primary-foreground hover:bg-primary group/button">
+                          <Link href={project.repoLink} target="_blank" rel="noopener noreferrer">
+                            View Code <ExternalLink className="ml-1.5 h-4 w-4 group-hover/button:animate-wiggle" />
+                          </Link>
+                        </Button>
+                      </motion.div>
+                    )}
+                  </div>
+                </CardFooter>
+              </Card>
+            </motion.div>
           ))}
         </div>
       </div>
