@@ -4,10 +4,17 @@
 import './globals.css';
 import { Toaster } from "@/components/ui/toaster";
 import { ScrollAwareNav } from '@/components/layout/ScrollAwareNav';
-import { FloatingIconsBackground } from '@/components/layout/FloatingIconsBackground';
+// import { FloatingIconsBackground } from '@/components/layout/FloatingIconsBackground'; // Removed static import
 import { motion, AnimatePresence } from 'framer-motion';
 import { usePathname } from 'next/navigation';
 import { ThemeProvider } from 'next-themes';
+import dynamic from 'next/dynamic'; // Import dynamic
+
+// Dynamically import FloatingIconsBackground with SSR turned off
+const FloatingIconsBackground = dynamic(
+  () => import('@/components/layout/FloatingIconsBackground').then(mod => mod.FloatingIconsBackground),
+  { ssr: false }
+);
 
 
 export default function RootLayout({
@@ -37,9 +44,8 @@ export default function RootLayout({
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: -20, scale: 0.98 }}
               transition={{
-                type: "spring", 
-                stiffness: 100, 
-                damping: 18
+                type: "tween", 
+                duration: 0.5
               }}
             >
               {children}
