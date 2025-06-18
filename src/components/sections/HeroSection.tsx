@@ -19,6 +19,7 @@ export function HeroSection() {
   const [nameAnimated, setNameAnimated] = useState(false);
   const [messageAnimated, setMessageAnimated] = useState(false);
   const [buttonsAnimated, setButtonsAnimated] = useState(false);
+  const [isHeroNameScrolledOut, setIsHeroNameScrolledOut] = useState(false);
 
 
   useEffect(() => {
@@ -42,16 +43,27 @@ export function HeroSection() {
     fetchWelcomeMessage();
 
     const timerImg = setTimeout(() => setImageAnimated(true), 50); 
-    const timer1 = setTimeout(() => setNameAnimated(true), 250); 
-    const timer2 = setTimeout(() => setMessageAnimated(true), 700); // Delayed to allow name animation to play more
-    const timer3 = setTimeout(() => setButtonsAnimated(true), 950); // Delayed for message
+    const timerNameAnimation = setTimeout(() => setNameAnimated(true), 250); 
+    const timerMsgAnimation = setTimeout(() => setMessageAnimated(true), 700);
+    const timerBtnsAnimation = setTimeout(() => setButtonsAnimated(true), 950);
 
+    const handleScroll = () => {
+      if (window.scrollY > 100) { 
+        setIsHeroNameScrolledOut(true);
+      } else {
+        setIsHeroNameScrolledOut(false);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    handleScroll(); 
 
     return () => {
       clearTimeout(timerImg);
-      clearTimeout(timer1);
-      clearTimeout(timer2);
-      clearTimeout(timer3);
+      clearTimeout(timerNameAnimation);
+      clearTimeout(timerMsgAnimation);
+      clearTimeout(timerBtnsAnimation);
+      window.removeEventListener('scroll', handleScroll);
     }
 
   }, []);
@@ -62,8 +74,8 @@ export function HeroSection() {
         <div
           className={cn(
             "mb-6",
-            "opacity-0 transform scale-90", // Initial state for scaleIn
-            imageAnimated && "animate-scaleIn opacity-100 scale-100" // Apply scaleIn
+            "opacity-0 transform scale-90", 
+            imageAnimated && "animate-scaleIn opacity-100 scale-100"
           )}
           style={{ animationDuration: '0.7s', animationFillMode: 'forwards', animationDelay: '0.05s' }}
         >
@@ -82,10 +94,14 @@ export function HeroSection() {
         <h1
           className={cn(
             "font-headline text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold mb-6 text-primary hover:text-accent transition-all duration-500 cursor-default text-shadow-primary",
-            "opacity-0", // Initial opacity managed by animation
-            nameAnimated && "animate-name-fall-settle"
+            !nameAnimated && !isHeroNameScrolledOut && "opacity-0",
+            nameAnimated && !isHeroNameScrolledOut && "animate-name-fall-settle",
+            isHeroNameScrolledOut && "animate-hero-name-scroll-out"
           )}
-          style={{ animationFillMode: 'forwards', animationDelay: '0.25s' }}
+          style={{
+            animationDelay: (nameAnimated && !isHeroNameScrolledOut) ? '0.25s' : '0s',
+            animationFillMode: 'forwards'
+          }}
           >
           {PORTFOLIO_OWNER_NAME}
         </h1>
@@ -128,3 +144,4 @@ export function HeroSection() {
     </section>
   );
 }
+

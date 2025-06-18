@@ -185,6 +185,10 @@ export default {
           '0%': { opacity: '0', transform: 'translateY(-10px)' },
           '100%': { opacity: '1', transform: 'translateY(0)' },
         },
+        heroNameScrollOut: {
+          '0%': { opacity: '1', transform: 'scale(1) translateY(0)' },
+          '100%': { opacity: '0', transform: 'scale(0.9) translateY(-20px)' },
+        },
       },
       animation: {
         'accordion-down': 'accordion-down 0.2s ease-out',
@@ -209,8 +213,10 @@ export default {
         'heroImageGlow': 'heroImageGlow 2.5s ease-in-out infinite',
         'name-fall-settle': 'nameFallAndSettle 1.2s ease-out forwards',
         'fade-in-header-name': 'fadeInHeaderName 0.3s ease-out forwards',
+        'hero-name-scroll-out': 'heroNameScrollOut 0.4s ease-out forwards',
       },
     },
   },
   plugins: [require('tailwindcss-animate')],
 } satisfies Config;
+
