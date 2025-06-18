@@ -8,7 +8,7 @@ const YOUR_LINKEDIN_URL = "https://www.linkedin.com/in/unique-sapkota-420997219/
 const YOUR_GITHUB_URL = "https://github.com/uniqueesapkota"; 
 const YOUR_INSTAGRAM_URL = "https://www.instagram.com/uniqueesapkota?igsh=NzdzM3ZuaDVuYnF0&utm_source=qr";
 const YOUR_FACEBOOK_URL = "https://www.facebook.com/unique.sapkota.1?mibextid=rS40aB7S9Ucbxw6v";
-const YOUR_WHATSAPP_NUMBER = "12345678900"; // Replace with your full WhatsApp number including country code (e.g., 1XXXXXXXXXX for US)
+const YOUR_WHATSAPP_NUMBER = "9779806089328"; // Updated with Nepal country code + provided number
 
 
 export function ContactSection() {
