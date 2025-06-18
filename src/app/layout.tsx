@@ -8,7 +8,7 @@ import { FloatingIconsBackground } from '@/components/layout/FloatingIconsBackgr
 import { motion, AnimatePresence } from 'framer-motion';
 import { usePathname } from 'next/navigation';
 
-// Easing for cinematic feel
+// Easing for cinematic feel (used for tween animations)
 const cinematicEasing = [0.6, 0.01, -0.05, 0.95];
 
 export default function RootLayout({
@@ -32,16 +32,15 @@ export default function RootLayout({
         <FloatingIconsBackground />
         <AnimatePresence mode="wait" initial={false}>
           <motion.div
-            key={pathname} // AnimatePresence needs a key to detect route changes
+            key={pathname}
             initial={{ opacity: 0, y: 20, scale: 0.98 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: -20, scale: 0.98 }}
             transition={{
-              duration: 0.7,
-              ease: cinematicEasing,
               type: "spring", 
               stiffness: 100, 
               damping: 18 
+              // Removed: ease: cinematicEasing and duration: 0.7 as they conflict with type: "spring"
             }}
           >
             {children}

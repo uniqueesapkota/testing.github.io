@@ -7,12 +7,11 @@ import { generatePersonalizedWelcome } from '@/ai/flows/personalized-welcome';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { Loader2, Send, ArrowDownCircle } from 'lucide-react';
-import { cn } from '@/lib/utils';
 import { motion, Variants } from 'framer-motion';
 
 const PORTFOLIO_OWNER_NAME = "Unique Sapkota";
 const PORTFOLIO_OWNER_SKILLS = ["Social Media Management", "Web Development", "Digital Marketing", "Content Creation"];
-const cinematicEasing = [0.6, 0.01, -0.05, 0.95];
+const cinematicEasing = [0.6, 0.01, -0.05, 0.95]; // For tween animations
 
 const heroParentVariants: Variants = {
   hidden: { opacity: 0 },
@@ -21,7 +20,7 @@ const heroParentVariants: Variants = {
     transition: {
       staggerChildren: 0.2,
       delayChildren: 0.1,
-      ease: cinematicEasing,
+      ease: cinematicEasing, // This is okay as it's for the parent staggering, not a spring itself
     },
   },
 };
@@ -33,11 +32,10 @@ const heroChildVariants: Variants = {
     y: 0,
     scale: 1,
     transition: {
-      duration: 0.7,
-      ease: cinematicEasing,
       type: "spring",
       stiffness: 100,
       damping: 15,
+      // Removed: duration: 0.7 and ease: cinematicEasing
     },
   },
 };
@@ -49,11 +47,10 @@ const nameVariants: Variants = {
     y: 0,
     rotate: 0,
     transition: {
-      duration: 1,
-      ease: [0.6, 0.01, -0.05, 0.95], // Cinematic fall and settle
       type: "spring",
       stiffness: 80,
       damping: 12,
+      // Removed: duration: 1 and ease: [0.6, 0.01, -0.05, 0.95]
     },
   },
 };
@@ -122,13 +119,14 @@ export function HeroSection() {
             alt="Unique Sapkota - Profile Picture"
             width={160}
             height={160}
-            className="rounded-full mx-auto border-4 border-background object-cover animate-heroImageGlow" // Kept existing CSS glow
+            className="rounded-full mx-auto border-4 border-background object-cover animate-heroImageGlow" 
             priority
+            data-ai-hint="profile man"
           />
         </motion.div>
         <motion.h1
           variants={nameVariants}
-          animate={nameAnimateProps} // Controls scroll-out behavior
+          animate={nameAnimateProps} 
           className="font-headline text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold my-6 text-primary hover:text-accent transition-colors duration-300 cursor-default text-shadow-primary"
         >
           {PORTFOLIO_OWNER_NAME}
@@ -150,7 +148,7 @@ export function HeroSection() {
           className="space-x-0 space-y-4 sm:space-y-0 sm:space-x-4 flex flex-col sm:flex-row items-center justify-center"
         >
           <motion.div
-            whileHover={{ scale: 1.05, y: -2, boxShadow: "0 10px 20px -5px hsl(var(--primary)/0.3)" }}
+            whileHover={{ scale: 1.03, y: -2, rotateX: 3, rotateY: -3, boxShadow: "0px 10px 20px -8px hsl(var(--primary)/0.25)" }}
             transition={{ type: "spring", stiffness: 300, damping: 10 }}
           >
             <Button asChild size="lg" className="font-semibold text-lg px-8 py-6 shadow-lg group w-full sm:w-auto">
@@ -160,7 +158,7 @@ export function HeroSection() {
             </Button>
           </motion.div>
           <motion.div
-            whileHover={{ scale: 1.05, y: -2, boxShadow: "0 10px 20px -5px hsl(var(--accent)/0.3)" }}
+            whileHover={{ scale: 1.03, y: -2, rotateX: 3, rotateY: -3, boxShadow: "0px 10px 20px -8px hsl(var(--accent)/0.25)"}}
             transition={{ type: "spring", stiffness: 300, damping: 10 }}
           >
             <Button asChild variant="outline" size="lg" className="font-semibold text-lg px-8 py-6 border-primary text-primary hover:bg-primary/10 hover:text-primary-foreground hover:bg-primary group w-full sm:w-auto">
