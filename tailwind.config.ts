@@ -93,23 +93,23 @@ export default {
           },
         },
         fadeInUp: {
-          '0%': { opacity: '0', transform: 'translateY(30px)' },
+          '0%': { opacity: '0', transform: 'translateY(40px)' }, /* Increased distance */
           '100%': { opacity: '1', transform: 'translateY(0)' },
         },
         fadeInDown: {
-          '0%': { opacity: '0', transform: 'translateY(-30px)' },
+          '0%': { opacity: '0', transform: 'translateY(-40px)' }, /* Increased distance */
           '100%': { opacity: '1', transform: 'translateY(0)' },
         },
         fadeInLeft: {
-          '0%': { opacity: '0', transform: 'translateX(-30px)' },
+          '0%': { opacity: '0', transform: 'translateX(-40px)' }, /* Increased distance */
           '100%': { opacity: '1', transform: 'translateX(0)' },
         },
         fadeInRight: {
-          '0%': { opacity: '0', transform: 'translateX(30px)' },
+          '0%': { opacity: '0', transform: 'translateX(40px)' }, /* Increased distance */
           '100%': { opacity: '1', transform: 'translateX(0)' },
         },
         scaleIn: {
-          '0%': { opacity: '0', transform: 'scale(0.9)' },
+          '0%': { opacity: '0', transform: 'scale(0.85)' }, /* More noticeable scale */
           '100%': { opacity: '1', transform: 'scale(1)' },
         },
         'subtle-pulse-animation': { 
@@ -189,6 +189,12 @@ export default {
           '0%': { opacity: '1', transform: 'scale(1) translateY(0)' },
           '100%': { opacity: '0', transform: 'scale(0.9) translateY(-20px)' },
         },
+        heroBgIconFloat: {
+          '0%, 100%': { transform: 'translateY(0px) translateX(0px) rotate(0deg) scale(1)' },
+          '25%': { transform: 'translateY(-15px) translateX(10px) rotate(5deg) scale(1.05)' },
+          '50%': { transform: 'translateY(0px) translateX(-10px) rotate(-3deg) scale(1)' },
+          '75%': { transform: 'translateY(10px) translateX(5px) rotate(2deg) scale(0.95)' },
+        }
       },
       animation: {
         'accordion-down': 'accordion-down 0.2s ease-out',
@@ -214,6 +220,7 @@ export default {
         'name-fall-settle': 'nameFallAndSettle 1.2s ease-out forwards',
         'fade-in-header-name': 'fadeInHeaderName 0.3s ease-out forwards',
         'hero-name-scroll-out': 'heroNameScrollOut 0.4s ease-out forwards',
+        'hero-bg-icon-float': 'heroBgIconFloat 15s ease-in-out infinite alternate',
       },
     },
   },
