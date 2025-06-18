@@ -1,21 +1,20 @@
 
 "use client";
 
-import { Player } from '@lottiefiles/react-lottie-player';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { motion, useScroll } from 'framer-motion'; // useTransform is no longer directly used in map here
 import { cn } from '@/lib/utils';
 import { useRef, useState, useEffect } from 'react';
+import { FloatingIconItem } from './FloatingIconItem'; // Import the new component
 
-interface BackgroundIconConfig {
+interface BaseIconConfig {
   id: string;
-  lottieSrc: string; 
-  wrapperClassName: string; 
-  iconClassName: string; 
+  lottieSrc: string;
+  wrapperClassName: string;
+  iconClassName: string;
   parallaxSpeed: number;
 }
 
-// Base configuration without random animation values
-const baseBackgroundIcons: BackgroundIconConfig[] = [
+const baseBackgroundIcons: BaseIconConfig[] = [
   {
     id: "react",
     lottieSrc: "https://assets3.lottiefiles.com/packages/lf20_g9epds9h.json",
@@ -73,7 +72,7 @@ const baseBackgroundIcons: BackgroundIconConfig[] = [
     parallaxSpeed: 0.16,
   },
   {
-    id: "api", 
+    id: "api",
     lottieSrc: "https://assets4.lottiefiles.com/packages/lf20_fjvOTN.json",
     wrapperClassName: "top-[50%] right-[45%] opacity-[0.08]",
     iconClassName: "w-16 h-16",
@@ -88,7 +87,7 @@ const baseBackgroundIcons: BackgroundIconConfig[] = [
   },
 ];
 
-interface ClientSideIconConfig extends BackgroundIconConfig {
+interface ClientSideIconConfig extends BaseIconConfig {
   animationDuration: number;
   animationDelay: number;
 }
@@ -97,63 +96,34 @@ export function FloatingIconsBackground() {
   const containerRef = useRef(null);
   const { scrollYProgress } = useScroll({
     target: containerRef,
-    offset: ['start start', 'end start'] 
+    offset: ['start start', 'end start']
   });
 
   const [clientSideIcons, setClientSideIcons] = useState<ClientSideIconConfig[]>([]);
 
   useEffect(() => {
-    // Generate random animation properties on the client side after mount
     setClientSideIcons(
       baseBackgroundIcons.map(icon => ({
         ...icon,
-        animationDuration: Math.random() * 10 + 15, // Random duration between 15-25s
-        animationDelay: Math.random() * 7, // Random initial delay up to 7s
+        animationDuration: Math.random() * 10 + 15,
+        animationDelay: Math.random() * 7,
       }))
     );
-  }, []); // Empty dependency array ensures this runs once on mount
+  }, []);
 
   if (clientSideIcons.length === 0) {
-    // Optionally, render nothing or a placeholder until client-side effect runs
-    return null; 
+    return null;
   }
 
   return (
     <div ref={containerRef} className="fixed inset-0 z-0 overflow-hidden pointer-events-none">
-      {clientSideIcons.map(({ id, lottieSrc, wrapperClassName, iconClassName, parallaxSpeed, animationDuration, animationDelay }) => {
-        const y = useTransform(scrollYProgress, [0, 1], [-50 * parallaxSpeed * 5, 50 * parallaxSpeed * 5]);
-
-        return (
-          <motion.div
-            key={id}
-            className={cn(
-              "absolute", // Removed blur-xs
-              wrapperClassName 
-            )}
-            style={{ y }} 
-            initial={{ y: 0, x: 0, rotate: 0, scale: 1 }} // Initial properties for the floating animation itself
-            animate={{
-              y: [0, -15, 0, 10, 0], // This will be combined with the parallax y from style prop
-              x: [0, 10, -10, 5, 0],
-              rotate: [0, 5, -3, 2, 0],
-              scale: [1, 1.05, 1, 0.95, 1],
-            }}
-            transition={{
-              duration: animationDuration,
-              repeat: Infinity,
-              ease: "linear",
-              delay: animationDelay,
-            }}
-          >
-            <Player
-              autoplay
-              loop
-              src={lottieSrc}
-              className={cn(iconClassName)} 
-            />
-          </motion.div>
-        );
-      })}
+      {clientSideIcons.map((iconConfig) => (
+        <FloatingIconItem
+          key={iconConfig.id}
+          {...iconConfig}
+          scrollYProgress={scrollYProgress}
+        />
+      ))}
     </div>
   );
 }
