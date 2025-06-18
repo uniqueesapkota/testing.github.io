@@ -174,8 +174,8 @@ export default {
           },
         },
         nameFallAndSettle: {
-          '0%': { opacity: '0', transform: 'translateY(-100px) rotate(-10deg)' },
-          '30%': { opacity: '1', transform: 'translateY(0) rotate(5deg)' },
+          '0%': { opacity: '0', transform: 'translateY(-120px) rotate(-12deg)' },
+          '30%': { opacity: '1', transform: 'translateY(0) rotate(6deg)' },
           '50%': { transform: 'translateY(-15px) rotate(-3deg)' },
           '70%': { transform: 'translateY(0px) rotate(2deg)' },
           '85%': { transform: 'translateY(-5px) rotate(-1deg)' },
@@ -219,4 +219,3 @@ export default {
   },
   plugins: [require('tailwindcss-animate')],
 } satisfies Config;
-
