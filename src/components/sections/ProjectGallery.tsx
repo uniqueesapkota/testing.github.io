@@ -33,7 +33,7 @@ const projects: Project[] = [
     description: "A dynamic data visualization dashboard providing real-time analytics and customizable reports. Designed for optimal user experience.",
     imageUrl: "https://i.postimg.cc/ZncMkbGh/Screenshot-2025-06-18-171812.png",
     imageHint: "data dashboard",
-    liveLink: "#",
+    liveLink: "https://vizualytica.vercel.app/",
     tags: ["React", "D3.js", "UI/UX", "Analytics"]
   },
   {
