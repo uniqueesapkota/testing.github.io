@@ -24,7 +24,7 @@ const projects: Project[] = [
     imageUrl: "https://placehold.co/600x400.png",
     imageHint: "online store",
     liveLink: "#",
-    repoLink: "#",
+    repoLink: "https://commerce-next-cic5.vercel.app/",
     tags: ["Next.js", "Tailwind CSS", "Stripe", "E-commerce"]
   },
   {
