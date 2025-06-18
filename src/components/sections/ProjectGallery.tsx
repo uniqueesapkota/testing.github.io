@@ -8,7 +8,7 @@ import Link from 'next/link';
 import { ExternalLink, Layers } from 'lucide-react';
 import { motion, Variants } from 'framer-motion';
 
-const cinematicEasing = [0.6, 0.01, -0.05, 0.95];
+const cinematicEasingString = "cubic-bezier(0.6, 0.01, -0.05, 0.95)";
 
 interface Project {
   id: string;
@@ -66,10 +66,11 @@ const titleParentVariants: Variants = {
   visible: {
     opacity: 1,
     transition: {
-      type: "tween", // Explicitly set type
+      type: "tween",
       staggerChildren: 0.15,
       delayChildren: 0.1,
-      ease: cinematicEasing,
+      ease: cinematicEasingString,
+      duration: 0.5, // Duration for parent opacity animation
     },
   },
 };
@@ -81,9 +82,9 @@ const titleChildVariants: Variants = {
     y: 0,
     scale: 1,
     transition: {
-      type: "tween", // Explicitly set type
+      type: "tween",
       duration: 0.6,
-      ease: cinematicEasing,
+      ease: cinematicEasingString,
     },
   },
 };
@@ -93,7 +94,7 @@ export function ProjectGallery() {
   return (
     <section id="projects" className="py-12 md:py-20">
       <div className="container mx-auto px-4 md:px-8">
-        <motion.div 
+        <motion.div
           className="text-center mb-10 md:mb-14"
           variants={titleParentVariants}
           initial="hidden"
@@ -103,13 +104,13 @@ export function ProjectGallery() {
           <motion.div variants={titleChildVariants}>
             <Layers className="mx-auto h-12 w-12 text-primary animate-subtle-float mb-2" />
           </motion.div>
-          <motion.h2 
+          <motion.h2
             variants={titleChildVariants}
             className="font-headline text-3xl sm:text-4xl md:text-5xl font-bold text-primary"
           >
             Featured Projects
           </motion.h2>
-          <motion.p 
+          <motion.p
             variants={titleChildVariants}
             className="text-muted-foreground mt-3 text-lg"
           >
@@ -123,16 +124,16 @@ export function ProjectGallery() {
               initial={{ opacity: 0, y: 40, scale: 0.95 }}
               whileInView={{ opacity: 1, y: 0, scale: 1 }}
               viewport={{ once: true, amount: 0.2 }}
-              transition={{ type: "tween", duration: 0.6, delay: index * 0.1, ease: cinematicEasing }} // Explicitly set type
-              whileHover={{ 
-                scale: 1.03, 
-                rotateX: 5, 
+              transition={{ type: "tween", duration: 0.6, delay: index * 0.1, ease: cinematicEasingString }}
+              whileHover={{
+                scale: 1.03,
+                rotateX: 5,
                 rotateY: -3,
                 boxShadow: "0px 20px 30px -10px hsl(var(--primary)/0.3)",
                 transition: { type: "spring", stiffness: 250, damping: 15 }
               }}
             >
-              <Card 
+              <Card
                 className="group flex flex-col overflow-hidden shadow-xl h-full bg-card border-2 border-transparent hover:border-primary/30"
               >
                 <CardHeader className="p-0">
@@ -190,4 +191,3 @@ export function ProjectGallery() {
     </section>
   );
 }
-

@@ -5,8 +5,8 @@ import { type ReactNode } from 'react';
 import { motion, type Variants } from 'framer-motion';
 import { cn } from '@/lib/utils';
 
-// Cinematic easing
-const cinematicEasing = [0.6, 0.01, -0.05, 0.95];
+// Cinematic easing as a string for direct WAAPI compatibility
+const cinematicEasingString = "cubic-bezier(0.6, 0.01, -0.05, 0.95)";
 
 interface AnimatedSectionProps {
   children: ReactNode;
@@ -22,11 +22,11 @@ const sectionVariants: Variants = {
     y: 0,
     scale: 1,
     transition: {
-      type: "tween", // Explicitly set type
+      type: "tween",
       delay,
       duration: 0.8,
-      ease: cinematicEasing,
-      when: "beforeChildren", 
+      ease: cinematicEasingString,
+      when: "beforeChildren",
     }
   })
 };
@@ -44,11 +44,10 @@ export const AnimatedSection: React.FC<AnimatedSectionProps> = ({
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, amount: 0.3 }}
-      custom={delay} 
+      custom={delay}
       {...(staggerChildren && { transition: { ...sectionVariants.visible(delay).transition, staggerChildren } })}
     >
       {children}
     </motion.section>
   );
 };
-

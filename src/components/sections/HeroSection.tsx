@@ -11,7 +11,7 @@ import { motion, Variants } from 'framer-motion';
 
 const PORTFOLIO_OWNER_NAME = "Unique Sapkota";
 const PORTFOLIO_OWNER_SKILLS = ["Social Media Management", "Web Development", "Digital Marketing", "Content Creation"];
-const cinematicEasing = [0.6, 0.01, -0.05, 0.95];
+const cinematicEasingString = "cubic-bezier(0.6, 0.01, -0.05, 0.95)";
 
 const heroParentVariants: Variants = {
   hidden: { opacity: 0 },
@@ -21,7 +21,8 @@ const heroParentVariants: Variants = {
       type: "tween",
       staggerChildren: 0.2,
       delayChildren: 0.1,
-      ease: cinematicEasing,
+      ease: cinematicEasingString, // For parent's own animation if any property changes
+      duration: 0.5, // Example for parent, might not be needed if only staggering
     },
   },
 };
@@ -34,7 +35,7 @@ const heroChildVariants: Variants = {
     scale: 1,
     transition: {
       type: "tween",
-      ease: cinematicEasing,
+      ease: cinematicEasingString,
       duration: 0.7,
     },
   },
@@ -48,7 +49,7 @@ const nameVariants: Variants = {
     rotate: 0,
     transition: {
       type: "tween",
-      ease: cinematicEasing,
+      ease: cinematicEasingString,
       duration: 0.8,
     },
   },
@@ -80,9 +81,9 @@ export function HeroSection() {
     };
 
     fetchWelcomeMessage();
-    
+
     const handleScroll = () => {
-      if (window.scrollY > 100) { 
+      if (window.scrollY > 100) {
         setIsHeroNameScrolledOut(true);
       } else {
         setIsHeroNameScrolledOut(false);
@@ -90,22 +91,22 @@ export function HeroSection() {
     };
 
     window.addEventListener('scroll', handleScroll);
-    handleScroll(); 
+    handleScroll();
 
     return () => {
       window.removeEventListener('scroll', handleScroll);
     }
 
   }, []);
-  
-  const nameAnimateProps = isHeroNameScrolledOut ? 
-    { opacity: 0, scale: 0.9, y: -20, transition: { type: "tween", duration: 0.4, ease: cinematicEasing } } : 
-    { opacity: 1, scale: 1, y: 0, transition: { type: "tween", duration: 0.4, ease: cinematicEasing } };
+
+  const nameAnimateProps = isHeroNameScrolledOut ?
+    { opacity: 0, scale: 0.9, y: -20, transition: { type: "tween", duration: 0.4, ease: cinematicEasingString } } :
+    { opacity: 1, scale: 1, y: 0, transition: { type: "tween", duration: 0.4, ease: cinematicEasingString } };
 
 
   return (
-    <motion.section 
-      id="hero" 
+    <motion.section
+      id="hero"
       className="relative py-24 md:py-32 overflow-hidden min-h-[80vh] flex flex-col items-center justify-center"
       variants={heroParentVariants}
       initial="hidden"
@@ -118,14 +119,14 @@ export function HeroSection() {
             alt="Unique Sapkota - Profile Picture"
             width={160}
             height={160}
-            className="rounded-full mx-auto border-4 border-background object-cover animate-heroImageGlow" 
+            className="rounded-full mx-auto border-4 border-background object-cover animate-heroImageGlow"
             priority
             data-ai-hint="profile man"
           />
         </motion.div>
         <motion.h1
-          variants={nameVariants}
-          animate={nameAnimateProps} 
+          variants={nameVariants} // For initial animation if parent staggers it
+          animate={nameAnimateProps} // For scroll-based animation changes
           className="font-headline text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold my-6 text-primary hover:text-accent transition-colors duration-300 cursor-default text-shadow-primary"
         >
           {PORTFOLIO_OWNER_NAME}
@@ -171,4 +172,3 @@ export function HeroSection() {
     </motion.section>
   );
 }
-

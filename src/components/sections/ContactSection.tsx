@@ -6,7 +6,7 @@ import { Mail, Linkedin, Github, Send, Instagram, Facebook, MessageSquare } from
 import Link from "next/link";
 import { motion, Variants } from 'framer-motion';
 
-const cinematicEasing = [0.6, 0.01, -0.05, 0.95];
+const cinematicEasingString = "cubic-bezier(0.6, 0.01, -0.05, 0.95)";
 
 const YOUR_EMAIL = "uniquesapkota058@gmail.com";
 const YOUR_LINKEDIN_URL = "https://www.linkedin.com/in/unique-sapkota-420997219/";
@@ -19,17 +19,16 @@ const titleParentVariants: Variants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
-    transition: { type: "tween", staggerChildren: 0.15, delayChildren: 0.1, ease: cinematicEasing, duration: 0.5 }
+    transition: { type: "tween", staggerChildren: 0.15, delayChildren: 0.1, ease: cinematicEasingString, duration: 0.5 }
   },
 };
 
 const titleChildVariants: Variants = {
   hidden: { opacity: 0, y: 20, scale: 0.98 },
-  visible: { opacity: 1, y: 0, scale: 1, transition: { type: "tween", duration: 0.6, ease: cinematicEasing } },
+  visible: { opacity: 1, y: 0, scale: 1, transition: { type: "tween", duration: 0.6, ease: cinematicEasingString } },
 };
 
 const iconButtonVariants: Variants = {
-  // 'initial' state is not strictly needed here if not used by variants prop directly for entrance
   hover: {
     scale: 1.15,
     y: -3,
@@ -43,7 +42,7 @@ const socialIconItemVariants: Variants = {
   visible: {
     y: 0,
     opacity: 1,
-    // Transition for this entrance is governed by the parent's staggerChildren settings
+    transition: { type: "tween", ease: cinematicEasingString }
   },
 };
 
@@ -74,14 +73,14 @@ export function ContactSection() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.3 }}
-          transition={{ type: "tween", duration: 0.7, ease: cinematicEasing, delay: 0.2 }}
+          transition={{ type: "tween", duration: 0.7, ease: cinematicEasingString, delay: 0.2 }}
         >
           I&apos;m always excited to discuss new projects, creative ideas, or opportunities to collaborate.
           Feel free to reach out!
         </motion.p>
         <motion.div
             className="inline-block"
-            whileHover={{ // Directly apply hover effects, inherit spring transition from iconButtonVariants if needed, or define here
+            whileHover={{
               scale: iconButtonVariants.hover.scale,
               y: iconButtonVariants.hover.y,
               boxShadow: iconButtonVariants.hover.boxShadow,
@@ -97,7 +96,7 @@ export function ContactSection() {
 
         <motion.div
           className="mt-16 flex justify-center space-x-3 sm:space-x-4"
-          variants={{
+          variants={{ 
             hidden: { opacity: 0, y: 20 },
             visible: {
               opacity: 1,
@@ -105,9 +104,9 @@ export function ContactSection() {
               transition: {
                 type: "tween",
                 duration: 0.7,
-                ease: cinematicEasing,
-                delay: 0.4, // Delay for the container itself
-                staggerChildren: 0.1, // Stagger for its children
+                ease: cinematicEasingString,
+                delay: 0.4,
+                staggerChildren: 0.1,
               },
             },
           }}
@@ -124,8 +123,8 @@ export function ContactSection() {
             ].map((item) => (
                 <motion.div
                     key={item.label}
-                    variants={socialIconItemVariants} // Governs entrance animation (opacity, y) via parent stagger
-                    whileHover={{ // Governs hover animation, uses its own spring transition
+                    variants={socialIconItemVariants} 
+                    whileHover={{
                         scale: iconButtonVariants.hover.scale,
                         y: iconButtonVariants.hover.y,
                         boxShadow: iconButtonVariants.hover.boxShadow,
