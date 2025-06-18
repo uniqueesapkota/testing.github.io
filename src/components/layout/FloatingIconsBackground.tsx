@@ -1,8 +1,7 @@
 
 "use client";
 
-import { motion, useScroll } from 'framer-motion';
-import { cn } from '@/lib/utils';
+import { useScroll } from 'framer-motion';
 import { useRef, useState, useEffect } from 'react';
 import { FloatingIconItem } from './FloatingIconItem';
 
@@ -93,7 +92,7 @@ interface ClientSideIconConfig extends BaseIconConfig {
 }
 
 export function FloatingIconsBackground() {
-  const containerRef = useRef(null);
+  const containerRef = useRef<HTMLDivElement | null>(null);
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ['start start', 'end start'],
@@ -112,16 +111,20 @@ export function FloatingIconsBackground() {
     );
   }, []);
 
-  if (clientSideIcons.length === 0) {
-    return null;
-  }
-
+  // Always render the container div.
+  // Conditionally render children (FloatingIconItem) based on clientSideIcons.
   return (
     <div ref={containerRef} className="fixed inset-0 z-0 overflow-hidden pointer-events-none">
       {clientSideIcons.map((iconConfig) => (
         <FloatingIconItem
           key={iconConfig.id}
-          {...iconConfig}
+          id={iconConfig.id}
+          lottieSrc={iconConfig.lottieSrc}
+          wrapperClassName={iconConfig.wrapperClassName}
+          iconClassName={iconConfig.iconClassName}
+          parallaxSpeed={iconConfig.parallaxSpeed}
+          animationDuration={iconConfig.animationDuration}
+          animationDelay={iconConfig.animationDelay}
           scrollYProgress={scrollYProgress}
         />
       ))}
