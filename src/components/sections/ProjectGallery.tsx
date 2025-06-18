@@ -23,7 +23,7 @@ const projects: Project[] = [
     description: "A full-featured online store with modern UI, secure payments, and robust inventory management. Built with Next.js, Tailwind CSS, and Stripe.",
     imageUrl: "https://placehold.co/600x400.png",
     imageHint: "online store",
-    liveLink: "#",
+    liveLink: "https://commerce-next-cic5.vercel.app/",
     repoLink: "https://commerce-next-cic5.vercel.app/",
     tags: ["Next.js", "Tailwind CSS", "Stripe", "E-commerce"]
   },
