@@ -3,21 +3,25 @@
 
 import { useState, useEffect, type FC } from 'react';
 import Link from 'next/link';
-import { UserRound, BrainCircuit, FolderKanban, Mail, Lightbulb } from 'lucide-react';
+import { UserRound, BrainCircuit, FolderKanban, Mail, Lightbulb, Download } from 'lucide-react';
 import { cn } from '@/lib/utils';
+
+const YOUR_RESUME_URL = "https://unique-link.tiiny.site/";
 
 interface NavItem {
   href: string;
   label: string;
   icon: React.ElementType;
+  isExternal?: boolean;
 }
 
 const navItems: NavItem[] = [
   { href: '#about', label: 'About', icon: UserRound },
-  { href: '#about', label: 'Skills', icon: BrainCircuit }, // Skills are within the About section
+  { href: '#about', label: 'Skills', icon: BrainCircuit }, 
   { href: '#projects', label: 'Projects', icon: FolderKanban },
   { href: '#contact', label: 'Contact', icon: Mail },
-  { href: '#hero', label: 'Random', icon: Lightbulb }, // "Random" links to top for now
+  { href: '#hero', label: 'Top', icon: Lightbulb }, 
+  { href: YOUR_RESUME_URL, label: 'Resume', icon: Download, isExternal: true },
 ];
 
 const SCROLL_THRESHOLD = 300; // Pixels to scroll before nav appears
@@ -59,6 +63,7 @@ export const ScrollAwareNav: FC = () => {
                 'hover:bg-primary/10 hover:text-primary focus:bg-primary/10 focus:text-primary focus:outline-none focus:ring-2 focus:ring-primary/50 focus:ring-offset-2 focus:ring-offset-background/80'
               )}
               aria-label={item.label}
+              {...(item.isExternal ? { target: "_blank", rel: "noopener noreferrer" } : {})}
             >
               <item.icon className="mb-0.5 h-5 w-5 sm:h-5 sm:w-5 transition-transform duration-200 group-hover:scale-110 group-hover:animate-wiggle" aria-hidden="true" />
               <span>{item.label}</span>

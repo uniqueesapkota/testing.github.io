@@ -7,11 +7,14 @@ import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger, SheetClose } from "@/components/ui/sheet";
 import { useState } from "react";
 
+const YOUR_RESUME_URL = "https://unique-link.tiiny.site/";
+
 const navItems = [
   { href: "#hero", label: "Home" },
   { href: "#projects", label: "Projects" },
   { href: "#about", label: "About" },
   { href: "#contact", label: "Contact" },
+  { href: YOUR_RESUME_URL, label: "Resume", isExternal: true },
 ];
 
 export function Header() {
@@ -35,6 +38,7 @@ export function Header() {
               key={item.label}
               href={item.href}
               className="relative transition-all duration-300 ease-in-out hover:text-accent hover:scale-110 hover:text-shadow-accent transform after:content-[''] after:absolute after:left-0 after:bottom-[-4px] after:w-0 after:h-[2px] after:bg-accent after:transition-all after:duration-300 hover:after:w-full"
+              {...(item.isExternal ? { target: "_blank", rel: "noopener noreferrer" } : {})}
             >
               {item.label}
             </Link>
@@ -69,6 +73,7 @@ export function Header() {
                       href={item.href}
                       className="text-lg font-headline transition-all duration-200 hover:text-accent hover:text-shadow-accent py-2 hover:pl-2 ease-in-out"
                       onClick={handleLinkClick}
+                      {...(item.isExternal ? { target: "_blank", rel: "noopener noreferrer" } : {})}
                     >
                       {item.label}
                     </Link>
