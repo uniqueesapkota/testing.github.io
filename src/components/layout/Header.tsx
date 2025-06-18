@@ -5,9 +5,11 @@ import Link from "next/link";
 import { Menu, X, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger, SheetClose } from "@/components/ui/sheet";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { cn } from "@/lib/utils";
 
 const YOUR_RESUME_URL = "https://unique-link.tiiny.site/";
+const PORTFOLIO_OWNER_NAME = "Unique Sapkota"; // Added owner's name
 
 const navItems = [
   { href: "#hero", label: "Home" },
@@ -19,6 +21,22 @@ const navItems = [
 
 export function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 150) { // Threshold for showing name in header
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    handleScroll(); // Check on initial load
+
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const handleLinkClick = () => {
     setIsMobileMenuOpen(false);
@@ -29,7 +47,13 @@ export function Header() {
       <div className="container flex h-16 max-w-screen-2xl items-center justify-between px-4 md:px-8">
         <Link href="/" className="mr-6 flex items-center space-x-2 group">
           <Sparkles className="h-7 w-7 text-primary group-hover:text-accent transition-all duration-300 ease-in-out transform group-hover:animate-icon-sparkle-pop" />
-          <span className="sr-only">PortfolioPro</span>
+          {isScrolled && (
+            <span className="font-headline text-xl text-primary animate-fade-in-header-name ml-1">
+              {PORTFOLIO_OWNER_NAME}
+            </span>
+          )}
+           <span className="sr-only">Portfolio of {PORTFOLIO_OWNER_NAME}</span>
+           {!isScrolled && <span className="sr-only">{PORTFOLIO_OWNER_NAME}</span>}
         </Link>
 
         <nav className="hidden md:flex md:items-center md:space-x-6 text-sm font-headline">
@@ -37,7 +61,7 @@ export function Header() {
             <Link
               key={item.label}
               href={item.href}
-              className="relative transition-all duration-300 ease-in-out hover:text-accent hover:scale-110 hover:text-shadow-accent transform after:content-[''] after:absolute after:left-0 after:bottom-[-4px] after:w-0 after:h-[2px] after:bg-accent after:transition-all after:duration-300 hover:after:w-full"
+              className="relative transition-all duration-300 ease-in-out hover:text-accent hover:text-shadow-accent hover:scale-110 transform after:content-[''] after:absolute after:left-0 after:bottom-[-4px] after:w-0 after:h-[2px] after:bg-accent after:transition-all after:duration-300 hover:after:w-full"
               {...(item.isExternal ? { target: "_blank", rel: "noopener noreferrer" } : {})}
             >
               {item.label}
@@ -58,7 +82,10 @@ export function Header() {
                 <div className="flex justify-between items-center mb-4">
                    <Link href="/" className="flex items-center space-x-2 group" onClick={handleLinkClick}>
                      <Sparkles className="h-6 w-6 text-primary group-hover:text-accent group-hover:animate-icon-sparkle-pop" />
-                     <span className="sr-only">PortfolioPro</span>
+                      <span className="font-headline text-lg text-primary ml-1">
+                        {PORTFOLIO_OWNER_NAME}
+                      </span>
+                     <span className="sr-only">Portfolio of {PORTFOLIO_OWNER_NAME}</span>
                    </Link>
                    <SheetClose asChild>
                       <Button variant="ghost" size="icon" onClick={() => setIsMobileMenuOpen(false)} className="hover:bg-accent/20 active:scale-95 transition-transform group">

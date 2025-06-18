@@ -93,23 +93,23 @@ export default {
           },
         },
         fadeInUp: {
-          '0%': { opacity: '0', transform: 'translateY(20px)' },
+          '0%': { opacity: '0', transform: 'translateY(30px)' },
           '100%': { opacity: '1', transform: 'translateY(0)' },
         },
         fadeInDown: {
-          '0%': { opacity: '0', transform: 'translateY(-20px)' },
+          '0%': { opacity: '0', transform: 'translateY(-30px)' },
           '100%': { opacity: '1', transform: 'translateY(0)' },
         },
         fadeInLeft: {
-          '0%': { opacity: '0', transform: 'translateX(-20px)' },
+          '0%': { opacity: '0', transform: 'translateX(-30px)' },
           '100%': { opacity: '1', transform: 'translateX(0)' },
         },
         fadeInRight: {
-          '0%': { opacity: '0', transform: 'translateX(20px)' },
+          '0%': { opacity: '0', transform: 'translateX(30px)' },
           '100%': { opacity: '1', transform: 'translateX(0)' },
         },
         scaleIn: {
-          '0%': { opacity: '0', transform: 'scale(0.95)' },
+          '0%': { opacity: '0', transform: 'scale(0.9)' },
           '100%': { opacity: '1', transform: 'scale(1)' },
         },
         'subtle-pulse-animation': { 
@@ -173,6 +173,18 @@ export default {
             boxShadow: '0 20px 25px -5px rgba(0,0,0,0.1), 0 8px 10px -6px rgba(0,0,0,0.1), 0 0 30px 8px hsl(var(--primary) / 0.3)',
           },
         },
+        nameFallAndSettle: {
+          '0%': { opacity: '0', transform: 'translateY(-100px) rotate(-10deg)' },
+          '30%': { opacity: '1', transform: 'translateY(0) rotate(5deg)' },
+          '50%': { transform: 'translateY(-15px) rotate(-3deg)' },
+          '70%': { transform: 'translateY(0px) rotate(2deg)' },
+          '85%': { transform: 'translateY(-5px) rotate(-1deg)' },
+          '100%': { opacity: '1', transform: 'translateY(0) rotate(0deg)' },
+        },
+        fadeInHeaderName: {
+          '0%': { opacity: '0', transform: 'translateY(-10px)' },
+          '100%': { opacity: '1', transform: 'translateY(0)' },
+        },
       },
       animation: {
         'accordion-down': 'accordion-down 0.2s ease-out',
@@ -195,6 +207,8 @@ export default {
         'subtle-glow': 'subtle-glow 1.8s ease-in-out infinite alternate',
         'tag-hover-pop': 'tag-hover-pop 0.3s ease-out forwards',
         'heroImageGlow': 'heroImageGlow 2.5s ease-in-out infinite',
+        'name-fall-settle': 'nameFallAndSettle 1.2s ease-out forwards',
+        'fade-in-header-name': 'fadeInHeaderName 0.3s ease-out forwards',
       },
     },
   },

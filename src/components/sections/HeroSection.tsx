@@ -41,10 +41,10 @@ export function HeroSection() {
 
     fetchWelcomeMessage();
 
-    const timerImg = setTimeout(() => setImageAnimated(true), 50); // Image first
-    const timer1 = setTimeout(() => setNameAnimated(true), 250); // Name slightly after image
-    const timer2 = setTimeout(() => setMessageAnimated(true), 500); // Message after name
-    const timer3 = setTimeout(() => setButtonsAnimated(true), 750); // Buttons last
+    const timerImg = setTimeout(() => setImageAnimated(true), 50); 
+    const timer1 = setTimeout(() => setNameAnimated(true), 250); 
+    const timer2 = setTimeout(() => setMessageAnimated(true), 700); // Delayed to allow name animation to play more
+    const timer3 = setTimeout(() => setButtonsAnimated(true), 950); // Delayed for message
 
 
     return () => {
@@ -62,8 +62,8 @@ export function HeroSection() {
         <div
           className={cn(
             "mb-6",
-            "opacity-0 transform scale-90",
-            imageAnimated && "animate-scaleIn opacity-100 scale-100"
+            "opacity-0 transform scale-90", // Initial state for scaleIn
+            imageAnimated && "animate-scaleIn opacity-100 scale-100" // Apply scaleIn
           )}
           style={{ animationDuration: '0.7s', animationFillMode: 'forwards', animationDelay: '0.05s' }}
         >
@@ -82,20 +82,20 @@ export function HeroSection() {
         <h1
           className={cn(
             "font-headline text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold mb-6 text-primary hover:text-accent transition-all duration-500 cursor-default text-shadow-primary",
-            "opacity-0 transform translate-y-8", // Initial: hidden, slightly down
-            nameAnimated && "animate-fadeInDown opacity-100 translate-y-0" // Target: visible, original position
+            "opacity-0", // Initial opacity managed by animation
+            nameAnimated && "animate-name-fall-settle"
           )}
-          style={{ animationDuration: '0.8s', animationFillMode: 'forwards', animationDelay: '0.25s' }}
+          style={{ animationFillMode: 'forwards', animationDelay: '0.25s' }}
           >
           {PORTFOLIO_OWNER_NAME}
         </h1>
         <div
           className={cn(
             "min-h-[60px] md:min-h-[80px] flex items-center justify-center mb-10",
-             "opacity-0 transform translate-y-8", // Initial: hidden, slightly down
-            messageAnimated && "animate-fadeInUp opacity-100 translate-y-0" // Target: visible, original position
+             "opacity-0 transform translate-y-8", 
+            messageAnimated && "animate-fadeInUp opacity-100 translate-y-0" 
             )}
-          style={{ animationDuration: '0.8s', animationFillMode: 'forwards', animationDelay: '0.5s' }}
+          style={{ animationDuration: '0.8s', animationFillMode: 'forwards', animationDelay: '0.7s' }}
         >
           {isLoading ? (
             <Loader2 className="h-10 w-10 animate-spin text-primary" />
@@ -108,10 +108,10 @@ export function HeroSection() {
         <div
           className={cn(
             "space-x-4",
-            "opacity-0 transform translate-y-8", // Initial: hidden, slightly down
-            buttonsAnimated && "animate-fadeInUp opacity-100 translate-y-0" // Target: visible, original position
+            "opacity-0 transform translate-y-8", 
+            buttonsAnimated && "animate-fadeInUp opacity-100 translate-y-0" 
           )}
-          style={{ animationDuration: '0.8s', animationFillMode: 'forwards', animationDelay: '0.75s' }}
+          style={{ animationDuration: '0.8s', animationFillMode: 'forwards', animationDelay: '0.95s' }}
         >
           <Button asChild size="lg" className="font-semibold text-lg px-8 py-6 shadow-lg hover:animate-subtle-glow hover:scale-105 hover:brightness-110 transform transition-all duration-300 ease-in-out group">
             <Link href="#projects">
