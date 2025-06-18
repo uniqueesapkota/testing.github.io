@@ -190,7 +190,7 @@ export default {
           '0%': { opacity: '1', transform: 'scale(1) translateY(0)' },
           '100%': { opacity: '0', transform: 'scale(0.9) translateY(-20px)' },
         },
-        heroBgIconFloat: {
+        heroBgIconFloat: { // Keyframes definition
           '0%, 100%': { transform: 'translateY(0px) translateX(0px) rotate(0deg) scale(1)' },
           '25%': { transform: 'translateY(-15px) translateX(10px) rotate(5deg) scale(1.05)' },
           '50%': { transform: 'translateY(0px) translateX(-10px) rotate(-3deg) scale(1)' },
@@ -221,7 +221,7 @@ export default {
         'name-fall-settle': 'nameFallAndSettle 1.2s ease-out forwards',
         'fade-in-header-name': 'fadeInHeaderName 0.3s ease-out forwards',
         'hero-name-scroll-out': 'heroNameScrollOut 0.4s ease-out forwards',
-        'hero-bg-icon-float': 'heroBgIconFloat 15s ease-in-out infinite alternate',
+        'hero-bg-icon-float': 'heroBgIconFloat 15s ease-in-out infinite alternate', // Utility class
       },
     },
   },

@@ -1,7 +1,7 @@
 
 "use client";
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, type ElementType } from 'react';
 import Image from 'next/image';
 import { generatePersonalizedWelcome } from '@/ai/flows/personalized-welcome';
 import { Button } from '@/components/ui/button';
@@ -12,13 +12,21 @@ import { cn } from '@/lib/utils';
 const PORTFOLIO_OWNER_NAME = "Unique Sapkota";
 const PORTFOLIO_OWNER_SKILLS = ["Social Media Management", "Web Development", "Digital Marketing", "Content Creation"];
 
-const backgroundIcons = [
-  { Icon: CodeXml, className: "top-[10%] left-[15%] w-16 h-16 text-primary opacity-[0.07] [animation-duration:18s] [animation-delay:-2s]" },
-  { Icon: Layers, className: "top-[20%] right-[10%] w-20 h-20 text-accent opacity-[0.05] [animation-duration:22s] [animation-delay:-5s]" },
-  { Icon: ToyBrick, className: "bottom-[15%] left-[25%] w-14 h-14 text-primary opacity-[0.07] [animation-duration:20s] [animation-delay:-8s]" },
-  { Icon: GitFork, className: "bottom-[25%] right-[20%] w-16 h-16 text-accent opacity-[0.05] [animation-duration:17s] [animation-delay:-3s]" },
-  { Icon: Database, className: "top-[50%] left-[45%] w-12 h-12 text-primary opacity-[0.06] [animation-duration:25s] [animation-delay:-10s]" },
+interface BackgroundIconConfig {
+  Icon: ElementType;
+  wrapperClassName: string; // for positioning and opacity
+  iconClassName: string; // for size and color of the SVG itself
+  animationClassName: string; // for animation duration/delay
+}
+
+const backgroundIcons: BackgroundIconConfig[] = [
+  { Icon: CodeXml, wrapperClassName: "top-[10%] left-[15%] opacity-[0.15]", iconClassName: "w-16 h-16 text-primary", animationClassName: "[animation-duration:18s] [animation-delay:-2s]" },
+  { Icon: Layers, wrapperClassName: "top-[20%] right-[10%] opacity-[0.12]", iconClassName: "w-20 h-20 text-accent", animationClassName: "[animation-duration:22s] [animation-delay:-5s]" },
+  { Icon: ToyBrick, wrapperClassName: "bottom-[15%] left-[25%] opacity-[0.15]", iconClassName: "w-14 h-14 text-primary", animationClassName: "[animation-duration:20s] [animation-delay:-8s]" },
+  { Icon: GitFork, wrapperClassName: "bottom-[25%] right-[20%] opacity-[0.12]", iconClassName: "w-16 h-16 text-accent", animationClassName: "[animation-duration:17s] [animation-delay:-3s]" },
+  { Icon: Database, wrapperClassName: "top-[50%] left-[45%] opacity-[0.14]", iconClassName: "w-12 h-12 text-primary", animationClassName: "[animation-duration:25s] [animation-delay:-10s]" },
 ];
+
 
 export function HeroSection() {
   const [welcomeMessage, setWelcomeMessage] = useState<string | null>(null);
@@ -79,15 +87,16 @@ export function HeroSection() {
   return (
     <section id="hero" className="relative py-24 md:py-32 bg-gradient-to-br from-background via-secondary/30 to-primary/10 overflow-hidden">
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
-        {backgroundIcons.map(({ Icon, className }, index) => (
+        {backgroundIcons.map(({ Icon, wrapperClassName, iconClassName, animationClassName }, index) => (
           <div
             key={index}
             className={cn(
-              "absolute blur-md animate-hero-bg-icon-float",
-              className 
+              "absolute animate-hero-bg-icon-float blur-xs", // Base classes, reduced blur
+              wrapperClassName, // Positioning and opacity
+              animationClassName // Animation duration/delay
             )}
           >
-            <Icon />
+            <Icon className={iconClassName} /> {/* Size and color */}
           </div>
         ))}
       </div>
@@ -116,12 +125,12 @@ export function HeroSection() {
         <h1
           className={cn(
             "font-headline text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold mb-6 text-primary hover:text-accent transition-all duration-500 cursor-default text-shadow-primary",
-            !nameAnimated && !isHeroNameScrolledOut && "opacity-0",
-            nameAnimated && !isHeroNameScrolledOut && "animate-name-fall-settle",
-            isHeroNameScrolledOut && "animate-hero-name-scroll-out"
+            !nameAnimated && !isHeroNameScrolledOut && "opacity-0", // Start hidden before animation
+            nameAnimated && !isHeroNameScrolledOut && "animate-name-fall-settle", // Fall-settle animation
+            isHeroNameScrolledOut && "animate-hero-name-scroll-out" // Scroll-out animation
           )}
           style={{
-            animationDelay: (nameAnimated && !isHeroNameScrolledOut) ? '0.25s' : '0s',
+            animationDelay: (nameAnimated && !isHeroNameScrolledOut) ? '0.25s' : '0s', // Delay for fall-settle
             animationFillMode: 'forwards'
           }}
           >
