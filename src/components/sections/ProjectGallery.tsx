@@ -29,9 +29,9 @@ const projects: Project[] = [
   },
   {
     id: "2",
-    title: "Insightful Dashboard UI",
+    title: "AI visualization - Visualytica",
     description: "A dynamic data visualization dashboard providing real-time analytics and customizable reports. Designed for optimal user experience.",
-    imageUrl: "https://placehold.co/600x400.png",
+    imageUrl: "https://i.postimg.cc/ZncMkbGh/Screenshot-2025-06-18-171812.png",
     imageHint: "data dashboard",
     liveLink: "#",
     tags: ["React", "D3.js", "UI/UX", "Analytics"]
