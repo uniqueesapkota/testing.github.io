@@ -7,9 +7,9 @@ import { cn } from '@/lib/utils';
 interface BackgroundIconConfig {
   id: string;
   lottieSrc: string; // URL to the Lottie JSON file
-  wrapperClassName: string;
+  wrapperClassName: string; // For positioning, opacity, and overall animation control
   iconClassName: string; // For sizing the Lottie player
-  animationClassName: string;
+  animationClassName: string; // For custom animation timing of the floating effect
 }
 
 // PLEASE REPLACE THESE LOTTIE SRC URLS WITH YOUR PREFERRED ANIMATIONS
