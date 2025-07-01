@@ -46,7 +46,7 @@ const projectsData: Project[] = [
     description: "A web application designed to streamline team workflows with features like task assignment, progress tracking, and real-time updates.",
     imageUrl: "https://placehold.co/600x400.png",
     imageHint: "task management",
-    repoLink: "https://vizualytica.vercel.app/",
+    repoLink: "https://starlit-figolla-4bf3c7.netlify.app/",
     tags: ["Vue.js", "Firebase", "Productivity", "Team Tool"]
   },
    {
