@@ -53,7 +53,7 @@ const projectsData: Project[] = [
     id: "4",
     title: "AI-Powered Content Generator",
     description: "A tool that leverages generative AI to create engaging marketing copy, blog posts, and social media updates based on user prompts.",
-    imageUrl: "https://placehold.co/600x400.png",
+    imageUrl: "https://i.postimg.cc/cJNPjx29/Screenshot-2025-07-21-123921.png",
     imageHint: "ai writing",
     liveLink: "guileless-sunflower-4695a7.netlify.app/",
     tags: ["Python", "GenAI", "NLP", "Content Creation"]
