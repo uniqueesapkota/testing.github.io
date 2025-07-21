@@ -55,7 +55,7 @@ const projectsData: Project[] = [
     description: "A tool that leverages generative AI to create engaging marketing copy, blog posts, and social media updates based on user prompts.",
     imageUrl: "https://placehold.co/600x400.png",
     imageHint: "ai writing",
-    liveLink: "#",
+    liveLink: "guileless-sunflower-4695a7.netlify.app/",
     tags: ["Python", "GenAI", "NLP", "Content Creation"]
   }
 ];
