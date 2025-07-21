@@ -42,11 +42,11 @@ const projectsData: Project[] = [
   },
   {
     id: "3",
-    title: "Collaborative Task Manager",
-    description: "A web application designed to streamline team workflows with features like task assignment, progress tracking, and real-time updates.",
-    imageUrl: "https://placehold.co/600x400.png",
-    imageHint: "task management",
-    repoLink: "https://starlit-figolla-4bf3c7.netlify.app/",
+    title: "Nepali Prompt Guide",
+    description: "A web application designed to guide nepali people to effectively use prompts.",
+    imageUrl: "https://i.postimg.cc/wjknC8z9/Screenshot-2025-07-21-124416.png",
+    imageHint: "prompt management",
+    repoLink: "nepali-prompt-guide.vercel.app",
     tags: ["Vue.js", "Firebase", "Productivity", "Team Tool"]
   },
    {
