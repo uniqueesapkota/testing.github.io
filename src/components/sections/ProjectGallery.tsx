@@ -46,7 +46,7 @@ const projectsData: Project[] = [
     description: "A web application designed to guide nepali people to effectively use prompts.",
     imageUrl: "https://i.postimg.cc/wjknC8z9/Screenshot-2025-07-21-124416.png",
     imageHint: "prompt management",
-    repoLink: "nepali-prompt-guide.vercel.app",
+    repoLink: "https://nepali-prompt-guide.vercel.app/",
     tags: ["Vue.js", "Firebase", "Productivity", "Team Tool"]
   },
    {
@@ -55,7 +55,7 @@ const projectsData: Project[] = [
     description: "A tool that leverages generative AI to create engaging marketing copy, blog posts, and social media updates based on user prompts.",
     imageUrl: "https://i.postimg.cc/cJNPjx29/Screenshot-2025-07-21-123921.png",
     imageHint: "ai writing",
-    liveLink: "guileless-sunflower-4695a7.netlify.app/",
+    liveLink: "https://guileless-sunflower-4695a7.netlify.app/",
     tags: ["Python", "GenAI", "NLP", "Content Creation"]
   }
 ];
